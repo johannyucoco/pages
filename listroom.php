@@ -167,11 +167,39 @@ if($_SESSION['userTypeID'] != 1) {
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-8">
-								<h1>Room List <?php echo "<a href='addroom.php' class='btn btn-info' role='button'>+</a>" ?> </h1>
+								<h1>Room List <a data-toggle="modal"  data-target="#Modal" class="btn btn-info">+</a>  </h1>
                                    <?php
 										require_once('mysteryDB_connect.php');
 
-										
+											echo
+												'
+													<div class="modal fade" id="Modal" role="dialog">
+														<form action="'.$_SERVER['PHP_SELF'].'" method="post">
+															<div class="modal-dialog modal-lg">
+															  <div class="modal-content">
+																<div class="modal-header">
+																  <button type="button" class="close" data-dismiss="modal">&times;</button>
+																  <h4 class="modal-title">Add Room</h4>
+																</div>
+																<div class="modal-body">
+																  <div class="form-group">
+																	<input type="hidden" name="branchID" value="<?php echo $branchID; ?>" /> 
+																		<input required name="newbranchName"class="form-control" placeholder="Room Name" ">
+																		<input name="branchID" class="form-control hidden" placeholder="Edit Branch Name" value="'.$branchID.'">
+																		<br>
+																</div>
+																<div class="modal-footer">
+																
+																  <button type="submit" class="btn btn-default btn-info" name="add" >Confirm</button>
+																  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+																</div>
+															  </div>
+															</div>
+														  </div>
+														</form>
+													</div>
+												';
+												
 											$sql = "SELECT r.roomID as roomID, r.roomName as roomName, r.roomDescription as roomDescription, b.branchname as branchname, r.status as status
 												  from rooms r join branches b
 															on r.branchID = b.branchID where r.status = 0";
@@ -349,8 +377,7 @@ if($_SESSION['userTypeID'] != 1) {
 											
 											
 											$roomID = $_POST['roomID'];
-											
-											echo $roomID;
+									
 											$query1=" update rooms	
 														set status = 1
 														where roomID = $roomID";

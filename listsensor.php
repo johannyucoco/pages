@@ -156,10 +156,37 @@ if($_SESSION['userTypeID'] != 1) {
                             <div class="row">
                                 <div class="col-lg-8">
 								
-								<h1>Sensor List <?php echo "<a href='addsensorform.php' class='btn btn-info' role='button'>+</a> "; ?> </h1>
+								<h1>Sensor List <a data-toggle="modal"  data-target="#Modal" class="btn btn-info">+</a> </h1>
 								<?php
 									require_once('mysteryDB_connect.php');
-
+								echo
+												'
+													<div class="modal fade" id="Modal" role="dialog">
+														<form action="'.$_SERVER['PHP_SELF'].'" method="post">
+															<div class="modal-dialog modal-lg">
+															  <div class="modal-content">
+																<div class="modal-header">
+																  <button type="button" class="close" data-dismiss="modal">&times;</button>
+																  <h4 class="modal-title">Add Sensor</h4>
+																</div>
+																<div class="modal-body">
+																  <div class="form-group">
+																	<input type="hidden" name="branchID" value="<?php echo $branchID; ?>" /> 
+																		<input required name="newbranchName"class="form-control" placeholder="Sensor Name" ">
+																		<input name="branchID" class="form-control hidden" placeholder="Edit Branch Name" ">
+																		<br>
+																</div>
+																<div class="modal-footer">
+																
+																  <button type="submit" class="btn btn-default btn-info" name="add" >Confirm</button>
+																  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+																</div>
+															  </div>
+															</div>
+														  </div>
+														</form>
+													</div>
+												';
 										$sql = "SELECT s.sensorID as sensorID, s.sensorName as sensorName, rpi.rpiName as rpiName, st.sensorType as sensorType
 												 FROM sensors s join sensortypes st
 														on s.sensorTypeID = st.sensorTypeID
@@ -304,13 +331,13 @@ if($_SESSION['userTypeID'] != 1) {
 																  
 												$result=mysqli_query($dbc,$query1);
 												if ($result) {
-															
+													/*		
 														echo "<meta http-equiv='refresh' content='0'>"; //refresh page
 													echo'<script>
 															window.href = "listbranch.php";
 														</script>
 														';
-													
+													*/
 													echo'
 														<div class="alert alert-success">
 															<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
@@ -345,14 +372,14 @@ if($_SESSION['userTypeID'] != 1) {
 												$result=mysqli_query($dbc,$query1);
 												if ($result) {
 													
-													
+													/*
 															
 														echo "<meta http-equiv='refresh' content='0'>"; //refresh page
 													echo'<script>
 															window.href = "listbranch.php";
 														</script>
 														';
-													
+													*/
 													echo'
 														<div class="alert alert-success">
 															<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>

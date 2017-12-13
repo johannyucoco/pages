@@ -163,8 +163,37 @@ require_once('mysteryDB_connect.php');
                             <div class="row">
                                 <div class="col-lg-6">
 								
-								<h1>Branch List <a href="addbranch.php" class="btn btn-info" role="button">+</a> </h1> 
+								<h1>Branch List <a data-toggle="modal"  data-target="#Modal" class="btn btn-info">+</a> </h1> 
 									<?php
+									echo
+												'
+													<div class="modal fade" id="Modal" role="dialog">
+														<form action="'.$_SERVER['PHP_SELF'].'" method="post">
+															<div class="modal-dialog modal-lg">
+															  <div class="modal-content">
+																<div class="modal-header">
+																  <button type="button" class="close" data-dismiss="modal">&times;</button>
+																  <h4 class="modal-title">Add Branch</h4>
+																</div>
+																<div class="modal-body">
+																  <div class="form-group">
+																	<input type="hidden" name="branchID" value="<?php echo $branchID; ?>" /> 
+																		<input required name="newbranchName"class="form-control" placeholder="Branch Name" ">
+																		<input name="branchID" class="form-control hidden" placeholder="Edit Branch Name" ">
+																		<br>
+																</div>
+																<div class="modal-footer">
+																
+																  <button type="submit" class="btn btn-default btn-info" name="add" >Confirm</button>
+																  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+																</div>
+															  </div>
+															</div>
+														  </div>
+														</form>
+													</div>
+												';
+									
 									
 										echo 	
 												'
@@ -204,6 +233,8 @@ require_once('mysteryDB_connect.php');
 													
 												</tr>
 												';
+												
+												
 												echo
 												'
 													<div class="modal fade" id="myModal'.$branchID.'" role="dialog">
@@ -289,12 +320,8 @@ require_once('mysteryDB_connect.php');
 												$branchID = -1;
 											}
 											
-											$newbranchName = $_POST['newbranchName'];
+											$newbranchName = $_POST['newbranchName'];		  
 											
-											
-																  
-																  
-												$result=mysqli_query($dbc,$query1);
 											
 											$query1="update branches	
 														set branchname = '$newbranchName'
@@ -304,12 +331,15 @@ require_once('mysteryDB_connect.php');
 												$result=mysqli_query($dbc,$query1);
 												if ($result) {
 													
-															
+													/*		
 														echo "<meta http-equiv='refresh' content='0'>"; //refresh page
 													echo'<script>
 															window.href = "listbranch.php";
 														</script>
+														
 														';
+														
+														*/
 													echo'
 														<div class="alert alert-success">
 															<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
@@ -353,13 +383,13 @@ require_once('mysteryDB_connect.php');
 												$result=mysqli_query($dbc,$query1);
 												if ($result) {
 													
-															
+														/*	
 														echo "<meta http-equiv='refresh' content='0'>"; //refresh page
 													echo'<script>
 															window.href = "listbranch.php";
 														</script>
 														';
-													
+													*/
 													echo'
 														<div class="alert alert-success">
 															<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
