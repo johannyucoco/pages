@@ -147,15 +147,27 @@ require_once('mysteryDB_connect.php');
 				 <h2 class="page-header">Latest Update 
 				<div id="asdf"></div>
 											
-				 <h1 class="page-header"><?php echo $_GET['roomName']; ?>'s Raspberry Pi &nbsp
-				 <?php
-					if($_SESSION['userTypeID'] == 1) {
-						
-					}
-					if($_SESSION['userTypeID'] == 2) {
-							echo  "</h1>";
-					}
-				?>
+				 <h1 class="page-header"><?php 
+				 
+				 
+					$query = " Select * from rooms r join branches b 
+													   on r.branchID = b.branchID 
+													   
+													   ";	
+						$result=mysqli_query($dbc,$query);
+						$row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+						$branchName = $row['branchname'];
+			
+				 
+				 
+				 echo"
+				 <ol class='breadcrumb'>
+					<li class='breadcrumb-item'>$branchName</li>
+					<li class='breadcrumb-item active'>{$_GET['roomName']}</li>
+					</ol>
+					";
+				 ?>
+			
 				 
 				<div id="qwer"></div>
 				<?php

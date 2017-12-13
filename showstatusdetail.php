@@ -141,12 +141,46 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12" >
-					<h1 class="page-header"><?php echo $_GET['sensorName'] ?>'s status:<?php 
-															echo $_GET['statusID'];?> Details</h1>
+					<h1 class="page-header"><?php 
+					require_once('mysteryDB_connect.php');
+					
+					$status = $_GET['statusID'];
+					
+					$query = "Select * from status s join sensors e  
+													   on s.sensorID = e.sensorID 
+													   join rpi r 
+													   on e.rpiID = r.rpiID 
+													   join rooms o 
+													   on r.roomID = o.roomID 
+													   join branches b
+													   on o.branchID = b.branchID
+													where s.statusID = $status
+													   ";	
+						$result=mysqli_query($dbc,$query);
+						while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)){
+						$branchName = $row['branchname'];
+						$roomName = $row['roomName'];
+						$rpiName = $row['rpiName'];
+						$sensorName = $row['sensorName'];
+						
+						}
+				 
+				 
+				 echo"
+				 <ol class='breadcrumb'>
+					<li class='breadcrumb-item'>$branchName</li>
+					<li class='breadcrumb-item'>$roomName</li>
+					<li class='breadcrumb-item'>$rpiName</li>
+					<li class='breadcrumb-item'>$sensorName</li>
+					<li class='breadcrumb-item active'>$status</li>
+					</ol>
+					";
+					?>
+				</h1>
 					<div id="qwert"></div>
 					
 					<?php
-						require_once('mysteryDB_connect.php');
+						
 
 							$statusID = $_GET['statusID'];
 							
