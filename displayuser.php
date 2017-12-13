@@ -53,7 +53,7 @@ if($_SESSION['userTypeID'] != 1) {
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-left" href="index.html" ><img style="width:150px;height:50px;" src="logo.gif"></a>
+                <a class="navbar-top" href="index.php" >&nbsp <img src="logo2.jpg"></a>
             </div>
             <!-- /.navbar-header -->
 
@@ -150,7 +150,7 @@ if($_SESSION['userTypeID'] != 1) {
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Users &nbsp <a href="adduser.php" class="btn btn-info" role="button">Add User</a></h1>
+                    <h1 class="page-header">Users <a href="adduser.php" class="btn btn-info" role="button">+</a></h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>

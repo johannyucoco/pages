@@ -61,7 +61,7 @@ require_once('mysteryDB_connect.php');
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-left" href="index.html" ><img style="width:150px;height:50px;" src="logo.gif"></a>
+                <a class="navbar-top" href="index.php" >&nbsp <img src="logo2.jpg"></a>
             </div>
             <!-- /.navbar-header -->
 
