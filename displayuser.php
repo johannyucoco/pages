@@ -150,14 +150,57 @@ if($_SESSION['userTypeID'] != 1) {
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Users <a href="adduser.php" class="btn btn-info" role="button">+</a></h1>
+                    <h1 class="page-header">Users <a data-toggle="modal"  data-target="#Modal" class="btn btn-info">+</a></h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
             <!-- /.row -->
 				<?php
 					require_once('mysteryDB_connect.php');
-
+					echo
+												'
+													<div class="modal fade" id="Modal" role="dialog">
+														<form action="'.$_SERVER['PHP_SELF'].'" method="post">
+															<div class="modal-dialog modal-lg">
+															  <div class="modal-content">
+																<div class="modal-header">
+																  <button type="button" class="close" data-dismiss="modal">&times;</button>
+																  <h4 class="modal-title">Add User</h4>
+																</div>
+																<div class="modal-body">
+																  <div class="form-group">
+																	<input type="hidden" name="branchID" value="<?php echo $branchID; ?>" /> 
+																		<input required name="newbranchName"class="form-control" placeholder="User Name" ">
+																		<br>
+																		<input required type="password" name="newPassword"class="form-control" placeholder="Password" ">
+																		<br>
+																		<label>User Type</label>
+																				<select name= "userType" class="form-control">
+																	
+																			';
+																			$query1= "select * from usertype;"; // Run your query
+																			$result1=mysqli_query($dbc,$query1);
+																			echo "<option value='default'> select </option>"; 
+																			while ($row = mysqli_fetch_array($result1, MYSQLI_ASSOC)) {
+																			$userType = $row['userType'];
+																			$id = $row['userTypeID'];
+																			echo "<option value=". $id .">".$userType."</option>";
+																			}
+																echo'
+																		</select>
+																		<br>
+																</div>
+																<div class="modal-footer">
+																
+																  <button type="submit" class="btn btn-default btn-info" name="add" >Confirm</button>
+																  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+																</div>
+															  </div>
+															</div>
+														  </div>
+														</form>
+													</div>
+												';
 
 					$sql = "SELECT *
 							  from users u join usertype t on u.userTypeID = t.userTypeID
