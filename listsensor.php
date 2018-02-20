@@ -174,9 +174,36 @@ if($_SESSION['userTypeID'] != 1) {
 																<div class="modal-body">
 																  <div class="form-group">
 																	<input type="hidden" name="branchID" value="<?php echo $branchID; ?>" /> 
-																		<input required name="newbranchName"class="form-control" placeholder="Sensor Name" ">
+																		<input required name="sensorName"class="form-control" placeholder="Sensor Name" ">
 																		<input name="branchID" class="form-control hidden" placeholder="Edit Branch Name" ">
 																		<br>
+																		<label> Sensor Type </label>
+																		<select name="sensorType" class="form-control">';
+																				$query1= "select * from sensortypes"; // Run your query
+																				$result1=mysqli_query($dbc,$query1);
+																				echo "<option value='default'> -select- </option>"; 
+																				while ($row = mysqli_fetch_array($result1, MYSQLI_ASSOC)) {
+																					$sensorType = $row['sensorType'];
+																					$id = $row['sensorTypeID'];
+																				
+																					echo "<option value=". $id .">".$sensorType."</option>";
+																				}
+																			
+																		echo '</select>
+																			<br>
+																			<label> RPI </label>
+																		<select name="rpi" class="form-control">';
+																				$query1= "select * from rpi where status = 0"; // Run your query
+																				$result1=mysqli_query($dbc,$query1);
+																				echo "<option value='default'> -select- </option>"; 
+																				while ($row = mysqli_fetch_array($result1, MYSQLI_ASSOC)) {
+																					$rpiName = $row['rpiName'];
+																					$id = $row['rpiID'];
+																				
+																					echo "<option value=". $id .">".$rpiName."</option>";
+																				}
+																			
+																		echo '</select>
 																</div>
 																<div class="modal-footer">
 																
@@ -407,6 +434,56 @@ if($_SESSION['userTypeID'] != 1) {
 											
 											
 										}
+										
+										if (isset($_POST['add'])){
+							
+											$message=NULL;
+							
+											if($_POST['rpi'] == 'default'){
+												 $message .= '<p>Empty RPI';
+												 $rpiConnection=FALSE;
+											}else $rpiConnection = $_POST['rpi'];
+									
+
+											if($_POST['sensorType'] == 'default'){
+												 $message .= '<p>Empty room';
+												 $sensorTypeID=FALSE;
+											}else $sensorTypeID = $_POST['sensorType	'];
+										
+											
+								
+										if(!isset($message)){
+											
+													$query1="insert into sensors(sensorName,rpiID,sensorTypeID) values ('$sensorName','$rpiConnection','$sensorTypeID')";
+													$result=mysqli_query($dbc,$query1);
+											echo'
+											<div class="alert alert-success">
+											<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+											<strong>Success!</strong> New RPI Added.
+											</div>';
+																			
+										}
+
+										if(isset($message)){
+											echo'
+											<div class="alert alert-danger">
+											<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+											<strong>Error!</strong> '.$message.'
+											</div>
+											';	
+											
+										}																										
+															/*	echo "<meta http-equiv='refresh' content='0'>"; //refresh page
+															echo'<script>
+																	window.href = "listbranch.php";
+																</script>
+																';*/
+																
+						
+								
+								
+							}
+					//end of add
 										
 										
 										

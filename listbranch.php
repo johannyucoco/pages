@@ -179,7 +179,7 @@ require_once('mysteryDB_connect.php');
 																<div class="modal-body">
 																  <div class="form-group">
 																	<input type="hidden" name="branchID" value="<?php echo $branchID; ?>" /> 
-																		<input required name="newbranchName"class="form-control" placeholder="Branch Name" ">
+																		<input required name="branchName"class="form-control" placeholder="Branch Name" ">
 																		<input name="branchID" class="form-control hidden" placeholder="Edit Branch Name" ">
 																		<br>
 																</div>
@@ -414,6 +414,51 @@ require_once('mysteryDB_connect.php');
 											
 											
 										}
+										if (isset($_POST['add'])){
+							
+											$message=NULL;
+							
+								
+									
+
+											$branchName = $_POST['branchName'];
+								
+										
+											
+								
+										if(!isset($message)){
+											
+												$query1="insert into branches(branchName) values ('$branchName')";
+												$result=mysqli_query($dbc,$query1);
+											echo'
+											<div class="alert alert-success">
+											<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+											<strong>Success!</strong> New Branch Added.
+											</div>';
+																			
+										}
+
+										if(isset($message)){
+											echo'
+											<div class="alert alert-danger">
+											<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+											<strong>Error!</strong> '.$message.'
+											</div>
+											';	
+											
+										}																										
+															/*	echo "<meta http-equiv='refresh' content='0'>"; //refresh page
+															echo'<script>
+																	window.href = "listbranch.php";
+																</script>
+																';*/
+																
+						
+								
+								
+							}
+					//end of add
+										
 										
 										
 										

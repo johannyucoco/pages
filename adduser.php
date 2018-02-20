@@ -21,12 +21,12 @@ if (isset($_POST['submit'])){
 			}
 		}
 		
-		if(empty($_POST['userType'])){
+		if(isset($_POST['userType']){
 			 $message .= '<p>Empty user Type';
 			 $userTypeID=FALSE;
 		}else $userTypeID = $_POST['userType'];
 
-		if(empty($_POST['branch'])){
+		if(isset($_POST['branch'])){
 			 $message .= '<p>Empty branch';
 			 $branchID=FALSE;
 		}else $branchID = $_POST['branch'];

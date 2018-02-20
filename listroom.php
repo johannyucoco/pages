@@ -182,12 +182,27 @@ if($_SESSION['userTypeID'] != 1) {
 																<div class="modal-body">
 																  <div class="form-group">
 																	<input type="hidden" name="branchID" value="<?php echo $branchID; ?>" /> 
-																		<input required name="newbranchName"class="form-control" placeholder="Room Name" ">
+																		<input required name="roomName"class="form-control" placeholder="Room Name" ">
+																		<br>
+																		<input required name="roomDescription"class="form-control" placeholder="Room Description" ">
 																		<input name="branchID" class="form-control hidden" placeholder="Edit Branch Name" value="'.$branchID.'">
 																		<br>
+																		<label>Branches</label>
+																				<select name= "branch" class="form-control">
+																	
+																			';
+																			$query1= "select * from branches;"; // Run your query
+																			$result1=mysqli_query($dbc,$query1);
+																			echo "<option value='default'> -select- </option>"; 
+																			while ($row = mysqli_fetch_array($result1, MYSQLI_ASSOC)) {
+																			$branch = $row['branchname'];
+																			$id = $row['branchID'];
+																			echo "<option value=". $id .">".$branch."</option>";
+																			}
+																echo'
+																		</select>
 																</div>
 																<div class="modal-footer">
-																
 																  <button type="submit" class="btn btn-default btn-info" name="add" >Confirm</button>
 																  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 																</div>
@@ -415,8 +430,55 @@ if($_SESSION['userTypeID'] != 1) {
 											
 										}
 										
+								if (isset($_POST['add'])){
+							
+											$message=NULL;
+							
+								
+									
+											if($_POST['branch']== 'default'){
+												 $message .= '<p>Empty branch';
+												 $branchID=FALSE;
+											}else $branchID = $_POST['branch'];
+
+											$roomName = $_POST['roomName'];
+											$roomDescription = $_POST['roomDescription'];
 										
-										
+											
+								
+										if(!isset($message)){
+											
+												$query1="insert into rooms(roomName,roomDescription,branchID) values ('$roomName','$roomDescription','$branchID')";
+												$result=mysqli_query($dbc,$query1);
+											echo'
+											<div class="alert alert-success">
+											<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+											<strong>Success!</strong> Room Added.
+											</div>';
+																			
+										}
+
+										if(isset($message)){
+											echo'
+											<div class="alert alert-danger">
+											<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+											<strong>Error!</strong> '.$message.'
+											</div>
+											';	
+											
+										}																										
+															/*	echo "<meta http-equiv='refresh' content='0'>"; //refresh page
+															echo'<script>
+																	window.href = "listbranch.php";
+																</script>
+																';*/
+																
+						
+								
+								
+							}
+					//end of add
+							//end of after button press 
 										
 									?>
 										

@@ -169,9 +169,17 @@ if($_SESSION['userTypeID'] != 1) {
 																<div class="modal-body">
 																  <div class="form-group">
 																	<input type="hidden" name="branchID" value="<?php echo $branchID; ?>" /> 
-																		<input required name="newbranchName"class="form-control" placeholder="User Name" ">
+																		<input required name="username"class="form-control" placeholder="User Name" ">
 																		<br>
-																		<input required type="password" name="newPassword"class="form-control" placeholder="Password" ">
+																		<input required name="firstName"class="form-control" placeholder="First Name" ">
+																		<br>
+																		<input required name="lastName"class="form-control" placeholder="Last Name" ">
+																		<br>
+																		<input required name="contactNumber"class="form-control" placeholder="Contact Number" ">
+																		<br>
+																		<input required type="email" name="email"class="form-control" placeholder="Email" ">
+																		<br>
+																		<input required type="password" name="password"class="form-control" placeholder="Password" ">
 																		<br>
 																		<label>User Type</label>
 																				<select name= "userType" class="form-control">
@@ -179,7 +187,7 @@ if($_SESSION['userTypeID'] != 1) {
 																			';
 																			$query1= "select * from usertype;"; // Run your query
 																			$result1=mysqli_query($dbc,$query1);
-																			echo "<option value='default'> select </option>"; 
+																			echo "<option value='default'> -Select- </option>"; 
 																			while ($row = mysqli_fetch_array($result1, MYSQLI_ASSOC)) {
 																			$userType = $row['userType'];
 																			$id = $row['userTypeID'];
@@ -187,6 +195,21 @@ if($_SESSION['userTypeID'] != 1) {
 																			}
 																echo'
 																		</select>
+																		
+																		<label>Branch</label>
+																		<select name="branch" class="form-control">
+												
+												';
+												$query1= "select * from branches;"; // Run your query
+												$result1=mysqli_query($dbc,$query1);
+												echo "<option value='default'> -Select- </option>"; 
+												while ($row = mysqli_fetch_array($result1, MYSQLI_ASSOC)) {
+												$branchName = $row['branchname'];
+												$id = $row['branchID'];
+												echo "<option value=". $id .">".$branchName."</option>";
+												}
+											echo'
+                                            </select>
 																		<br>
 																</div>
 																<div class="modal-footer">
@@ -214,6 +237,9 @@ if($_SESSION['userTypeID'] != 1) {
 							<thead>
 								<tr>
 								<th class="text-center">User Name</th>
+								<th class="text-center">Name</th>
+								<th class="text-center">Contact Number</th>
+								<th class="text-center">Email</th>
 								<th class="text-center">User Type</th>
 								<th class="text-center">Branch</th>
 								
@@ -230,13 +256,85 @@ if($_SESSION['userTypeID'] != 1) {
 							"
 							<tr>
 								<td class='text-center'> {$row['username']} </td>
-								<td class='text-center'> {$row['branchname']} </td>
+								<td class='text-center'> {$row['firstName']},{$row['lastName']}  </td>
+								<td class='text-center'> {$row['contactNumber']} </td>
+								<td class='text-center'> {$row['email']} </td>
 								<td class='text-center'> {$row['userType']} </td>
+								<td class='text-center'> {$row['branchname']} </td>
 							</tr>
 							";
 					}
 					
 					echo '</tbody> </table>';
+					//add press
+					if (isset($_POST['add'])){
+							
+						//check if username already exists 
+								$message=NULL;
+																
+								if(empty($_POST['username'])){
+									 $username=FALSE;
+								}else{
+									$query= "select * from users where username = '{$_POST['username']}' "; // Run your query
+									$result=mysqli_query($dbc,$query);
+									$row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+									if(empty($row)){
+										$username = $_POST['username'];
+									}else {
+										$message .= '<p>UserName already Exists';
+									}
+								}
+								
+								if($_POST['userType'] == 'default'){
+									 $message .= '<p>Empty user Type';
+									 $userTypeID=FALSE;
+								}else $userTypeID = $_POST['userType'];
+
+								if($_POST['branch']== 'default'){
+									 $message .= '<p>Empty branch';
+									 $branchID=FALSE;
+								}else $branchID = $_POST['branch'];
+
+								$password = $_POST['password'];
+								$firstName = $_POST['firstName'];
+								$lastName = $_POST['lastName'];
+								$email = $_POST['email'];
+								$contactNumber = $_POST['contactNumber'];
+								
+								
+								if(!isset($message)){
+									
+									$query1="insert into users(username,firstName,lastName,email,contactNumber,password,userTypeID,branchID)
+											 values ('$username ','$firstName','$lastName','$email','$contactNumber',password('$password'),'$userTypeID','$branchID')";
+									$result=mysqli_query($dbc,$query1);
+									echo'
+									<div class="alert alert-success">
+									<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+									<strong>Success!</strong> User Added.
+									</div>';
+																	
+								}
+
+								if(isset($message)){
+									echo'
+									<div class="alert alert-danger">
+									<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+									<strong>Error!</strong> '.$message.'
+									</div>
+									';	
+									
+								}																										
+													/*	echo "<meta http-equiv='refresh' content='0'>"; //refresh page
+													echo'<script>
+															window.href = "listbranch.php";
+														</script>
+														';*/
+														
+				
+						
+						
+					}
+					//end of add
 					
 				?>
         </div>
