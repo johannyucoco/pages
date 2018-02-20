@@ -95,7 +95,7 @@ if (isset($_POST['delete'])){
 			
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
+                        <i class="fa fa-user fa-fw" style="color:white"></i> <i class="fa fa-caret-down" style="color:white"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
                         <li><a href="#"><i class="fa fa-user fa-fw"></i> <?php echo $_SESSION['username'];?></a>
@@ -109,15 +109,16 @@ if (isset($_POST['delete'])){
                 <!-- /.dropdown -->
             </ul>
             <!-- /.navbar-top-links -->
-	<div class="navbar-default sidebar" role="navigation">
+		
+            <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
                             <!-- /input-group -->
                         <li>
-                            <a href="index.php"><i class="fa fa-dashboard fa-fw"></i> Home</a>
+                            <a href="index.php"><i class="fa fa-home fa-fw" style="color:black"></i> Home</a>
                         </li>
                             <li>
-                            <a href="#"><i class="fa fa-sitemap fa-fw"></i> Tools<span class="fa arrow"></span></a>
+                            <a href="#"><i class="fa fa-wrench fa-fw" style="color:black"></i> Tools<span class="fa arrow" style="color:black"></span></a>
                             <ul class="nav nav-second-level">
                                <li>
                                     <a href="addsensortype.php">Add Sensor Type</a>
@@ -130,7 +131,7 @@ if (isset($_POST['delete'])){
                                 </li>
                             </ul>
 							 <li>
-                            <a href="#"><i class="fa fa-sitemap fa-fw"></i> Branches<span class="fa arrow"></span></a>
+                            <a href="#"><i class="fa fa-sitemap fa-fw" style="color:black"></i> Branches<span class="fa arrow" style="color:black"></span></a>
                             <ul class="nav nav-second-level">
 							<?php 
 								require_once('mysteryDB_connect.php');
@@ -152,7 +153,7 @@ if (isset($_POST['delete'])){
 							
                             </ul>
 							<li>
-                            <a href="#"><i class="fa fa-sitemap fa-fw"></i> Manage Data<span class="fa arrow"></span></a>
+                            <a href="#"><i class="fa fa-archive fa-fw" style="color:black"></i> Manage Data<span class="fa arrow" style="color:black"></span></a>
                             <ul class="nav nav-second-level">
                                <li>
                                     <a href="listroom.php">View Rooms</a>
@@ -167,11 +168,10 @@ if (isset($_POST['delete'])){
                                     <a href="listsensor.php">View Sensors</a>
                                 </li>
                             </ul>
-							<li>
-							<li>
-						<a href="logout.php"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
-						</li>
                             <!-- /.nav-second-level -->
+						<li>
+						<a href="logout.php"><i class="fa fa-sign-out fa-fw" style="color:black"></i> Logout</a>
+						</li>
                         </li>
                     </ul>
                 </div>
