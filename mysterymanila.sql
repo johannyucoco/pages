@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 13, 2017 at 07:01 PM
+-- Generation Time: Feb 20, 2018 at 12:09 PM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 5.6.21
 
@@ -116,8 +116,8 @@ INSERT INTO `rooms` (`roomID`, `roomName`, `roomDescription`, `branchID`, `statu
 (1, 'Harry Potter Room', 'Harry Potter Theme', 2, 0),
 (2, 'Scary Room', 'A very scary room', 2, 0),
 (3, 'Magic Room', 'A magical room', 4, 0),
-(5, 'Murder Room ', 'Crime Scene ', 2, 1),
-(6, 'Banana ', 'Rooms', 2, 0);
+(5, 'Murder Room ', 'Crime Scene ', 2, 0),
+(6, 'Banana', 'Rooms', 2, 0);
 
 -- --------------------------------------------------------
 
@@ -266,7 +266,11 @@ INSERT INTO `statusdetails` (`statusDetailID`, `statusID`, `variableName`, `valu
 
 CREATE TABLE `users` (
   `userID` int(11) NOT NULL,
+  `firstName` varchar(45) NOT NULL,
+  `lastName` varchar(45) NOT NULL,
   `username` varchar(45) NOT NULL,
+  `email` varchar(45) NOT NULL,
+  `contactNumber` varchar(45) NOT NULL,
   `password` varchar(45) NOT NULL,
   `userTypeID` int(11) NOT NULL,
   `branchID` int(11) NOT NULL
@@ -276,10 +280,10 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`userID`, `username`, `password`, `userTypeID`, `branchID`) VALUES
-(1, 'Patrick ', '*A4B6157319038724E3560894F7F932C8886EBFCF', 1, 2),
-(5, 'Johann ', '*A4B6157319038724E3560894F7F932C8886EBFCF', 2, 2),
-(6, 'GameMaster ', '*A4B6157319038724E3560894F7F932C8886EBFCF', 2, 4);
+INSERT INTO `users` (`userID`, `firstName`, `lastName`, `username`, `email`, `contactNumber`, `password`, `userTypeID`, `branchID`) VALUES
+(1, 'Patrick ', 'Pineda', 'Patrick ', 'patrickpineda@mysterymanila.com', '09171234567', '*A4B6157319038724E3560894F7F932C8886EBFCF', 1, 2),
+(5, 'Johann ', 'Yucoco', 'Johann ', 'johannyucoco@mysterymanila.com', '09172346051', '*A4B6157319038724E3560894F7F932C8886EBFCF', 2, 2),
+(6, 'Game', 'Master', 'GameMaster ', 'gamemaster@mysterymanila.com', '01234567891', '*A4B6157319038724E3560894F7F932C8886EBFCF', 2, 4);
 
 -- --------------------------------------------------------
 
