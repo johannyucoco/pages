@@ -44,7 +44,7 @@ if($_SESSION['userTypeID'] != 1) {
     <div id="wrapper">
 
         <!-- Navigation -->
-        <nav class="navbar navbar-default navbar-static-top" role="navigation"  style="margin-top: 0 ; background-color:black">
+        <nav class="navbar navbar-default navbar-static-top" role="navigation"  style="margin-bottom: 0 ; background-color:black">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="sr-only">Toggle navigation</span>
@@ -78,69 +78,67 @@ if($_SESSION['userTypeID'] != 1) {
             <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
-                            <!-- /input-group -->
                         <li>
-                            <a href="index.php"><i class="fa fa-home fa-fw" style="color:black"></i> Home</a>
+                            <a href="index.php"><i class="fa fa-home fa-fw" style="color:white"></i><font color="white"> Home </font></a>
                         </li>
+						<li>
+                            <a href="#"><i class="fa fa-wrench fa-fw" style="color:white"></i><font color="white"> Tools </font><span class="fa arrow" style="color:white"></span></a>
+                            <ul class="nav nav-second-level">
                             <li>
-                            <a href="#"><i class="fa fa-wrench fa-fw" style="color:black"></i> Tools<span class="fa arrow" style="color:black"></span></a>
-                            <ul class="nav nav-second-level">
-                               <li>
-                                    <a href="addsensortype.php">Add Sensor Type</a>
-                                </li>
-								<li>
-                                    <a href="sensorTypePage.php">Edit Status Details</a>
-                                </li>
-								<li>
-                                    <a href="displayuser.php">Display Users</a>
-                                </li>
-                            </ul>
-							 <li>
-                            <a href="#"><i class="fa fa-sitemap fa-fw" style="color:black"></i> Branches<span class="fa arrow" style="color:black"></span></a>
-                            <ul class="nav nav-second-level">
-							<?php 
-								require_once('mysteryDB_connect.php');
-
-
-						$sql = "SELECT *
-							  from branches where status = 0";
-						
-							$result = mysqli_query($dbc,$sql);
-						while($row=mysqli_fetch_array($result,MYSQLI_ASSOC)) {
-							$branchID = $row['branchID'];
-							$branchname = $row['branchname'];	
-							echo "
-								<li>
-									<a href='roomslist.php?branchID='.$branchID.'&branchname='.$branchname.'>$branchname </a>
-                                </li>";
-						}
-								?>
-							
+								<a href="addsensortype.php"><font color="white"> Add Sensor Type </font></a>
+                            </li>
+							<li>
+                                <a href="sensorTypePage.php"><font color="white"> Edit Status Details </font></a>
+                            </li>
+							<li>
+                                <a href="displayuser.php"><font color="white"> Display Users </font></a>
+                            </li>
                             </ul>
 							<li>
-                            <a href="#"><i class="fa fa-archive fa-fw" style="color:black"></i> Manage Data<span class="fa arrow" style="color:black"></span></a>
-                            <ul class="nav nav-second-level">
-                               <li>
-                                    <a href="listroom.php">View Rooms</a>
+								<a href="#"><i class="fa fa-sitemap fa-fw" style="color:white"></i><font color="white"> Branches </font><span class="fa arrow" style="color:white"></span></a>
+								<ul class="nav nav-second-level">
+								<?php 
+									require_once('mysteryDB_connect.php');
+									$sql = "SELECT *
+											from branches where status = 0";
+									$result = mysqli_query($dbc,$sql);
+									while($row=mysqli_fetch_array($result,MYSQLI_ASSOC)) {
+										$branchID = $row['branchID'];
+										$branchname = $row['branchname'];	
+									echo "
+											<li>
+											<a href='roomslist.php?branchID='.$branchID.'&branchname='.$branchname.'><font color=\"white\">$branchname </font></a>
+											</li>";
+									}
+								?>
+								</ul>
+							</li>
+							<li>
+								<a href="#"><i class="fa fa-archive fa-fw" style="color:white"></i><font color="white"> Manage Data </font><span class="fa arrow" style="color:white"></span></a>
+								<ul class="nav nav-second-level">
+								<li>
+                                    <a href="listroom.php"><font color="white"> View Rooms </font></a>
                                 </li>
 								<li>
-                                    <a href="listbranch.php">View Branches</a>
+                                    <a href="listbranch.php"><font color="white"> View Branches </font></a>
                                 </li>
 								<li>
-                                    <a href="listrpi.php">View Raspberry Pis</a>
+                                    <a href="listrpi.php"><font color="white"> View Raspberry Pis </font></a>
                                 </li>
 								<li>
-                                    <a href="listsensor.php">View Sensors</a>
+                                    <a href="listsensor.php"><font color="white"> View Sensors </font></a>
                                 </li>
-                            </ul>
+								</ul>
                             <!-- /.nav-second-level -->
-                        </li>
-                    </ul>
+							</li>
+						</ul>
+					<!-- /.nav -->
                 </div>
                 <!-- /.sidebar-collapse -->
             </div>
             <!-- /.navbar-static-side -->
         </nav>
+
                 <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
