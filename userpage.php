@@ -4,27 +4,6 @@
 if($_SESSION['userTypeID'] != 1) {
 	 header("Location: http://".$_SERVER['HTTP_HOST'].  dirname($_SERVER['PHP_SELF'])."/logout.php");
 }
-require_once('mysteryDB_connect.php');
-if (isset($_POST['save'])){
-		
-					$status = $_POST['status'];
-					$query2="select * from legendstatusdetails d join legendStatus s on d.legendStatusID = s.legendStatusID 
-												join sensortypes t on s.sensorTypeID = t.sensorTypeID";
-					$result2=mysqli_query($dbc,$query2);
-					$ct = 0;	
-					while ($row = mysqli_fetch_array($result2, MYSQLI_ASSOC)) {
-						$query="UPDATE legendstatusdetails
-									SET legendValue = {$status[$ct]}
-									WHERE legendStatusDetailID = {$row['legendStatusDetailID']}";
-						$result=mysqli_query($dbc,$query);
-						$ct++;
-					}
-		}
-		
-if (isset($_POST['delete'])){
-	
-
-}
 ?>
 <head>
 
@@ -162,39 +141,15 @@ if (isset($_POST['delete'])){
             </div>
             <!-- /.navbar-static-side -->
         </nav>
-
-        <div id="page-wrapper">
-			<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
-			<table class="table table-stipend table-bordered table-hover" id="sensorTable">
-			<thead>
-			<tr>
-				<th class="text-center">SensorType</th>
-				<th class="text-center">Status</th> 
-				<th class="text-center">Variable Name</th>
-				<th class="text-center">Value</th>
-			</tr>
-			</thead>
-			<tbody>
-			<?php	
-			$query="select * from legendstatusdetails d join legendStatus s on d.legendStatusID = s.legendStatusID 
-					join sensortypes t on s.sensorTypeID = t.sensorTypeID";
-			$result=mysqli_query($dbc,$query);
-			while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)){
-				echo "<tr>";
-				echo "<td class='text-center'>" . $row['sensorType']. "</td>";
-				echo "<td class='text-center'>" . $row['legendStatus']. "</td>";
-				echo "<td class='text-center'>" . $row['legendVariableName']. "</td>";
-				echo "<td class='text-center'><input required type=\"int\" min=\"0\" name=\"status[]\" class=\"form-control\" placeholder=\"{$row['legendValue']}\" value=\"{$row['legendValue']}\">";
-				echo "</td>";
-				echo "</tr>";
-			}				
-			?>	
-			</tbody>	
-			</table>
-			<div align="center"><input type="submit" name="save" value="Edit" class="btn btn-info" role="button"/></div>		
-			</form>				
-        </div>
-        <!-- /#page-wrapper -->
+                <div id="page-wrapper">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h3 class="page-header"> <?php echo $_SESSION['username'];?></h3>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+    <!-- /#wrapper -->
 
     <!-- jQuery -->
     <script src="../vendor/jquery/jquery.min.js"></script>
@@ -213,13 +168,6 @@ if (isset($_POST['delete'])){
     <!-- Custom Theme JavaScript -->
     <script src="../dist/js/sb-admin-2.js"></script>
 	
-		<script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
-	
-		<script> 
-		$(document).ready(function(){
-			$('#sensorTable').DataTable();
-		});
-		</script>
 	<style>
 		.btn-info
 		{
@@ -241,4 +189,4 @@ if (isset($_POST['delete'])){
 
 </body>
 
-</html>
+</html>
