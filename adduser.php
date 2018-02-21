@@ -6,6 +6,7 @@ if($_SESSION['userTypeID'] != 1) {
 }
 require_once('mysteryDB_connect.php'); 
 if (isset($_POST['submit'])){
+	//this is a change
 		$message=NULL;
 										
 		if(empty($_POST['username'])){
