@@ -29,9 +29,7 @@ if (isset($_POST['submit'])){
 			} else $message = "Username and password do not match.";
 			
 			
-			if (isset($message)){
-			 echo '<font color="red">'.$message. '</font>';
-			}
+		
 			
 }
 
@@ -88,9 +86,25 @@ if (isset($_POST['submit'])){
                             </fieldset>
                         </form>
                     </div>
+				
                 </div>
+					<?php
+			//Error Message S
+			if (isset($message)){
+				
+			
+			 echo'
+											<div class="alert alert-danger">
+											<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+											<strong>Error!</strong> '.$message.'
+											</div>
+											';	
+			}
+			//Error Message E
+			?>
             </div>
         </div>
+			
     </div>
 
     <!-- jQuery -->
