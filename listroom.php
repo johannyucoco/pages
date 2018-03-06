@@ -197,7 +197,7 @@ if($_SESSION['userTypeID'] != 1) {
 																		</select>
 																</div>
 																<div class="modal-footer">
-																  <button type="submit" class="btn btn-default btn-info" name="add" >Confirm</button>
+																  <button type="submit" class="btn btn-default btn-info" name="add" >Add</button>
 																  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 																</div>
 															  </div>
@@ -207,7 +207,7 @@ if($_SESSION['userTypeID'] != 1) {
 													</div>
 												';
 												
-											$sql = "SELECT r.roomID as roomID, r.roomName as roomName, r.roomDescription as roomDescription, b.branchname as branchname, r.status as status
+											$sql = "SELECT r.roomID as roomID, r.roomName as roomName, r.roomDescription as roomDescription, b.branchname as branchname, r.status as status,b.branchID as branchID
 												  from rooms r join branches b
 															on r.branchID = b.branchID where r.status = 0";
 													 
@@ -237,7 +237,8 @@ if($_SESSION['userTypeID'] != 1) {
 												$roomID = $row['roomID'];
 												$roomName = $row['roomName'];
 												$roomDescription = $row['roomDescription'];	
-												$branchname = $row['branchname'];				
+												$branchname = $row['branchname'];	
+												$branchname = $row['branchname'];												
 												// <tr class='clickable-row' data-href='url:index.php'>
 												echo 
 													'
@@ -274,8 +275,10 @@ if($_SESSION['userTypeID'] != 1) {
 																				while ($row = mysqli_fetch_array($result1, MYSQLI_ASSOC)) {
 																					$branchName = $row['branchname'];
 																					$id = $row['branchID'];
+																					echo "<option value=".$id."";
+																					if($id == $branchID){ echo" selected";};
+																					echo ">".$branchName."</option>";
 																				
-																					echo "<option value=". $id .">".$branchName."</option>";
 																				}
 																			
 																		echo '</select>
@@ -285,7 +288,7 @@ if($_SESSION['userTypeID'] != 1) {
 																	</div>
 																	<div class="modal-footer">
 																	
-																	  <button type="submit" class="btn btn-default btn-info" name="confirm" >Confirm</button>
+																	  <button type="submit" class="btn btn-default btn-info" name="confirm" >Edit</button>
 																	  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 																	</div>
 																  </div>

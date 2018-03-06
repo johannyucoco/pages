@@ -150,6 +150,9 @@ if($_SESSION['userTypeID'] != 1) {
             <!-- /.row -->
 				<?php
 					require_once('mysteryDB_connect.php');
+					
+				
+					
 					echo
 												'
 													<div class="modal fade" id="Modal" role="dialog">
@@ -249,7 +252,7 @@ if($_SESSION['userTypeID'] != 1) {
 						echo 
 							"
 							<tr>
-								<td class='text-center'> {$row['username']} </td>
+								<td class='text-center'> <a data-toggle='modal' data-target='#myModal' >{$row['username']} </a></td>
 								<td class='text-center'> {$row['firstName']},{$row['lastName']}  </td>
 								<td class='text-center'> {$row['contactNumber']} </td>
 								<td class='text-center'> {$row['email']} </td>
@@ -257,6 +260,75 @@ if($_SESSION['userTypeID'] != 1) {
 								<td class='text-center'> {$row['branchname']} </td>
 							</tr>
 							";
+							
+							
+								echo
+												'
+													<div class="modal fade" id="myModal" role="dialog">
+														<form action="'.$_SERVER['PHP_SELF'].'" method="post">
+															<div class="modal-dialog modal-lg">
+															  <div class="modal-content">
+																<div class="modal-header">
+																  <button type="button" class="close" data-dismiss="modal">&times;</button>
+																  <h4 class="modal-title">Add User</h4>
+																</div>
+																<div class="modal-body">
+																  <div class="form-group">
+																	<input type="hidden" name="branchID" value="<?php echo $branchID; ?>" /> 
+																		<input required name="username"class="form-control" placeholder="Username" value="'.$row['username'].'"">
+																		<br>
+																		<input required name="firstName"class="form-control" placeholder="First Name" value="'.$row['firstName'].'">
+																		<br>
+																		<input required name="lastName"class="form-control" placeholder="Last Name" value="'.$row['lastName'].'">
+																		<br>
+																		<input required name="contactNumber"class="form-control" placeholder="Contact Number"value="'.$row['contactNumber'].'">
+																		<br>
+																		<input required type="email" name="email"class="form-control" placeholder="Email" value="'.$row['email'].'">
+																		<br>
+																		<input disabled type="password" name="password"class="form-control" placeholder="Password" value="'.$row['email'].'">
+																		<br>
+																		<label>User Type</label>
+																				<select name= "userType" class="form-control">
+																	
+																			';
+																			$query1= "select * from usertype;"; // Run your query
+																			$result1=mysqli_query($dbc,$query1);
+																			echo "<option value='default'> -Select- </option>"; 
+																			while ($row = mysqli_fetch_array($result1, MYSQLI_ASSOC)) {
+																			$userType = $row['userType'];
+																			$id = $row['userTypeID'];
+																			echo "<option value=". $id .">".$userType."</option>";
+																			}
+																echo'
+																		</select>
+																		
+																		<label>Branch</label>
+																		<select name="branch" class="form-control">
+												
+												';
+												$query1= "select * from branches;"; // Run your query
+												$result1=mysqli_query($dbc,$query1);
+												echo "<option value='default'> -Select- </option>"; 
+												while ($row = mysqli_fetch_array($result1, MYSQLI_ASSOC)) {
+												$branchName = $row['branchname'];
+												$id = $row['branchID'];
+												echo "<option value=". $id .">".$branchName."</option>";
+												}
+											echo'
+                                            </select>
+																		<br>
+																</div>
+																<div class="modal-footer">
+																
+																  <button type="submit" class="btn btn-default btn-info" name="add" >Confirm</button>
+																  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+																</div>
+															  </div>
+															</div>
+														  </div>
+														</form>
+													</div>
+												';
 					}
 					
 					echo '</tbody> </table>';

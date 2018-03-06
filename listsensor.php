@@ -120,10 +120,10 @@ if($_SESSION['userTypeID'] != 1) {
 								<a href="#"><i class="fa fa-archive fa-fw" style="color:white"></i><font color="white"> Manage Data </font><span class="fa arrow" style="color:white"></span></a>
 								<ul class="nav nav-second-level">
 								<li>
-                                    <a href="listroom.php"><font color="white"> View Rooms </font></a>
+                                    <a href="listbranch.php"><font color="white"> View Branches </font></a>
                                 </li>
 								<li>
-                                    <a href="listbranch.php"><font color="white"> View Branches </font></a>
+                                    <a href="listroom.php"><font color="white"> View Rooms </font></a>
                                 </li>
 								<li>
                                     <a href="listrpi.php"><font color="white"> View Raspberry Pis </font></a>
@@ -201,7 +201,7 @@ if($_SESSION['userTypeID'] != 1) {
 																</div>
 																<div class="modal-footer">
 																
-																  <button type="submit" class="btn btn-default btn-info" name="add" >Confirm</button>
+																  <button type="submit" class="btn btn-default btn-info" name="add" >Add</button>
 																  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 																</div>
 															  </div>
@@ -272,7 +272,7 @@ if($_SESSION['userTypeID'] != 1) {
 																			<select name="rpi" class="form-control">';
 																			
 												
-																				$query1= "select * from rpi where status = 0"; // Run your query
+																				$query1= "select * from rpi r "; // Run your query
 																				$result1=mysqli_query($dbc,$query1);
 																				while ($row = mysqli_fetch_array($result1, MYSQLI_ASSOC)) {
 																					$rpiName = $row['rpiName'];
@@ -287,7 +287,7 @@ if($_SESSION['userTypeID'] != 1) {
 																	</div>
 																	<div class="modal-footer">
 																	
-																	  <button type="submit" class="btn btn-default btn-info" name="confirm" >Confirm</button>
+																	  <button type="submit" class="btn btn-default btn-info" name="confirm" >Edit</button>
 																	  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 																	</div>
 																  </div>

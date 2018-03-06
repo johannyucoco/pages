@@ -147,73 +147,51 @@ if($_SESSION['userTypeID'] != 1) {
                 <!-- /.col-lg-12 -->
             </div>
             <!-- /.row -->
+			
             <div class="row">
-                <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <i class="fa fa-comments fa-5x"></i>
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                    <div class="huge">26</div>
-                                    <div>New Comments!</div>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="#">
-                            <div class="panel-footer">
-                                <span class="pull-left">View Details</span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-green">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <i class="fa fa-tasks fa-5x"></i>
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                    <div class="huge">12</div>
-                                    <div>New Tasks!</div>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="#">
-                            <div class="panel-footer">
-                                <span class="pull-left">View Details</span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-yellow">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <i class="fa fa-shopping-cart fa-5x"></i>
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                    <div class="huge">124</div>
-                                    <div>New Orders!</div>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="#">
-                            <div class="panel-footer">
-                                <span class="pull-left">View Details</span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
+			 <div class="column"> 
+			<?php 
+			//Loop per Branch 
+			
+			$sql = "SELECT * from branches where status = 0";
+			$result = mysqli_query($dbc,$sql);
+			while($row=mysqli_fetch_array($result,MYSQLI_ASSOC)) {
+						$branchID = $row['branchID'];
+						$branchname = $row['branchname'];
+				echo'
+					<div class="col-lg-3 col-md-6">
+						<div class="panel panel-primary">
+							<div class="panel-heading">
+								<div class="row">
+									<div class="col-xs-3">
+										<i class="fa fa-comments fa-5x"></i>
+									</div>
+									<div class="col-xs-9 text-right">
+										<div class="huge">26</div>
+										<div>'.$branchname.'</div>
+									</div>
+								</div>
+							</div>
+							<a href="roomslist.php?branchID='.$branchID.'&branchname='.$branchname.'">
+								<div class="panel-footer">
+									<span class="pull-left">Go to Branch</span>
+									<span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+									<div class="clearfix"></div>
+								</div>
+							</a>
+						</div>	
+					</div>';					
+									
+									
+			}
+		
+				
+				
+				
+				?>
+				</div>
+				<div class="column">
+               
                 <div class="col-lg-3 col-md-6">
 					<ul class="list-group">
 							<li class="list-group-item">First item</li>
@@ -228,9 +206,13 @@ if($_SESSION['userTypeID'] != 1) {
 						</ul>
                 </div>
 				<!-- /.col-md-6 -->
+				</div>
             </div>
 			<!-- /.row -->
 		</div>
+		
+		
+		
 		<!-- /#page-wrapper -->
 	</div>
     <!-- /#wrapper -->

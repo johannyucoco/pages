@@ -188,7 +188,7 @@ if($_SESSION['userTypeID'] != 1) {
 																</div>
 																<div class="modal-footer">
 																
-																  <button type="submit" class="btn btn-default btn-info" name="add" >Confirm</button>
+																  <button type="submit" class="btn btn-default btn-info" name="add" >Add</button>
 																  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 																</div>
 															  </div>
@@ -260,8 +260,10 @@ if($_SESSION['userTypeID'] != 1) {
 																				while ($row = mysqli_fetch_array($result1, MYSQLI_ASSOC)) {
 																					$roomName = $row['roomName'];
 																					$id = $row['roomID'];
-																				
-																					echo "<option value=". $id .">".$roomName."</option>";
+																					
+																					echo "<option value=".$id."";
+																					if($id == $rpiID){ echo" selected";};
+																					echo ">".$roomName."</option>";
 																				}
 																			
 																		echo '</select>
@@ -271,7 +273,7 @@ if($_SESSION['userTypeID'] != 1) {
 																	</div>
 																	<div class="modal-footer">
 																	
-																	  <button type="submit" class="btn btn-default btn-info" name="submit" >Confirm</button>
+																	  <button type="submit" class="btn btn-default btn-info" name="submit" >Edit</button>
 																	  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 																	</div>
 																  </div>
