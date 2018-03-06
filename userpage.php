@@ -142,8 +142,56 @@ if($_SESSION['userTypeID'] != 1) {
                 <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h3 class="page-header"> <?php echo $_SESSION['username'];?></h3>
-                </div>
+					<?php
+						require_once('mysteryDB_connect.php');
+						$query1= "select * from users where username = '{$_SESSION['username']}'";
+						$result1=mysqli_query($dbc,$query1);
+						while($row=mysqli_fetch_array($result1,MYSQLI_ASSOC)) {
+							$fname = $row['firstName'];
+							$lname = $row['lastName'];
+							$uname = $row['username'];	
+							$email = $row['email'];
+							$cnumber = $row['contactNumber'];
+							$branchID = $row['branchID'];
+						}
+						echo
+							'<h3>
+							First name:<input class ="form-control" type="text" name="fname" value="'.$fname.'"><br>
+							Last name:<input class ="form-control" type="text" name="lname" value="'.$lname.'"><br>
+							Username:<input class ="form-control" type="text" name="uname" value="'.$_SESSION['username'].'"><br>
+							Password:<input class="form-control" type="submit" name="pass" value="Change Password" class="btn btn-info" role="button"/><br>
+							Email:<input class ="form-control" type="email" name="email" value="'.$email.'"><br>
+							Contact Number:<input class ="form-control" type="number" name="cnumber" value="'.$cnumber.'"><br>
+							'
+					?>
+					<?php
+						require_once('mysteryDB_connect.php');
+						$query2= "select * from branches where branchID = '{$branchID}'";
+						$result2=mysqli_query($dbc,$query2);
+						while($row=mysqli_fetch_array($result2,MYSQLI_ASSOC)) {
+							$branch = $row['branchname'];
+						}
+							echo'
+								Branch:<input disabled class ="form-control" type="text" value="'.$branch.'"><br>
+							'
+					?>
+					<?php
+						require_once('mysteryDB_connect.php');
+						$query3= "select * from usertype where usertypeID = '{$_SESSION['userTypeID']}'";
+						$result3=mysqli_query($dbc,$query3);
+						while($row=mysqli_fetch_array($result3,MYSQLI_ASSOC)) {
+							$usertype = $row['userType'];
+						}
+							echo
+								'
+								User Type:<input disabled class ="form-control" type="text" value="'.$usertype.'"><br>
+								</h3>
+								'
+					?>
+					<div align="center">
+					<input type="submit" name="save" value="Save" class="btn btn-info" role="button"/>
+					</div>
+				</div>
                 <!-- /.col-lg-12 -->
             </div>
             <!-- /.row -->
