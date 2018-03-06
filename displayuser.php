@@ -221,10 +221,10 @@ if($_SESSION['userTypeID'] != 1) {
 													</div>
 												';
 
-					$sql = "SELECT *
+					$sql = "SELECT *, u.userTypeID as uti, b.branchID as branchID
 							  from users u join usertype t on u.userTypeID = t.userTypeID
 											join branches b on u.branchID = b.branchID
-											join usertype r on u.userTypeID = r.userTypeID";
+											";
 						
 					$result = mysqli_query($dbc,$sql);
 					
@@ -247,12 +247,13 @@ if($_SESSION['userTypeID'] != 1) {
 							';
 					
 					while($row=mysqli_fetch_array($result,MYSQLI_ASSOC)) {
-											
-						
+						$branchID = $row['branchID'];
+						$uti = $row['uti'];
+						$userID = $row['userID'];
 						echo 
 							"
 							<tr>
-								<td class='text-center'> <a data-toggle='modal' data-target='#myModal' >{$row['username']} </a></td>
+								<td class='text-center'> <a data-toggle='modal' data-target='#myModal".$userID."' >{$row['username']} </a></td>
 								<td class='text-center'> {$row['firstName']},{$row['lastName']}  </td>
 								<td class='text-center'> {$row['contactNumber']} </td>
 								<td class='text-center'> {$row['email']} </td>
@@ -264,13 +265,13 @@ if($_SESSION['userTypeID'] != 1) {
 							
 								echo
 												'
-													<div class="modal fade" id="myModal" role="dialog">
+													<div class="modal fade" id="myModal'.$userID.'" role="dialog">
 														<form action="'.$_SERVER['PHP_SELF'].'" method="post">
 															<div class="modal-dialog modal-lg">
 															  <div class="modal-content">
 																<div class="modal-header">
 																  <button type="button" class="close" data-dismiss="modal">&times;</button>
-																  <h4 class="modal-title">Add User</h4>
+																  <h4 class="modal-title">Edit User</h4>
 																</div>
 																<div class="modal-body">
 																  <div class="form-group">
@@ -297,7 +298,11 @@ if($_SESSION['userTypeID'] != 1) {
 																			while ($row = mysqli_fetch_array($result1, MYSQLI_ASSOC)) {
 																			$userType = $row['userType'];
 																			$id = $row['userTypeID'];
-																			echo "<option value=". $id .">".$userType."</option>";
+																			
+																			echo "<option value=".$id."";
+																					if($uti == $id){ echo" selected";};
+																					echo ">".$userType."</option>";
+														
 																			}
 																echo'
 																		</select>
@@ -312,7 +317,9 @@ if($_SESSION['userTypeID'] != 1) {
 												while ($row = mysqli_fetch_array($result1, MYSQLI_ASSOC)) {
 												$branchName = $row['branchname'];
 												$id = $row['branchID'];
-												echo "<option value=". $id .">".$branchName."</option>";
+												echo "<option value=".$id."";
+																					if($id == $branchID){ echo" selected";};
+																					 echo ">".$branchName."</option>";
 												}
 											echo'
                                             </select>
@@ -320,7 +327,7 @@ if($_SESSION['userTypeID'] != 1) {
 																</div>
 																<div class="modal-footer">
 																
-																  <button type="submit" class="btn btn-default btn-info" name="add" >Confirm</button>
+																  <button type="submit" class="btn btn-default btn-info" name="edit" >Edit</button>
 																  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 																</div>
 															  </div>

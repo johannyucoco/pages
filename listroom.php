@@ -171,7 +171,7 @@ if($_SESSION['userTypeID'] != 1) {
 															  <div class="modal-content">
 																<div class="modal-header">
 																  <button type="button" class="close" data-dismiss="modal">&times;</button>
-																  <h4 class="modal-title">Add Room</h4>
+																  <h4 class="modal-title"></h4>
 																</div>
 																<div class="modal-body">
 																  <div class="form-group">
@@ -181,7 +181,7 @@ if($_SESSION['userTypeID'] != 1) {
 																		<input required name="roomDescription"class="form-control" placeholder="Room Description" ">
 																		<input name="branchID" class="form-control hidden" placeholder="Edit Branch Name" value="'.$branchID.'">
 																		<br>
-																		<label>Branches</label>
+																		<label>Branch</label>
 																				<select name= "branch" class="form-control">
 																	
 																			';
@@ -238,7 +238,7 @@ if($_SESSION['userTypeID'] != 1) {
 												$roomName = $row['roomName'];
 												$roomDescription = $row['roomDescription'];	
 												$branchname = $row['branchname'];	
-												$branchname = $row['branchname'];												
+												$branchID = $row['branchID'];												
 												// <tr class='clickable-row' data-href='url:index.php'>
 												echo 
 													'
@@ -248,7 +248,7 @@ if($_SESSION['userTypeID'] != 1) {
 														<td class="text-center">'.$roomDescription.'</td>
 														<td class="text-center">'.$branchname.'</td>
 									
-														<td class="text-center"><a data-toggle="modal" data-target="#myModald'.$roomID.'" >Delete</td>
+														<td class="text-center"><a data-toggle="modal" data-target="#myModald'.$roomID.'" > <i class="fa fa-trash-o fa-fw" style="color:blue"></i></td>
 													</tr>
 													';
 													
@@ -260,7 +260,7 @@ if($_SESSION['userTypeID'] != 1) {
 																  <div class="modal-content">
 																	<div class="modal-header">
 																	  <button type="button" class="close" data-dismiss="modal">&times;</button>
-																	  <h4 class="modal-title">Edit Room</h4>
+																	  <h4 class="modal-title"></h4>
 																	</div>
 																	<div class="modal-body">
 																	  <div class="form-group">

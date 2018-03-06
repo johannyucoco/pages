@@ -224,7 +224,7 @@ require_once('mysteryDB_connect.php');
 												
 													<td class="text-center"><a data-toggle="modal" data-target="#myModal'.$branchID.'" >'.$branchname.'</a></td>
 													<td class="text-center"> '.$num.'</td>
-													<td class="text-center"><a data-toggle="modal" data-target="#myModald'.$branchID.'" >Delete</td>
+													<td class="text-center"><a data-toggle="modal" data-target="#myModald'.$branchID.'" > <i class="fa fa-trash-o fa-fw" style="color:blue"></i></td>
 													
 												</tr>
 												';

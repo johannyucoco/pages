@@ -210,7 +210,7 @@ if($_SESSION['userTypeID'] != 1) {
 														</form>
 													</div>
 												';
-										$sql = "SELECT s.sensorID as sensorID, s.sensorName as sensorName, rpi.rpiName as rpiName, st.sensorType as sensorType
+										$sql = "SELECT s.sensorID as sensorID, s.sensorName as sensorName, rpi.rpiName as rpiName, st.sensorType as sensorType, rpi.rpiID as rpiID 
 												 FROM sensors s join sensortypes st
 														on s.sensorTypeID = st.sensorTypeID
 																join rpi
@@ -241,7 +241,8 @@ if($_SESSION['userTypeID'] != 1) {
 											$sensorID = $row['sensorID'];
 											$sensorName = $row['sensorName'];
 											$rpiName = $row['rpiName'];	
-											$sensorType = $row['sensorType'];				
+											$sensorType = $row['sensorType'];		
+											$rpiID = $row['rpiID'];
 											// <tr class='clickable-row' data-href='url:index.php'>
 											echo 
 												'
@@ -251,8 +252,8 @@ if($_SESSION['userTypeID'] != 1) {
 													<td class="text-center">'.$sensorType.'</td>
 													<td class="text-center">'.$rpiName.'</td>
 											
-													<td class="text-center"><a data-toggle="modal" data-target="#myModald'.$sensorID.'" >Delete</td>
-												</tr>	
+													<td class="text-center"><a data-toggle="modal" data-target="#myModald'.$sensorID.'" ><i class="fa fa-trash-o fa-fw" style="color:blue"></i></td>
+												</tr>
 												';
 										echo
 													'
@@ -277,8 +278,11 @@ if($_SESSION['userTypeID'] != 1) {
 																				while ($row = mysqli_fetch_array($result1, MYSQLI_ASSOC)) {
 																					$rpiName = $row['rpiName'];
 																					$id = $row['rpiID'];
-																				
-																					echo "<option value=". $id .">".$rpiName."</option>";
+																					
+																					echo "<option value=".$id."";
+																					if($id == $rpiID){ echo" selected";};
+																					echo ">".$rpiName."</option>";
+																					
 																				}
 																			
 																		echo '</select>
