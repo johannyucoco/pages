@@ -42,6 +42,7 @@
     <!-- Custom Fonts -->
     <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
+		<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css"></link>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -191,7 +192,8 @@
 							
 									<th class="text-center">Room Name</th>
 									<th class="text-center">Room Description</th>
-									<th class="text-center">Branch</th>
+									<th class="text-center">Rpi</th>
+									
 									
 									</tr>
 								</thead>
@@ -205,14 +207,25 @@
 							$roomDescription = $row['roomDescription'];	
 							$branchID = $row['branchName'];				
 							// <tr class='clickable-row' data-href='url:index.php'>
+							$sql1 = "SELECT  count(p.rpiID) as num from rooms r join rpi p
+															on r.roomID = p.roomID
+															where r.status = 0 and r.roomID = '{$roomID}'
+															group by r.roomID";
+							$result1 = mysqli_query($dbc,$sql1);
+							$row1=mysqli_fetch_array($result1,MYSQLI_ASSOC);
 							echo 
 								'
 								<tr>
 									
 									<td class="text-center"><a href="rpilist.php?roomID='.$roomID.'&roomName='.$roomName.'">'.$roomName.'</td>
-									<td class="text-center">'.$roomDescription.'</td>
-									<td class="text-center">'.$branchID.'</td>
-								</tr>
+									<td class="text-center">'.$roomDescription.'</td>';
+							if($row1){
+									echo ' <td class="text-center">'.$row1['num'].'</td>';
+									}
+							else{
+								echo '<td class="text-center">0</td>';
+							}
+								echo '</tr>
 									
 								';
 						}
@@ -243,6 +256,8 @@
     <script src="../dist/js/sb-admin-2.js"></script>
 	
 	
+	<script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+	
 	
 	<script
 		jQuery(document).ready(function($) {
@@ -252,7 +267,11 @@
 	});>
 	</script>
 	
-	
+	<script> 
+		$(document).ready(function(){
+			$('#roomtable').DataTable();
+		});
+		</script>
 	<style>
 		.btn-info
 		{
