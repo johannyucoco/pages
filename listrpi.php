@@ -341,6 +341,7 @@ if($_SESSION['userTypeID'] != 1) {
 																  
 												$result=mysqli_query($dbc,$query1);
 												if ($result) {
+														echo "<meta http-equiv='refresh' content='2'>"; //refresh page
 														/*	
 														echo "<meta http-equiv='refresh' content='0'>"; //refresh page
 													echo'<script>
@@ -390,7 +391,7 @@ if($_SESSION['userTypeID'] != 1) {
 																  
 												$result=mysqli_query($dbc,$query1);
 												if ($result) {
-													
+														echo "<meta http-equiv='refresh' content='2'>"; //refresh page
 															/*
 														echo "<meta http-equiv='refresh' content='0'>"; //refresh page
 													echo'<script>
@@ -437,7 +438,7 @@ if($_SESSION['userTypeID'] != 1) {
 											
 								
 										if(!isset($message)){
-											
+												echo "<meta http-equiv='refresh' content='2'>"; //refresh page
 													$query1="insert into rpi(rpiName,ipAddress,roomID) values ('$rpi','$ipAddress','$roomID')";
 													$result=mysqli_query($dbc,$query1);
 											echo'

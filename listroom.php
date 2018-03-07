@@ -355,7 +355,7 @@ if($_SESSION['userTypeID'] != 1) {
 																  
 												$result=mysqli_query($dbc,$query1);
 												if ($result) {
-													
+														echo "<meta http-equiv='refresh' content='2'>"; //refresh page
 														
 													/*	echo "<meta http-equiv='refresh' content='0'>"; //refresh page
 													echo'<script>
@@ -395,7 +395,7 @@ if($_SESSION['userTypeID'] != 1) {
 																  
 												$result=mysqli_query($dbc,$query1);
 												if ($result) {
-													
+														echo "<meta http-equiv='refresh' content='2'>"; //refresh page
 															
 													/*	echo "<meta http-equiv='refresh' content='0'>"; //refresh page
 													echo'<script>
@@ -452,6 +452,7 @@ if($_SESSION['userTypeID'] != 1) {
 											<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
 											<strong>Success!</strong> Room Added.
 											</div>';
+												echo "<meta http-equiv='refresh' content='2'>"; //refresh page
 																			
 										}
 

@@ -4,6 +4,8 @@
 if($_SESSION['userTypeID'] != 1) {
 	 header("Location: http://".$_SERVER['HTTP_HOST'].  dirname($_SERVER['PHP_SELF'])."/logout.php");
 }
+
+$_SESSION['alert'] = 1;
 ?>
 <head>
 
@@ -366,19 +368,22 @@ if($_SESSION['userTypeID'] != 1) {
 											$query1="update users 
 														set firstName = '$NewfirstName', lastName = '$NewlastName', 
 														username = '$Newusername'	,email = '$Newemail'	, contactNumber = '$NewcontactNumber',
-														branchID = '$Newbranch'													
+														branchID = '$Newbranch'	, userTypeID = '$NewuserType'												
 														where userID = $userID";
 															
 																  
 												$result=mysqli_query($dbc,$query1);
 												if ($result) {
+													echo "<meta http-equiv='refresh' content='2'>"; //refresh page
 													/*		
-														echo "<meta http-equiv='refresh' content='0'>"; //refresh page
+														
 													echo'<script>
 															window.href = "listbranch.php";
 														</script>
 														';
 													*/
+										
+												
 													echo'
 														<div class="alert alert-success">
 															<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
@@ -386,13 +391,14 @@ if($_SESSION['userTypeID'] != 1) {
 														</div>
 												
 														';
-														
+													
+												
 												}
 												else{
 													echo'
 														<div class="alert alert-danger">
 															<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-															<strong>Error!</strong> Did not change name to '.$Newusername.'.
+															<strong>Error!</strong> Changes not made for username:'.$Newusername.'.
 														</div>
 														';
 												}	

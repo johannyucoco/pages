@@ -5,21 +5,7 @@ if($_SESSION['userTypeID'] != 1) {
 	 header("Location: http://".$_SERVER['HTTP_HOST'].  dirname($_SERVER['PHP_SELF'])."/logout.php");
 }
 require_once('mysteryDB_connect.php');
-if (isset($_POST['save'])){
-		
-					$status = $_POST['status'];
-					$query2="select * from legendstatusdetails d join legendStatus s on d.legendStatusID = s.legendStatusID 
-												join sensortypes t on s.sensorTypeID = t.sensorTypeID";
-					$result2=mysqli_query($dbc,$query2);
-					$ct = 0;	
-					while ($row = mysqli_fetch_array($result2, MYSQLI_ASSOC)) {
-						$query="UPDATE legendstatusdetails
-									SET legendValue = {$status[$ct]}
-									WHERE legendStatusDetailID = {$row['legendStatusDetailID']}";
-						$result=mysqli_query($dbc,$query);
-						$ct++;
-					}
-		}
+
 ?>
 <head>
 
@@ -175,24 +161,56 @@ if (isset($_POST['save'])){
 					
 					<?php
 						require_once('mysteryDB_connect.php');
-						$query1= "select * from users where username = '{$_SESSION['username']}'";
+						$query1= "select * from users where userID = '{$_SESSION['userID']}'";
 						$result1=mysqli_query($dbc,$query1);
 						while($row=mysqli_fetch_array($result1,MYSQLI_ASSOC)) {
+							$userID = $row['userID'];
 							$fname = $row['firstName'];
 							$lname = $row['lastName'];
 							$uname = $row['username'];	
 							$email = $row['email'];
 							$cnumber = $row['contactNumber'];
 							$branchID = $row['branchID'];
+								echo
+													'
+														<div class="modal fade" id="myModal'.$userID.'" role="dialog">
+															<form action="'.$_SERVER['PHP_SELF'].'" method="post">
+																<div class="modal-dialog modal-lg">
+																  <div class="modal-content">
+																	<div class="modal-header">
+																	  <button type="button" class="close" data-dismiss="modal">&times;</button>
+																	  <h4 class="modal-title">Change Password</h4>
+																	</div>
+																	<div class="modal-body">
+																	  <div class="form-group">
+																		<input type="hidden" name="userID" value="<?php echo '.$userID.'; ?>" /> 
+																			<input required type="password" name="oldPass"class="form-control" placeholder="Current Password" ><br>
+																			<input required type="password" name="newPass"class="form-control" placeholder="New Password" ><br>
+																			<input required type="password" name="newPassa"class="form-control" placeholder="Repeat New Password" ><br>
+																			
+																			
+																	</div>
+																	<div class="modal-footer">
+																	
+																	  <button type="submit" class="btn btn-default btn-info" name="confirm" >Confirm</button>
+																	  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+																	</div>
+																  </div>
+																</div>
+															  </div>
+															</form>
+														</div>
+													';
 						}
 						echo
 							'<h3>
-							First name:<input class ="form-control" type="text" name="fname" value="'.$fname.'"><br>
-							Last name:<input class ="form-control" type="text" name="lname" value="'.$lname.'"><br>
-							Username:<input class ="form-control" type="text" name="uname" value="'.$_SESSION['username'].'"><br>
-							Password:<input class="form-control" type="submit" name="pass" value="Change Password" class="btn btn-info" role="button"/><br>
-							Email:<input class ="form-control" type="email" name="email" value="'.$email.'"><br>
-							Contact Number:<input class ="form-control" type="number" name="cnumber" value="'.$cnumber.'"><br>
+							<form action="'.$_SERVER['PHP_SELF'].'" method="post">
+							First name:<input required class ="form-control" type="text" name="fname" value="'.$fname.'"><br>
+							Last name:<input required class ="form-control" type="text" name="lname" value="'.$lname.'"><br>
+							Username:<input required class ="form-control" type="text" name="uname" value="'.$_SESSION['username'].'"><br>
+							Password:<a data-toggle="modal" data-target="#myModal'.$userID.'" ><input class="form-control" type="submit" name="pass" value="Change Password" class="btn btn-info" role="button"/></a><br>
+							Email:<input required class ="form-control" type="email" name="email" value="'.$email.'"><br>
+							Contact Number:<input required class ="form-control" type="number" name="cnumber" value="'.$cnumber.'"><br>
 							'
 					?>
 					<?php
@@ -217,10 +235,132 @@ if (isset($_POST['save'])){
 								'
 								User Type:<input disabled class ="form-control" type="text" value="'.$usertype.'"><br>
 								</h3>
-								'
+								';
+								
+								
+								
+								if(isset($_POST['confirm'])){
+									$userID = $_SESSION['userID'];
+									$oldPass = $_POST['oldPass'];
+									$newPass = $_POST['newPass'];
+									$newPassa = $_POST['newPassa'];
+									
+									
+									$query= "select * from users where userID = '{$userID}' and  password = Password('{$oldPass}')  ";
+									$result=mysqli_query($dbc,$query);
+									
+									if(mysqli_num_rows($result) > 0){
+									
+										if($newPass == $newPassa){
+											$query= "update users  
+													 set password = PASSWORD('{$newPass}')
+													 where userID = '{$userID}'  ";
+													 
+											$result=mysqli_query($dbc,$query);
+											echo'
+														<div class="alert alert-success">
+															<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+															<strong>Success!</strong> Password Changed!
+														</div>
+												
+														';
+										}
+										else{
+											echo'
+														<div class="alert alert-danger">
+															<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+															<strong>Error!</strong> Password not changed.
+														</div>
+														';
+											
+										}
+									
+									
+									
+									
+										
+									}else{
+											echo'
+														<div class="alert alert-danger">
+															<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+															<strong>Error!</strong> Wrong Current Password.
+														</div>
+														';
+											
+										}
+								
+									
+								}
 					?>
 					<div align="center">
+				
 					<input type="submit" name="save" value="Save" class="btn btn-info" role="button"/>
+					</form>
+					
+					<?php 
+							
+							if(isset($_POST['save'])){
+								
+								$message=NULL;
+											
+												 
+											 if (isset($_SESSION['userID'])){
+												$userID = $_SESSION['userID'];
+											}
+											else{
+												$branchID = -1;
+											}
+											
+											
+											$NewcontactNumber = $_POST['cnumber'];
+											$Newemail = $_POST['email'];
+											$NewfirstName = $_POST['fname'];
+											$NewlastName = $_POST['lname'];
+											
+											$Newusername = $_POST['uname'];
+											
+											
+							
+											$query1="update users 
+														set firstName = '$NewfirstName', lastName = '$NewlastName', 
+														username = '$Newusername'	,email = '$Newemail'	, contactNumber = '$NewcontactNumber'
+																									
+														where userID = $userID";
+															
+																  
+												$result=mysqli_query($dbc,$query1);
+												if ($result) {
+													
+													/*		
+														echo "<meta http-equiv='refresh' content='0'>"; //refresh page
+													echo'<script>
+															window.href = "listbranch.php";
+														</script>
+														';
+													*/
+													echo'
+														<div class="alert alert-success">
+															<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+															<strong>Success!</strong> Log-Out to apply changes.
+														</div>
+												
+														';
+														
+												}
+												else{
+													echo'
+														<div class="alert alert-danger">
+															<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+															<strong>Error!</strong> Changes not saved.
+														</div>
+														';
+												}	
+							}
+					
+					
+					
+					
+					?>
 					</div>
 				</div>
                 <!-- /.col-lg-12 -->

@@ -326,7 +326,7 @@ require_once('mysteryDB_connect.php');
 																  
 												$result=mysqli_query($dbc,$query1);
 												if ($result) {
-													
+														echo "<meta http-equiv='refresh' content='2'>"; //refresh page
 													/*		
 														echo "<meta http-equiv='refresh' content='0'>"; //refresh page
 													echo'<script>
@@ -378,7 +378,7 @@ require_once('mysteryDB_connect.php');
 																  
 												$result=mysqli_query($dbc,$query1);
 												if ($result) {
-													
+														echo "<meta http-equiv='refresh' content='2'>"; //refresh page
 														/*	
 														echo "<meta http-equiv='refresh' content='0'>"; //refresh page
 													echo'<script>
@@ -422,7 +422,7 @@ require_once('mysteryDB_connect.php');
 											
 								
 										if(!isset($message)){
-											
+												echo "<meta http-equiv='refresh' content='2'>"; //refresh page
 												$query1="insert into branches(branchName) values ('$branchName')";
 												$result=mysqli_query($dbc,$query1);
 											echo'
