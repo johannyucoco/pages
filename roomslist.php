@@ -70,12 +70,12 @@
 
             <ul class="nav navbar-top-links navbar-right">
 			
-                <li class="dropdown">
+               <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
+                        <i class="fa fa-user fa-fw" style="color:white"></i> <i class="fa fa-caret-down" style="color:white"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
-                        <li><a href="#"><i class="fa fa-user fa-fw"></i> <?php echo $_SESSION['username'];?></a>
+                        <li><a href="userpage.php"><i class="fa fa-user fa-fw"></i> <?php echo $_SESSION['username'];?></a>
                         </li>
                         <li class="divider"></li>
                         <li><a href="logout.php"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
@@ -96,39 +96,41 @@
 	
 								echo "
 								<li>
-									<a href=\"index.php\"><i class=\"fa fa-dashboard fa-fw\"></i> Home</a>
+									<a href=\"index.php\"><i class=\"fa fa-home fa-fw\" style=\"color:white\"><font color=\"white\"></i> Home </font></a>
 								</li>
 								
 								
 								
-									<li>
-										<a href=\"#\"><i class=\"fa fa-sitemap fa-fw\"></i> Manage Data<span class=\"fa arrow\"></span></a>
-										<ul class=\"nav nav-second-level\">
-										  <li>
-												<a href=\"listbranch.php\">View Branches</a>
-											</li>
-											<li>
-												<a href=\"listroom.php\">View Rooms</a>
-											</li>
-											
-											<li>
-												<a href=\"listrpi.php\">View Raspberry Pis</a>
-											</li>
-											<li>
-												<a href=\"listsensor.php\">View Sensors</a>
-											</li>
-<li>
-											<a href=\"displayuser.php\">View Users</a>
-										</li>
-										</ul>
 										
+							<li>
+								<a href=\"#\"><i class=\"fa fa-archive fa-fw\" style=\"color:white\"></i><font color=\"white\"> Manage Data </font><span class=\"fa arrow\" style=\"color:white\"></span></a>
+								<ul class=\"nav nav-second-level\">
+								<li>
+                                    <a href=\"listbranch.php\"><font color=\"white\"> View Branches </font></a>
+                                </li>
+								<li>
+                                    <a href=\"listroom.php\"><font color=\"white\"> View Rooms </font></a>
+                                </li>
+								
+								<li>
+                                    <a href=\"listrpi.php\"><font color=\"white\"> View Raspberry Pis </font></a>
+                                </li>
+								<li>
+                                    <a href=\"listsensor.php\"><font color=\"white\"> View Sensors </font></a>
+                                </li>
+								<li>
+                                <a href=\"displayuser.php\"><font color=\"white\"> View Users </font></a>
+								</li>
+								</ul>
+								
+
 									
 								";
 								
 							}
 								
 						?>
-								
+							</li>	
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->

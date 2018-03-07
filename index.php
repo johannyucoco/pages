@@ -127,6 +127,7 @@ require_once('mysteryDB_connect.php');
 				<div class="col-lg-3">
 					<div class="row">
 						<ul class="list-group">
+
 							<li class="list-group-item">First item</li>
 							<li class="list-group-item">Second item</li>
 							<li class="list-group-item">Third item</li>
