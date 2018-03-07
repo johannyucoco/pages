@@ -159,7 +159,7 @@ if($_SESSION['userTypeID'] != 1) {
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-8">
-								<h3>Room List <a data-toggle="modal"  data-target="#Modal" class="btn btn-info">+</a>  </h3>
+								<h3>Room List <a data-toggle="modal"  data-target="#Modal" class="btn btn-info"><i class="fa fa-plus-circle fa-fw" style="color:white"></i></a>  </h3>
                                    <?php
 										require_once('mysteryDB_connect.php');
 

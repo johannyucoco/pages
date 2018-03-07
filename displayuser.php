@@ -144,7 +144,7 @@ if($_SESSION['userTypeID'] != 1) {
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h3 class="page-header">Users <a data-toggle="modal"  data-target="#Modal" class="btn btn-info">+</a></h3>
+                    <h3 class="page-header">Users <a data-toggle="modal"  data-target="#Modal" class="btn btn-info"><i class="fa fa-plus-circle fa-fw" style="color:white"></i></a></h3>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>

@@ -158,7 +158,7 @@ require_once('mysteryDB_connect.php');
                             <div class="row">
                                 <div class="col-lg-6">
 								
-								<h3>Branch List <a data-toggle="modal"  data-target="#Modal" class="btn btn-info">+</a> </h3> 
+								<h3>Branch List <a data-toggle="modal"  data-target="#Modal" class="btn btn-info"><i class="fa fa-plus-circle fa-fw" style="color:white"></i></a> </h3> 
 									<?php
 									echo
 												'
