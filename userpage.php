@@ -4,6 +4,22 @@
 if($_SESSION['userTypeID'] != 1) {
 	 header("Location: http://".$_SERVER['HTTP_HOST'].  dirname($_SERVER['PHP_SELF'])."/logout.php");
 }
+require_once('mysteryDB_connect.php');
+if (isset($_POST['save'])){
+		
+					$status = $_POST['status'];
+					$query2="select * from legendstatusdetails d join legendStatus s on d.legendStatusID = s.legendStatusID 
+												join sensortypes t on s.sensorTypeID = t.sensorTypeID";
+					$result2=mysqli_query($dbc,$query2);
+					$ct = 0;	
+					while ($row = mysqli_fetch_array($result2, MYSQLI_ASSOC)) {
+						$query="UPDATE legendstatusdetails
+									SET legendValue = {$status[$ct]}
+									WHERE legendStatusDetailID = {$row['legendStatusDetailID']}";
+						$result=mysqli_query($dbc,$query);
+						$ct++;
+					}
+		}
 ?>
 <head>
 
@@ -142,6 +158,21 @@ if($_SESSION['userTypeID'] != 1) {
                 <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
+					<?php
+					if (isset($_POST['save'])){
+						$message=NULL;
+						if (isset($_POST['fname'])){
+							$fname = $_POST['fname'];
+						}
+						if (isset($_POST['sensorID'])){
+							$sensorID = $_POST['sensorID'];
+						}
+						else{
+							$branchID = -1;
+						}
+					}
+					?>
+					
 					<?php
 						require_once('mysteryDB_connect.php');
 						$query1= "select * from users where username = '{$_SESSION['username']}'";
