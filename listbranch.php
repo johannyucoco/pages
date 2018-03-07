@@ -126,10 +126,10 @@ require_once('mysteryDB_connect.php');
 								<a href="#"><i class="fa fa-archive fa-fw" style="color:white"></i><font color="white"> Manage Data </font><span class="fa arrow" style="color:white"></span></a>
 								<ul class="nav nav-second-level">
 								<li>
-                                    <a href="listroom.php"><font color="white"> View Rooms </font></a>
+                                    <a href="listbranch.php"><font color="white"> View Branches </font></a>
                                 </li>
 								<li>
-                                    <a href="listbranch.php"><font color="white"> View Branches </font></a>
+                                    <a href="listroom.php"><font color="white"> View Rooms </font></a>
                                 </li>
 								<li>
                                     <a href="listrpi.php"><font color="white"> View Raspberry Pis </font></a>
