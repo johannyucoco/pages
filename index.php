@@ -168,13 +168,13 @@ if($_SESSION['userTypeID'] != 1) {
 									</div>
 									<div class="col-xs-9 text-right">
 										<div class="huge">26</div>
-										<div>'.$branchname.'</div>
+										<div>RPi connected</div>
 									</div>
 								</div>
 							</div>
 							<a href="roomslist.php?branchID='.$branchID.'&branchname='.$branchname.'">
 								<div class="panel-footer">
-									<span class="pull-left">Go to Branch</span>
+									<span class="pull-left">'.$branchname.'</span>
 									<span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
 									<div class="clearfix"></div>
 								</div>

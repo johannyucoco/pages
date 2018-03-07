@@ -234,7 +234,7 @@ if($_SESSION['userTypeID'] != 1) {
 													<td class="text-center">'.$ipAddress.'</td>
 													<td class="text-center">'.$roomName.'</td>
 									
-													<td class="text-center"><a data-toggle="modal" data-target="#myModald'.$rpiID.'" >Delete</td>
+													<td class="text-center"><a data-toggle="modal" data-target="#myModald'.$rpiID.'" > <i class="fa fa-trash-o fa-fw" style="color:blue"></i></td>
 												</tr>
 												';
 											echo
