@@ -4,6 +4,7 @@
 if($_SESSION['userTypeID'] != 1) {
 	 header("Location: http://".$_SERVER['HTTP_HOST'].  dirname($_SERVER['PHP_SELF'])."/logout.php");
 }
+require_once('mysteryDB_connect.php');
 ?>
 <head>
 
@@ -81,38 +82,8 @@ if($_SESSION['userTypeID'] != 1) {
                         <li>
                             <a href="index.php"><i class="fa fa-home fa-fw" style="color:white"></i><font color="white"> Home </font></a>
                         </li>
-						<li>
-                            <a href="#"><i class="fa fa-wrench fa-fw" style="color:white"></i><font color="white"> Tools </font><span class="fa arrow" style="color:white"></span></a>
-                            <ul class="nav nav-second-level">
-                            <li>
-								<a href="addsensortype.php"><font color="white"> Add Sensor Type </font></a>
-                            </li>
-							<li>
-                                <a href="sensorTypePage.php"><font color="white"> Edit Status Details </font></a>
-                            </li>
-							<li>
-                                <a href="displayuser.php"><font color="white"> Display Users </font></a>
-                            </li>
-                            </ul>
-							<li>
-								<a href="#"><i class="fa fa-sitemap fa-fw" style="color:white"></i><font color="white"> Branches </font><span class="fa arrow" style="color:white"></span></a>
-								<ul class="nav nav-second-level">
-								<?php 
-									require_once('mysteryDB_connect.php');
-									$sql = "SELECT *
-											from branches where status = 0";
-									$result = mysqli_query($dbc,$sql);
-									while($row=mysqli_fetch_array($result,MYSQLI_ASSOC)) {
-										$branchID = $row['branchID'];
-										$branchname = $row['branchname'];	
-									echo "
-											<li>
-											<a href='roomslist.php?branchID='.$branchID.'&branchname='.$branchname.'><font color=\"white\">$branchname </font></a>
-											</li>";
-									}
-								?>
-								</ul>
-							</li>
+						
+							
 							<li>
 								<a href="#"><i class="fa fa-archive fa-fw" style="color:white"></i><font color="white"> Manage Data </font><span class="fa arrow" style="color:white"></span></a>
 								<ul class="nav nav-second-level">
@@ -129,6 +100,9 @@ if($_SESSION['userTypeID'] != 1) {
 								<li>
                                     <a href="listsensor.php"><font color="white"> View Sensors </font></a>
                                 </li>
+								<li>
+                                <a href="displayuser.php"><font color="white"> View Users </font></a>
+								</li>
 								</ul>
                             <!-- /.nav-second-level -->
 							</li>
@@ -175,16 +149,28 @@ if($_SESSION['userTypeID'] != 1) {
 			while($row=mysqli_fetch_array($result,MYSQLI_ASSOC)) {
 						$branchID = $row['branchID'];
 						$branchname = $row['branchname'];
+
+					$sql1 = "SELECT  count(r.roomID) as num from branches b join rooms r 
+													on r.branchID = b.branchID
+													where b.status = 0 and b.branchID = '{$branchID}'
+													group by b.branchID";
+					$result1 = mysqli_query($dbc,$sql1);
+					$row1=mysqli_fetch_array($result1,MYSQLI_ASSOC);
+					
 				echo'	<div class="col-lg-3">
-							<div class="panel panel-primary">
-								<div class="panel-heading">
-									<div class="row">
-										<div class="col-xs-3">
-											<i class="fa fa-building fa-5x"></i>
+							<div class="panel panel-primary"  >
+								<div class="panel-heading" style="background-color:black">
+									<div class="row" >
+										<div class="col-xs-3" >
+											<i class="fa fa-building fa-5x"> </i>
 										</div>
-										<div class="col-xs-9 text-right">
-											<div class="huge">26</div>
-											<div>RPi connected</div>
+										<div class="col-xs-9 text-right">';		
+								if($row1){
+											echo '<div class="huge">'.$row1['num'].'</div>';
+									}else {
+											echo' <div class="huge"> 0 </div>';
+									} 
+										echo'	<div>Rooms</div>
 										</div>
 									</div>
 								</div>

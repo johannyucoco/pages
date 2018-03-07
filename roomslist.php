@@ -98,22 +98,7 @@
 								<li>
 									<a href=\"index.php\"><i class=\"fa fa-dashboard fa-fw\"></i> Home</a>
 								</li>
-									<li>
-									<a href=\"#\"><i class=\"fa fa-sitemap fa-fw\"></i> Tools<span class=\"fa arrow\"></span></a>
-									<ul class=\"nav nav-second-level\">
-									   <li>
-											<a href=\"addsensortype.php\">Add Sensor Type</a>
-										</li>
-										<li>
-											<a href=\"sensorTypePage.php\">Edit Status Details</a>
-										</li>
-										<li>
-											<a href=\"displayuser.php\">Display Users</a>
-										</li>
-									</ul>
 								
-									<!-- /.nav-second-level -->
-								</li>
 								
 								
 									<li>
@@ -132,6 +117,9 @@
 											<li>
 												<a href=\"listsensor.php\">View Sensors</a>
 											</li>
+<li>
+											<a href=\"displayuser.php\">View Users</a>
+										</li>
 										</ul>
 										
 									
@@ -140,9 +128,7 @@
 							}
 								
 						?>
-								<li>
-								<a href="logout.php"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
-								</li>
+								
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->
