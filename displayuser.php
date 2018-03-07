@@ -146,7 +146,7 @@ $_SESSION['alert'] = 1;
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h3 class="page-header">Users <a data-toggle="modal"  data-target="#Modal" class="btn btn-info"><i class="fa fa-plus-circle fa-fw" style="color:white"></i></a></h3>
+                    <h3>Users <a data-toggle="modal"  data-target="#Modal"><span role="button"><i class="fa fa-plus-square fa-fw" style="color:black"></i></span></a> </h3>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -257,13 +257,13 @@ $_SESSION['alert'] = 1;
 						echo 
 							"
 							<tr>
-								<td class='text-center'> <a data-toggle='modal' data-target='#myModal".$userID."' >{$row['username']} </a></td>
+								<td class='text-center'> <a data-toggle='modal' data-target='#myModal".$userID."'><span role='button'>{$row['username']} </span></a></td>
 								<td class='text-center'> {$row['firstName']},{$row['lastName']}  </td>
 								<td class='text-center'> {$row['contactNumber']} </td>
 								<td class='text-center'> {$row['email']} </td>
 								<td class='text-center'> {$row['userType']} </td>
 								<td class='text-center'> {$row['branchname']} </td>
-								<td class='text-center'> <a data-toggle='modal' data-target='#myModal".$userID."' > <i class='fa fa-edit fa-fw'style='color:blue'></i></a> </a></td>
+								<td class='text-center'> <a data-toggle='modal' data-target='#myModal".$userID."' ><span role='button'> <i class='fa fa-edit fa-fw'style='color:blue'></span></i></a> </a></td>
 							</tr>
 							";
 							

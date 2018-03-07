@@ -159,7 +159,7 @@ if($_SESSION['userTypeID'] != 1) {
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-8">
-								<h3>Room List <a data-toggle="modal"  data-target="#Modal" class="btn btn-info"><i class="fa fa-plus-circle fa-fw" style="color:white"></i></a>  </h3>
+								<h3>Room List <a data-toggle="modal"  data-target="#Modal"><span role="button"><i class="fa fa-plus-square fa-fw" style="color:black"></i></span></a> </h3>
                                    <?php
 										require_once('mysteryDB_connect.php');
 
@@ -244,11 +244,11 @@ if($_SESSION['userTypeID'] != 1) {
 													'
 													<tr>
 												
-														<td class="text-center"><a data-toggle="modal" data-target="#myModal'.$roomID.'" >'.$roomName.'</a></td>
+														<td class="text-center"><a data-toggle="modal" data-target="#myModal'.$roomID.'" ><span role="button">'.$roomName.'</span></a></td>
 														<td class="text-center">'.$roomDescription.'</td>
 														<td class="text-center">'.$branchname.'</td>
-														<td class="text-center"><a data-toggle="modal" data-target="#myModal'.$roomID.'" > <i class="fa fa-edit fa-fw" style="color:blue"></a></td>
-														<td class="text-center"><a data-toggle="modal" data-target="#myModald'.$roomID.'" > <i class="fa fa-trash-o fa-fw" style="color:blue"></i></td>
+														<td class="text-center"><a data-toggle="modal" data-target="#myModal'.$roomID.'" ><span role="button"> <i class="fa fa-edit fa-fw" style="color:blue"></span></i></a></td>
+														<td class="text-center"><a data-toggle="modal" data-target="#myModald'.$roomID.'" ><span role="button"> <i class="fa fa-trash-o fa-fw" style="color:blue"></span></i></td>
 													</tr>
 													';
 													

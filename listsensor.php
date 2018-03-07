@@ -152,7 +152,7 @@ if($_SESSION['userTypeID'] != 1) {
                             <div class="row">
                                 <div class="col-lg-8">
 								
-								<h3>Sensor List <a data-toggle="modal"  data-target="#Modal" class="btn btn-info"><i class="fa fa-plus-circle fa-fw" style="color:white"></i></a> </h3>
+								<h3>Sensor List <a data-toggle="modal"  data-target="#Modal"><span role="button"><i class="fa fa-plus-square fa-fw" style="color:black"></i></span></a> </h3>
 								<?php
 									require_once('mysteryDB_connect.php');
 								echo
@@ -250,11 +250,11 @@ if($_SESSION['userTypeID'] != 1) {
 												'
 												<tr>
 													
-													<td class="text-center"><a data-toggle="modal" data-target="#myModal'.$sensorID.'" >'.$sensorName.'</a></td>
+													<td class="text-center"><a data-toggle="modal" data-target="#myModal'.$sensorID.'" ><span role="button">'.$sensorName.'</span></a></td>
 													<td class="text-center">'.$sensorType.'</td>
 													<td class="text-center">'.$rpiName.'</td>
-													<td class="text-center"><a data-toggle="modal" data-target="#myModal'.$sensorID.'" ><i class="fa fa-edit	 fa-fw" style="color:blue"></i></a></td>
-													<td class="text-center"><a data-toggle="modal" data-target="#myModald'.$sensorID.'" ><i class="fa fa-trash-o fa-fw" style="color:blue"></i></td>
+													<td class="text-center"><a data-toggle="modal" data-target="#myModal'.$sensorID.'" ><span role="button"><i class="fa fa-edit	 fa-fw" style="color:blue"></span></i></a></td>
+													<td class="text-center"><a data-toggle="modal" data-target="#myModald'.$sensorID.'" ><span role="button"><i class="fa fa-trash-o fa-fw" style="color:blue"></span></i></td>
 												</tr>
 												';
 										echo

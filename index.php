@@ -149,24 +149,24 @@ if($_SESSION['userTypeID'] != 1) {
             </div>
             <!-- /.row -->
 			<div class="row">
-			<div class="clearfix"></div>
-									<div class="col-lg-3">
-										<div class="row">
-											<ul class="list-group">
-												<li class="list-group-item">First item</li>
-												<li class="list-group-item">Second item</li>
-												<li class="list-group-item">Third item</li>
-												<li class="list-group-item">First item</li>
-												<li class="list-group-item">Second item</li>
-												<li class="list-group-item">Third item</li>
-												<li class="list-group-item">First item</li>
-												<li class="list-group-item">Second item</li>
-												<li class="list-group-item">Third item</li>
-											</ul>
-										</div>
-									</div>
-			<div class="col-lg-9>
-				<div class="row">
+				<div class="clearfix"></div>
+				<div class="col-lg-3">
+					<div class="row">
+						<ul class="list-group">
+							<li class="list-group-item">First item</li>
+							<li class="list-group-item">Second item</li>
+							<li class="list-group-item">Third item</li>
+							<li class="list-group-item">First item</li>
+							<li class="list-group-item">Second item</li>
+							<li class="list-group-item">Third item</li>
+							<li class="list-group-item">First item</li>
+							<li class="list-group-item">Second item</li>
+							<li class="list-group-item">Third item</li>
+						</ul>
+					</div>
+				</div>
+				<div class="col-lg-9>
+					<div class="row">
 			<?php 
 			//Loop per Branch 
 			
@@ -180,7 +180,7 @@ if($_SESSION['userTypeID'] != 1) {
 								<div class="panel-heading">
 									<div class="row">
 										<div class="col-xs-3">
-											<i class="fa fa-comments fa-5x"></i>
+											<i class="fa fa-building fa-5x"></i>
 										</div>
 										<div class="col-xs-9 text-right">
 											<div class="huge">26</div>
@@ -198,10 +198,6 @@ if($_SESSION['userTypeID'] != 1) {
 							</div>	
 						</div>';
 				}
-		
-				
-				
-				
 				?>
 				</div>
 				<!-- /.col-md-6 -->

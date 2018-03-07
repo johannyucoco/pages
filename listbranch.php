@@ -158,7 +158,7 @@ require_once('mysteryDB_connect.php');
                             <div class="row">
                                 <div class="col-lg-6">
 								
-								<h3>Branch List <a data-toggle="modal"  data-target="#Modal" class="btn btn-info"><i class="fa fa-plus-circle fa-fw" style="color:white"></i></a> </h3> 
+								<h3>Branch List <a data-toggle="modal"  data-target="#Modal"><span role="button"><i class="fa fa-plus-square fa-fw" style="color:black"></i></span></a> </h3> 
 									<?php
 									echo
 												'
@@ -223,9 +223,9 @@ require_once('mysteryDB_connect.php');
 												'
 												<tr>
 												
-													<td class="text-center"><a data-toggle="modal" data-target="#myModal'.$branchID.'" >'.$branchname.'</a></td>
-													<td class="text-center"><a data-toggle="modal" data-target="#myModal'.$branchID.'" > <i class="fa fa-edit fa-fw" style="color:blue"></i></td>
-													<td class="text-center"><a data-toggle="modal" data-target="#myModald'.$branchID.'" > <i class="fa fa-trash-o fa-fw" style="color:blue"></i></td>
+													<td class="text-center"><a data-toggle="modal" data-target="#myModal'.$branchID.'" ><span role="button">'.$branchname.'</span></a></td>
+													<td class="text-center"><a data-toggle="modal" data-target="#myModal'.$branchID.'" ><span role="button"> <i class="fa fa-edit fa-fw" style="color:blue"></i></span></td>
+													<td class="text-center"><a data-toggle="modal" data-target="#myModald'.$branchID.'" ><span role="button"> <i class="fa fa-trash-o fa-fw" style="color:blue"></span></i></td>
 													
 													
 												</tr>
