@@ -141,9 +141,8 @@ require_once('mysteryDB_connect.php');
             <!-- /.navbar-static-side -->
         </nav>
 
-                <div id="page-wrapper">
-            <div class="row">
-                <div class="col-lg-12">
+			<div id="page-wrapper">
+				<div class="row">
 					<?php
 					if (isset($_POST['save'])){
 						$message=NULL;
@@ -203,14 +202,26 @@ require_once('mysteryDB_connect.php');
 													';
 						}
 						echo
-							'<h3>
+							'<h6>
 							<form action="'.$_SERVER['PHP_SELF'].'" method="post">
-							First name:<input required class ="form-control" type="text" name="fname" value="'.$fname.'"><br>
-							Last name:<input required class ="form-control" type="text" name="lname" value="'.$lname.'"><br>
-							Username:<input required class ="form-control" type="text" name="uname" value="'.$_SESSION['username'].'"><br>
-							Password:<a data-toggle="modal" data-target="#myModal'.$userID.'" ><input class="form-control" type="submit" name="pass" value="Change Password" class="btn btn-info" role="button"/></a><br>
-							Email:<input required class ="form-control" type="email" name="email" value="'.$email.'"><br>
-							Contact Number:<input required class ="form-control" type="number" name="cnumber" value="'.$cnumber.'"><br>
+							<div class="col-lg-4">
+							<h3>First name:</h3><input required class ="form-control" type="text" name="fname" value="'.$fname.'"><br>
+							</div>
+							<div class="col-lg-4">
+							<h3>Last name:</h3><input required class ="form-control" type="text" name="lname" value="'.$lname.'"><br>
+							</div>
+							<div class="col-lg-4">
+							<h3>Email:</h3><input required class ="form-control" type="email" name="email" value="'.$email.'"><br>
+							</div>
+							<div class="col-lg-4">
+							<h3>Contact Number:</h3><input required class ="form-control" type="number" name="cnumber" value="'.$cnumber.'"><br>
+							</div>
+							<div class="col-lg-4">
+							<h3>Username:</h3><input required class ="form-control" type="text" name="uname" value="'.$_SESSION['username'].'"><br>
+							</div>
+							<div class="col-lg-4">
+							<h3>Password:</h3><a data-toggle="modal" data-target="#myModal'.$userID.'" ><input class="form-control" type="submit" name="pass" value="Change Password" role="button" style="border-color:black" /></a><br>
+							</div>
 							'
 					?>
 					<?php
@@ -221,7 +232,9 @@ require_once('mysteryDB_connect.php');
 							$branch = $row['branchname'];
 						}
 							echo'
-								Branch:<input disabled class ="form-control" type="text" value="'.$branch.'"><br>
+								<div class="col-lg-6">
+								<h3>Branch:</h3><input disabled class ="form-control" type="text" value="'.$branch.'"><br>
+								</div>
 							'
 					?>
 					<?php
@@ -233,8 +246,10 @@ require_once('mysteryDB_connect.php');
 						}
 							echo
 								'
-								User Type:<input disabled class ="form-control" type="text" value="'.$usertype.'"><br>
-								</h3>
+								<div class="col-lg-6">
+								<h3>User Type:</h3><input disabled class ="form-control" type="text" value="'.$usertype.'"><br>
+								</div>
+								</h6>
 								';
 								
 								
@@ -292,9 +307,11 @@ require_once('mysteryDB_connect.php');
 									
 								}
 					?>
+					</div>
 					<div align="center">
-				
+					<br>
 					<input type="submit" name="save" value="Save" class="btn btn-info" role="button"/>
+					</div>
 					</form>
 					
 					<?php 
