@@ -197,7 +197,7 @@ require_once('mysteryDB_connect.php');
 													<tr>
 												
 													<th class="text-center">Branch Name</th>
-													<th class="text-center">Num of Rooms</th>
+												
 													<th class="text-center"></th>
 													
 													</tr>
@@ -205,25 +205,26 @@ require_once('mysteryDB_connect.php');
 												<tbody>
 												
 												';
-										$sql = "SELECT b.branchID, branchname, count(roomID) as num
-												  from branches b join rooms r 
-												  on r.branchID = b.branchID 
+										$sql = "SELECT b.branchID, branchname
+												  from branches b 
 												  where b.status = 0
                                                   group by b.branchID";
-											
+											// join rooms r 
+											//	  on r.branchID = b.branchID
+											//, count(roomID) as num
 										$result = mysqli_query($dbc,$sql);
 										
 										while($row=mysqli_fetch_array($result,MYSQLI_ASSOC)) {
 											$branchID = $row['branchID'];
 											$branchname = $row['branchname'];
-											$num = $row['num'];
+											//$num = $row['num'];
 											
 											echo 
 												'
 												<tr>
 												
 													<td class="text-center"><a data-toggle="modal" data-target="#myModal'.$branchID.'" >'.$branchname.'</a></td>
-													<td class="text-center"> '.$num.'</td>
+												
 													<td class="text-center"><a data-toggle="modal" data-target="#myModald'.$branchID.'" > <i class="fa fa-trash-o fa-fw" style="color:blue"></i></td>
 													
 												</tr>

@@ -212,7 +212,7 @@ if($_SESSION['userTypeID'] != 1) {
 																</div>
 																<div class="modal-footer">
 																
-																  <button type="submit" class="btn btn-default btn-info" name="add" >Confirm</button>
+																  <button type="submit" class="btn btn-default btn-info" name="add" >Add</button>
 																  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 																</div>
 															  </div>
@@ -247,7 +247,7 @@ if($_SESSION['userTypeID'] != 1) {
 							
 							';
 					
-					while($row=mysqli_fetch_array($result,MYSQLI_ASSOC)) {
+					while($row=mysqli_fetch_array($result,MYSQLI_ASSOC)) {	
 						$branchID = $row['branchID'];
 						$uti = $row['uti'];
 						$userID = $row['userID'];
@@ -277,20 +277,20 @@ if($_SESSION['userTypeID'] != 1) {
 																<div class="modal-body">
 																  <div class="form-group">
 																	<input type="hidden" name="branchID" value="<?php echo $branchID; ?>" /> 
-																		<input required name="username"class="form-control" placeholder="Username" value="'.$row['username'].'"">
+																		<input required name="Newusername"class="form-control" placeholder="Username" value="'.$row['username'].'"">
 																		<br>
-																		<input required name="firstName"class="form-control" placeholder="First Name" value="'.$row['firstName'].'">
+																		<input required name="NewfirstName"class="form-control" placeholder="First Name" value="'.$row['firstName'].'">
 																		<br>
-																		<input required name="lastName"class="form-control" placeholder="Last Name" value="'.$row['lastName'].'">
+																		<input required name="NewlastName"class="form-control" placeholder="Last Name" value="'.$row['lastName'].'">
 																		<br>
-																		<input required name="contactNumber"class="form-control" placeholder="Contact Number"value="'.$row['contactNumber'].'">
+																		<input required name="NewcontactNumber"class="form-control" placeholder="Contact Number"value="'.$row['contactNumber'].'">
 																		<br>
-																		<input required type="email" name="email"class="form-control" placeholder="Email" value="'.$row['email'].'">
+																		<input required type="email" name="Newemail"class="form-control" placeholder="Email" value="'.$row['email'].'">
 																		<br>
 																		<input disabled type="password" name="password"class="form-control" placeholder="Password" value="'.$row['email'].'">
 																		<br>
 																		<label>User Type</label>
-																				<select name= "userType" class="form-control">
+																				<select name= "NewuserType" class="form-control">
 																	
 																			';
 																			$query1= "select * from usertype;"; // Run your query
@@ -309,7 +309,7 @@ if($_SESSION['userTypeID'] != 1) {
 																		</select>
 																		
 																		<label>Branch</label>
-																		<select name="branch" class="form-control">
+																		<select name="Newbranch" class="form-control">
 												
 												';
 												$query1= "select * from branches;"; // Run your query
@@ -340,6 +340,64 @@ if($_SESSION['userTypeID'] != 1) {
 					}
 					
 					echo '</tbody> </table>';
+					//edit press
+						if (isset($_POST['edit'])){
+											
+											$message=NULL;
+											
+												 
+											 if (isset($_POST['userID'])){
+												$userID = $_POST['userID'];
+											}
+											else{
+												$branchID = -1;
+											}
+											
+											$Newbranch = $_POST['Newbranch'];
+											$NewcontactNumber = $_POST['NewcontactNumber'];
+											$Newemail = $_POST['Newemail'];
+											$NewfirstName = $_POST['NewfirstName'];
+											$NewlastName = $_POST['NewlastName'];
+											$NewuserType = $_POST['NewuserType'];
+											$Newusername = $_POST['Newusername'];
+											
+											
+							
+											$query1="update users 
+														set firstName = '$NewfirstName', lastName = '$NewlastName', 
+														username = '$Newusername'	,email = '$Newemail'	, contactNumber = '$NewcontactNumber',
+														branchID = '$Newbranch'													
+														where userID = $userID";
+															
+																  
+												$result=mysqli_query($dbc,$query1);
+												if ($result) {
+													/*		
+														echo "<meta http-equiv='refresh' content='0'>"; //refresh page
+													echo'<script>
+															window.href = "listbranch.php";
+														</script>
+														';
+													*/
+													echo'
+														<div class="alert alert-success">
+															<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+															<strong>Success!</strong> Success Editing '.$Newusername.'.
+														</div>
+												
+														';
+														
+												}
+												else{
+													echo'
+														<div class="alert alert-danger">
+															<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+															<strong>Error!</strong> Did not change name to '.$Newusername.'.
+														</div>
+														';
+												}	
+										}
+										
 					//add press
 					if (isset($_POST['add'])){
 							
