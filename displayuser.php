@@ -242,6 +242,7 @@ $_SESSION['alert'] = 1;
 								<th class="text-center">Email</th>
 								<th class="text-center">User Type</th>
 								<th class="text-center">Branch</th>
+								<th class="text-center"></th>
 								
 								</tr>
 							</thead>
@@ -262,6 +263,7 @@ $_SESSION['alert'] = 1;
 								<td class='text-center'> {$row['email']} </td>
 								<td class='text-center'> {$row['userType']} </td>
 								<td class='text-center'> {$row['branchname']} </td>
+								<td class='text-center'> <a data-toggle='modal' data-target='#myModal".$userID."' > <i class='fa fa-edit fa-fw'style='color:blue'></i></a> </a></td>
 							</tr>
 							";
 							

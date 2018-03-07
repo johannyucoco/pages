@@ -224,7 +224,7 @@ if($_SESSION['userTypeID'] != 1) {
 														<th class="text-center">Room Name</th>
 														<th class="text-center">Room Description</th>
 														<th class="text-center">Branch</th>
-												
+														<th class="text-center"></th>
 														<th class="text-center"></th>
 														
 														</tr>
@@ -247,7 +247,7 @@ if($_SESSION['userTypeID'] != 1) {
 														<td class="text-center"><a data-toggle="modal" data-target="#myModal'.$roomID.'" >'.$roomName.'</a></td>
 														<td class="text-center">'.$roomDescription.'</td>
 														<td class="text-center">'.$branchname.'</td>
-									
+														<td class="text-center"><a data-toggle="modal" data-target="#myModal'.$roomID.'" > <i class="fa fa-edit fa-fw" style="color:blue"></a></td>
 														<td class="text-center"><a data-toggle="modal" data-target="#myModald'.$roomID.'" > <i class="fa fa-trash-o fa-fw" style="color:blue"></i></td>
 													</tr>
 													';
@@ -260,7 +260,7 @@ if($_SESSION['userTypeID'] != 1) {
 																  <div class="modal-content">
 																	<div class="modal-header">
 																	  <button type="button" class="close" data-dismiss="modal">&times;</button>
-																	  <h4 class="modal-title"></h4>
+																	  <h4 class="modal-title">Edit Room</h4>
 																	</div>
 																	<div class="modal-body">
 																	  <div class="form-group">

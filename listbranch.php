@@ -197,7 +197,7 @@ require_once('mysteryDB_connect.php');
 													<tr>
 												
 													<th class="text-center">Branch Name</th>
-												
+													<th class="text-center"></th>
 													<th class="text-center"></th>
 													
 													</tr>
@@ -224,8 +224,9 @@ require_once('mysteryDB_connect.php');
 												<tr>
 												
 													<td class="text-center"><a data-toggle="modal" data-target="#myModal'.$branchID.'" >'.$branchname.'</a></td>
-												
+													<td class="text-center"><a data-toggle="modal" data-target="#myModal'.$branchID.'" > <i class="fa fa-edit fa-fw" style="color:blue"></i></td>
 													<td class="text-center"><a data-toggle="modal" data-target="#myModald'.$branchID.'" > <i class="fa fa-trash-o fa-fw" style="color:blue"></i></td>
+													
 													
 												</tr>
 												';

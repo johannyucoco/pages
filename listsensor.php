@@ -230,6 +230,8 @@ if($_SESSION['userTypeID'] != 1) {
 													<th class="text-center">Sensor Type</th>
 													<th class="text-center">Rpi</th>
 													<th class="text-center"></th>
+													<th class="text-center"></th>
+													
 													
 													</tr>
 												</thead>
@@ -251,7 +253,7 @@ if($_SESSION['userTypeID'] != 1) {
 													<td class="text-center"><a data-toggle="modal" data-target="#myModal'.$sensorID.'" >'.$sensorName.'</a></td>
 													<td class="text-center">'.$sensorType.'</td>
 													<td class="text-center">'.$rpiName.'</td>
-											
+													<td class="text-center"><a data-toggle="modal" data-target="#myModal'.$sensorID.'" ><i class="fa fa-edit	 fa-fw" style="color:blue"></i></a></td>
 													<td class="text-center"><a data-toggle="modal" data-target="#myModald'.$sensorID.'" ><i class="fa fa-trash-o fa-fw" style="color:blue"></i></td>
 												</tr>
 												';

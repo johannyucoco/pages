@@ -213,7 +213,7 @@ if($_SESSION['userTypeID'] != 1) {
 													<th class="text-center">Ip Address</th>
 													<th class="text-center">Room</th>
 													<th class="text-center"></th>
-													
+													<th class="text-center"></th>
 													</tr>
 												</thead>
 												<tbody>
@@ -233,7 +233,7 @@ if($_SESSION['userTypeID'] != 1) {
 													<td class="text-center"><a data-toggle="modal" data-target="#myModal'.$rpiID.'" >'.$rpiName	.'</a></td>
 													<td class="text-center">'.$ipAddress.'</td>
 													<td class="text-center">'.$roomName.'</td>
-									
+													<td class="text-center"><a data-toggle="modal" data-target="#myModal'.$rpiID.'" ><i class="fa fa-edit fa-fw" style="color:blue"></a></td>
 													<td class="text-center"><a data-toggle="modal" data-target="#myModald'.$rpiID.'" > <i class="fa fa-trash-o fa-fw" style="color:blue"></i></td>
 												</tr>
 												';
@@ -245,7 +245,7 @@ if($_SESSION['userTypeID'] != 1) {
 																  <div class="modal-content">
 																	<div class="modal-header">
 																	  <button type="button" class="close" data-dismiss="modal">&times;</button>
-																	  <h4 class="modal-title">Edit Room</h4>
+																	  <h4 class="modal-title">Edit Rpi</h4>
 																	</div>
 																	<div class="modal-body">
 																	  <div class="form-group">
@@ -431,7 +431,7 @@ if($_SESSION['userTypeID'] != 1) {
 												 $message .= '<p>Empty room';
 												 $roomID=FALSE;
 											}else $roomID = $_POST['room'];
-									
+											$rpi = $_POST['rpi'];
 
 											
 										
