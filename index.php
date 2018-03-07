@@ -148,9 +148,25 @@ if($_SESSION['userTypeID'] != 1) {
                 <!-- /.col-lg-12 -->
             </div>
             <!-- /.row -->
-			
-            <div class="row">
-			 <div class="column"> 
+			<div class="row">
+			<div class="clearfix"></div>
+									<div class="col-lg-3">
+										<div class="row">
+											<ul class="list-group">
+												<li class="list-group-item">First item</li>
+												<li class="list-group-item">Second item</li>
+												<li class="list-group-item">Third item</li>
+												<li class="list-group-item">First item</li>
+												<li class="list-group-item">Second item</li>
+												<li class="list-group-item">Third item</li>
+												<li class="list-group-item">First item</li>
+												<li class="list-group-item">Second item</li>
+												<li class="list-group-item">Third item</li>
+											</ul>
+										</div>
+									</div>
+			<div class="col-lg-9>
+				<div class="row">
 			<?php 
 			//Loop per Branch 
 			
@@ -159,53 +175,35 @@ if($_SESSION['userTypeID'] != 1) {
 			while($row=mysqli_fetch_array($result,MYSQLI_ASSOC)) {
 						$branchID = $row['branchID'];
 						$branchname = $row['branchname'];
-				echo'
-					<div class="col-lg-3 col-md-6">
-						<div class="panel panel-primary">
-							<div class="panel-heading">
-								<div class="row">
-									<div class="col-xs-3">
-										<i class="fa fa-comments fa-5x"></i>
-									</div>
-									<div class="col-xs-9 text-right">
-										<div class="huge">26</div>
-										<div>RPi connected</div>
+				echo'	<div class="col-lg-3">
+							<div class="panel panel-primary">
+								<div class="panel-heading">
+									<div class="row">
+										<div class="col-xs-3">
+											<i class="fa fa-comments fa-5x"></i>
+										</div>
+										<div class="col-xs-9 text-right">
+											<div class="huge">26</div>
+											<div>RPi connected</div>
+										</div>
 									</div>
 								</div>
-							</div>
-							<a href="roomslist.php?branchID='.$branchID.'&branchname='.$branchname.'">
-								<div class="panel-footer">
-									<span class="pull-left">'.$branchname.'</span>
-									<span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-									<div class="clearfix"></div>
-								</div>
-							</a>
-						</div>	
-					</div>';					
-									
-									
-			}
+								<a href="roomslist.php?branchID='.$branchID.'&branchname='.$branchname.'">
+									<div class="panel-footer">
+										<span class="pull-left">'.$branchname.'</span>
+										<span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+										<div class="clearfix"></div>
+									</div>
+								</a>
+							</div>	
+						</div>';
+				}
 		
 				
 				
 				
 				?>
 				</div>
-				<div class="column">
-               
-                <div class="col-lg-3 col-md-6">
-					<ul class="list-group">
-							<li class="list-group-item">First item</li>
-							<li class="list-group-item">Second item</li>
-							<li class="list-group-item">Third item</li>
-							<li class="list-group-item">First item</li>
-							<li class="list-group-item">Second item</li>
-							<li class="list-group-item">Third item</li>
-							<li class="list-group-item">First item</li>
-							<li class="list-group-item">Second item</li>
-							<li class="list-group-item">Third item</li>
-						</ul>
-                </div>
 				<!-- /.col-md-6 -->
 				</div>
             </div>
