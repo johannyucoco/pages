@@ -118,12 +118,17 @@ $_SESSION['alert'] = 1;
 
         <div id="page-wrapper">
             <div class="row">
+
+            <div class="row">
                 <div class="col-lg-12">
-                    <h3>Users <a data-toggle="modal"  data-target="#Modal"><span role="button"><i class="fa fa-plus-square fa-fw" style="color:black"></i></span></a> </h3>
-                </div>
-                <!-- /.col-lg-12 -->
-            </div>
-            <!-- /.row -->
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-lg-2">
+								</div>
+								<div class="col-lg-8">
+					<h3>Users <a data-toggle="modal"  data-target="#Modal"><span role="button"><i class="fa fa-plus-square fa-fw" style="color:black"></i></span></a> </h3>
+					<br>
 				<?php
 					require_once('mysteryDB_connect.php');
 					
@@ -209,6 +214,7 @@ $_SESSION['alert'] = 1;
 							<table class="table table-stipend table-bordered table-hover" id="usertable">
 							<thead>
 								<tr>
+								
 								<th class="text-center">User Name</th>
 								<th class="text-center">Name</th>
 								<th class="text-center">Contact Number</th>
@@ -450,6 +456,19 @@ $_SESSION['alert'] = 1;
 					//end of add
 					
 				?>
+									</div>
+                                </div>
+                                <!-- /.col-lg-6 (nested) -->
+                            </div>
+                            <!-- /.row (nested) -->
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
         </div>
         <!-- /#page-wrapper -->
 

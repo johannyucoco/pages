@@ -115,7 +115,7 @@ if($_SESSION['userTypeID'] != 1) {
             <!-- /.navbar-static-side -->
         </nav>
 
-        <div id="page-wrapper">
+<div id="page-wrapper">
             <div class="row">
 
             <div class="row">
@@ -123,9 +123,12 @@ if($_SESSION['userTypeID'] != 1) {
                     <div class="panel panel-default">
                         <div class="panel-body">
                             <div class="row">
-                                <div class="col-lg-8">
+                                <div class="col-lg-2">
+								</div>
+								<div class="col-lg-8">
 								
-								<h3>Raspberry Pi List <a data-toggle="modal"  data-target="#Modal"><span role="button"><i class="fa fa-plus-square fa-fw" style="color:black"></i></span></a> </h3>
+								<h3>Raspberry Pis <a data-toggle="modal"  data-target="#Modal"><span role="button"><i class="fa fa-plus-square fa-fw" style="color:black"></i>	</span></a> </h3>
+								<br>
 								<?php
 									require_once('mysteryDB_connect.php');
 									echo
@@ -459,7 +462,7 @@ if($_SESSION['userTypeID'] != 1) {
 										
 								?>
 								
-									
+									</div>
                                 </div>
                                 <!-- /.col-lg-6 (nested) -->
                             </div>

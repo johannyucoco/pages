@@ -122,7 +122,7 @@ require_once('mysteryDB_connect.php');
             <!-- /.navbar-static-side -->
         </nav>
 
-        <div id="page-wrapper">
+          <div id="page-wrapper">
             <div class="row">
 
             <div class="row">
@@ -130,8 +130,11 @@ require_once('mysteryDB_connect.php');
                     <div class="panel panel-default">
                         <div class="panel-body">
                             <div class="row">
-                                <div class="col-lg-6">
-								
+                                <div class="col-lg-2">
+								</div>
+								<div class="col-lg-8">
+
+
 								<h3>Branch List <a data-toggle="modal"  data-target="#Modal"><span role="button"><i class="fa fa-plus-square fa-fw" style="color:black"></i></span></a> </h3> 
 									<?php
 									echo
