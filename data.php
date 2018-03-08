@@ -21,7 +21,7 @@
 							'<div class="row">
 							<div class="col-lg-6">
 							';
-							if($value = 0){ //if on 
+							if($value == 0){ //if on 
 										echo'<h3>'.$rpiName.'<i class="fa fa-chain fa-fw" style = "color:green"></i></h3>';
 							}else{ //if off
 									echo'<h3>'.$rpiName.'<i class="fa fa-chain fa-fw" style = "color:red"></i></h3>';
