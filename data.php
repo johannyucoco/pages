@@ -10,13 +10,23 @@
 		
 		$result1 = mysqli_query($dbc,$sqld);
 		
+
+		
+		
 		while ($row=mysqli_fetch_array($result1,MYSQLI_ASSOC)) {
 						
+			$value = 0; 		//store the value in here if on/off ba sya 
 					$rpiName = $row['rpiName'];		
 			echo 	
 							'<div class="row">
 							<div class="col-lg-6">
-							<h3>'.$rpiName.'</h3>
+							';
+							if($value = 0){ //if on 
+										echo'<h3>'.$rpiName.'<i class="fa fa-chain fa-fw" style = "color:green"></i></h3>';
+							}else{ //if off
+									echo'<h3>'.$rpiName.'<i class="fa fa-chain fa-fw" style = "color:red"></i></h3>';
+							}
+							echo'
 							<table class="table table-stipend table-bordered table-hover" id="roomtable">
 							<thead>
 								<tr>
