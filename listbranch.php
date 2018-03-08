@@ -37,7 +37,10 @@ require_once('mysteryDB_connect.php');
     <!-- Custom Fonts -->
     <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 	
-	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css"></link>
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.css"></link>
+	
+  
+
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesnt work if you view the page via file:// -->
@@ -135,7 +138,7 @@ require_once('mysteryDB_connect.php');
 								<div class="col-lg-8">
 
 
-								<h3>Branch List <a data-toggle="modal"  data-target="#Modal"><span role="button"><i class="fa fa-plus-square fa-fw" style="color:black"></i></span></a> </h3> 
+								<h3>Branches <a data-toggle="modal"  data-target="#Modal"><span role="button"><i class="fa fa-plus-square fa-fw" style="color:black"></i></span></a> </h3> 
 									<?php
 									echo
 												'
@@ -486,11 +489,14 @@ require_once('mysteryDB_connect.php');
     <script src="../dist/js/sb-admin-2.js"></script>
 	
 	
-	<script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+	<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.js"></script>
 	
 		<script> 
 		$(document).ready(function(){
-			$('#branchtable').DataTable();
+			$('#branchtable').DataTable({
+				ordering: false
+			});
+			
 		});
 		</script>
 		<style>

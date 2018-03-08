@@ -201,6 +201,7 @@ if($_SESSION['userTypeID'] != 1) {
 														<th class="text-center">Room Name</th>
 														<th class="text-center">Room Description</th>
 														<th class="text-center">Branch</th>
+														<th class="text-center">Rpi</th>
 														<th class="text-center"></th>
 														<th class="text-center"></th>
 														
@@ -217,13 +218,27 @@ if($_SESSION['userTypeID'] != 1) {
 												$branchname = $row['branchname'];	
 												$branchID = $row['branchID'];												
 												// <tr class='clickable-row' data-href='url:index.php'>
+												$sql1 = "SELECT count(r.roomID) as num from branches b join rooms r 
+												on b.branchID = r.branchID
+										where b.status = 0 and b.branchID= {$branchID}
+                                                  group by b.branchID";
+										
+											$result1 = mysqli_query($dbc,$sql1);
+											$row1=mysqli_fetch_array($result1,MYSQLI_ASSOC);
 												echo 
 													'
 													<tr>
 												
-														<td class="text-center"><a data-toggle="modal" data-target="#myModal'.$roomID.'" ><span role="button">'.$roomName.'</span></a></td>
+														<td class="text-center"><a href="rpilist.php?roomID='.$roomID.'&roomName='.$roomName.'"><span role="button">'.$roomName.'</span></a></td>
 														<td class="text-center">'.$roomDescription.'</td>
-														<td class="text-center">'.$branchname.'</td>
+														<td class="text-center">'.$branchname.'</td>';
+														
+														if($row1){
+																echo'<td class="text-center"> '.$row1['num'].'</td>';
+														}else{
+															echo'<td class="text-center"> 0</td>';
+														}
+														echo'
 														<td class="text-center"><a data-toggle="modal" data-target="#myModal'.$roomID.'" ><span role="button"> <i class="fa fa-edit fa-fw" style="color:blue"></span></i></a></td>
 														<td class="text-center"><a data-toggle="modal" data-target="#myModald'.$roomID.'" ><span role="button"> <i class="fa fa-trash-o fa-fw" style="color:blue"></span></i></td>
 													</tr>
@@ -495,7 +510,9 @@ if($_SESSION['userTypeID'] != 1) {
 
 		<script> 
 		$(document).ready(function(){
-			$('#roomtable').DataTable();
+			$('#roomtable').DataTable({
+				ordering: false
+			});
 		});
 		
 		

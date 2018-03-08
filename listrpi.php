@@ -497,7 +497,9 @@ if($_SESSION['userTypeID'] != 1) {
 	
 		<script> 
 		$(document).ready(function(){
-			$('#rpitable').DataTable();
+			$('#rpitable').DataTable({
+				ordering: false
+			});
 		});
 		</script>
 		

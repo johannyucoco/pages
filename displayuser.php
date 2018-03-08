@@ -496,7 +496,9 @@ $_SESSION['alert'] = 1;
 	
 		<script> 
 		$(document).ready(function(){
-			$('#usertable').DataTable();
+			$('#usertable').DataTable({
+				ordering: false
+			});
 		});
 		</script>
 		<style>

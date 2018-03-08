@@ -79,7 +79,7 @@ if (isset($_POST['submit'])){
                                     <input required class="form-control" placeholder="Username" name="username" autofocus>
                                 </div>
                                 <div class="form-group">
-                                    <input required class="form-control" placeholder="Password" name="password" type="password" value="">
+                                    <input required class="form-control" placeholder="Password" name="password" type="password" >
                                 </div>
                                 <!-- Change this to a button or input when using this as a form -->
                                <div align="center"><input type="submit" name="submit" value="Login" class="btn btn-info" role="button"/></div>

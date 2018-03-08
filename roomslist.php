@@ -269,7 +269,9 @@
 	
 	<script> 
 		$(document).ready(function(){
-			$('#roomtable').DataTable();
+			$('#roomtable').DataTable({
+				ordering: false
+			});
 		});
 		</script>
 	<style>

@@ -519,7 +519,9 @@ if($_SESSION['userTypeID'] != 1) {
 	
 		<script> 
 		$(document).ready(function(){
-			$('#sensortable').DataTable();
+			$('#sensortable').DataTable({
+				ordering: false
+			});
 		});
 		</script>
 		
