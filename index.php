@@ -88,20 +88,20 @@ require_once('mysteryDB_connect.php');
 								<a href="#"><i class="fa fa-archive fa-fw" style="color:white"></i><font color="white"> Manage Data </font><span class="fa arrow" style="color:white"></span></a>
 								<ul class="nav nav-second-level">
 								<li>
-                                    <a href="listbranch.php"><font color="white"> View Branches </font></a>
+                                    <a href="listbranch.php"><font color="white"><i class="fa fa-building fa-fw"></i> View Branches </font></a>
                                 </li>
 								<li>
-                                    <a href="listroom.php"><font color="white"> View Rooms </font></a>
+                                    <a href="listroom.php"><font color="white"><i class="fa fa-ticket fa-fw"></i> View Rooms </font></a>
                                 </li>
 								
 								<li>
-                                    <a href="listrpi.php"><font color="white"> View Raspberry Pis </font></a>
+                                    <a href="listrpi.php"><font color="white"><i class="fa fa-chain fa-fw"></i> View Raspberry Pis </font></a>
                                 </li>
 								<li>
-                                    <a href="listsensor.php"><font color="white"> View Sensors </font></a>
+                                    <a href="listsensor.php"><font color="white"><i class="fa fa-bullseye fa-fw"></i> View Sensors </font></a>
                                 </li>
 								<li>
-                                <a href="displayuser.php"><font color="white"> View Users </font></a>
+                                <a href="displayuser.php"><font color="white"><i class="fa fa-users fa-fw"></i> View Users </font></a>
 								</li>
 								</ul>
                             <!-- /.nav-second-level -->
