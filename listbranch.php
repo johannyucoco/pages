@@ -171,6 +171,7 @@ require_once('mysteryDB_connect.php');
 													<tr>
 												
 													<th class="text-center">Branch Name</th>
+													<th class="text-center">Rooms</th>
 													<th class="text-center"></th>
 													<th class="text-center"></th>
 													
@@ -192,12 +193,26 @@ require_once('mysteryDB_connect.php');
 											$branchID = $row['branchID'];
 											$branchname = $row['branchname'];
 											//$num = $row['num'];
+											$sql1 = "SELECT count(r.roomID) as num from branches b join rooms r 
+												on b.branchID = r.branchID
+										where b.status = 0 and b.branchID= {$branchID}
+                                                  group by b.branchID";
+										
+											$result1 = mysqli_query($dbc,$sql1);
+											$row1=mysqli_fetch_array($result1,MYSQLI_ASSOC);
 											
 											echo 
 												'
 												<tr>
 												
-													<td class="text-center"><a data-toggle="modal" data-target="#myModal'.$branchID.'" ><span role="button">'.$branchname.'</span></a></td>
+													<td class="text-center"><a href="roomslist.php?branchID='.$branchID.'&branchname='.$branchname.'">'.$branchname.'</span></a></td>
+													';
+													if($row1){
+																echo'<td class="text-center"> '.$row1['num'].'</td>';
+													}else{
+														echo'<td class="text-center"> 0</td>';
+													}
+													echo'
 													<td class="text-center"><a data-toggle="modal" data-target="#myModal'.$branchID.'" ><span role="button"> <i class="fa fa-edit fa-fw" style="color:blue"></i></span></td>
 													<td class="text-center"><a data-toggle="modal" data-target="#myModald'.$branchID.'" ><span role="button"> <i class="fa fa-trash-o fa-fw" style="color:blue"></span></i></td>
 													

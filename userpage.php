@@ -283,17 +283,8 @@ require_once('mysteryDB_connect.php');
 								
 									
 								}
-					?>
-					</div>
-					<div align="center">
-					<br>
-					<input type="submit" name="save" value="Save" class="btn btn-info" role="button"/>
-					</div>
-					</form>
-					
-					<?php 
-							
-							if(isset($_POST['save'])){
+								// for update press
+								if(isset($_POST['save'])){
 								
 								$message=NULL;
 											
@@ -350,11 +341,14 @@ require_once('mysteryDB_connect.php');
 														';
 												}	
 							}
-					
-					
-					
-					
+								
 					?>
+					</div>
+					<div align="center">
+					<br>
+					<input type="submit" name="save" value="Save" class="btn btn-info" role="button"/>
+					</div>
+					</form>
 					</div>
 				</div>
                 <!-- /.col-lg-12 -->
