@@ -146,7 +146,7 @@ if($_SESSION['userTypeID'] != 1) {
 																		<input required name="ipAddress"class="form-control" placeholder="IP Address" ">
 																		<br>
 																		<label>Room</label>
-																		<select name="room" class="form-control">';
+																		<select name="room" class="form-control" id="rooms">';
 																				$query1= "select * from rooms where status = 0"; // Run your query
 																				$result1=mysqli_query($dbc,$query1);
 																				echo "<option value='default'> -select- </option>"; 
@@ -198,7 +198,7 @@ if($_SESSION['userTypeID'] != 1) {
 											$rpiID = $row['rpiID'];
 											$rpiName = $row['rpiName'];
 											$ipAddress = $row['ipAddress'];	
-											$roomName = $row['roomName'];				
+											$roomName = $row['roomName'];					
 											// <tr class='clickable-row' data-href='url:index.php'>
 											echo 
 												'
@@ -271,7 +271,20 @@ if($_SESSION['userTypeID'] != 1) {
 																		<input type="hidden" name="rpiID" value="<?php echo $rpiID; ?>" /> 
 																			<input disabled name="newbranchName"class="form-control" placeholder="Delete Rpi Name" value="'.$rpiName.'"><br>
 																			<input disabled name="newbranchName"class="form-control" placeholder="Delete Ip Address" value="'.$ipAddress.'"><br>
-																			<input disabled name="newbranchName"class="form-control" placeholder="Delete Room Name" value="'.$roomName.'"><br>
+																			';
+																				$query1= "select * from rooms where status = 0"; // Run your query
+																				$result1=mysqli_query($dbc,$query1);
+																				while ($row = mysqli_fetch_array($result1, MYSQLI_ASSOC)) {
+																					$roomName = $row['roomName'];
+																					$id = $row['roomID'];
+																					
+																					
+																					if($id == $rpiID){ echo' 	
+																					<input disabled name="newbranchName"class="form-control" placeholder="Delete Room Name" value="'.$roomName.'"><br>';};
+																		
+																				}
+																		echo'
+																			
 																			<input  name="brpiID" class="form-control hidden" placeholder="Room ID" value="'.$rpiID.'">
 																			<br>
 																	</div>
@@ -484,6 +497,13 @@ if($_SESSION['userTypeID'] != 1) {
 			$('#rpitable').DataTable();
 		});
 		</script>
+		
+		<script> 
+			$(document).ready(function(){
+			$('#rooms').editableSelect()
+		});
+			
+		</script>
 			<style>
 		.btn-info
 		{
@@ -502,6 +522,7 @@ if($_SESSION['userTypeID'] != 1) {
 		
 		
 	</style>
+	
 </body>
 
 </html>

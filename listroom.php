@@ -156,7 +156,7 @@ if($_SESSION['userTypeID'] != 1) {
 																		
 																		<br>
 																		<label>Branch</label>
-																				<select name= "branch" class="form-control">
+																				<select name= "branch" class="form-control" id="branchie">
 																	
 																			';
 																			$query1= "select * from branches;"; // Run your query
@@ -498,7 +498,10 @@ if($_SESSION['userTypeID'] != 1) {
 		
 		</script>
 		<script> 
-	
+			$(document).ready(function(){
+			$('#branchie').editableSelect()
+		});
+			
 		</script>
 		
 		<style>
