@@ -198,12 +198,12 @@ if($_SESSION['userTypeID'] != 1) {
 													<thead>
 														<tr>
 													
-														<th class="text-center">Room Name</th>
-														<th class="text-center">Room Description</th>
+														<th class="text-center">Name</th>
+														<th class="text-center">Description</th>
 														<th class="text-center">Branch</th>
 														<th class="text-center">Rpi</th>
-														<th class="text-center"></th>
-														<th class="text-center"></th>
+														<th class="text-center"><i class="fa fa-edit fa-fw" style="color:black"></i></th>
+														<th class="text-center"><i class="fa fa-trash-o fa-fw" style="color:black"></i></th>
 														
 														</tr>
 													</thead>
@@ -218,10 +218,10 @@ if($_SESSION['userTypeID'] != 1) {
 												$branchname = $row['branchname'];	
 												$branchID = $row['branchID'];												
 												// <tr class='clickable-row' data-href='url:index.php'>
-												$sql1 = "SELECT count(r.roomID) as num from branches b join rooms r 
-												on b.branchID = r.branchID
-										where b.status = 0 and b.branchID= {$branchID}
-                                                  group by b.branchID";
+												$sql1 = "SELECT count(i.rpiID) as num from rooms r join rpi i 
+												on r.roomID = i.roomID 
+											where r.status = 0 and r.roomID= '{$roomID}' 
+												group by r.roomID";	
 										
 											$result1 = mysqli_query($dbc,$sql1);
 											$row1=mysqli_fetch_array($result1,MYSQLI_ASSOC);
@@ -511,7 +511,8 @@ if($_SESSION['userTypeID'] != 1) {
 		<script> 
 		$(document).ready(function(){
 			$('#roomtable').DataTable({
-				ordering: false
+				ordering: false,
+				 scrollCollapse: true
 			});
 		});
 		

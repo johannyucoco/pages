@@ -176,10 +176,10 @@ require_once('mysteryDB_connect.php');
 												<thead>
 													<tr>
 												
-													<th class="text-center">Branch Name</th>
+													<th class="text-center">Name</th>
 													<th class="text-center">Rooms</th>
-													<th class="text-center"></th>
-													<th class="text-center"></th>
+													<th class="text-center"><i class="fa fa-edit fa-fw" style="color:black"></i></th>
+													<th class="text-center"><i class="fa fa-trash-o fa-fw" style="color:black"></i></th>
 													
 													</tr>
 												</thead>

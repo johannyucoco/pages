@@ -127,7 +127,7 @@ $_SESSION['alert'] = 1;
                                 <div class="col-lg-2">
 								</div>
 								<div class="col-lg-8">
-					<h3>Users<a data-toggle="modal"  data-target="#Modal"><span role="button"><i class="fa fa-plus-square fa-fw" style="color:black"></i></span></a> </h3>
+					<h3>Users <a data-toggle="modal"  data-target="#Modal"><span role="button"><i class="fa fa-plus-square fa-fw" style="color:black"></i></span></a> </h3>
 					<br>
 				<?php
 					require_once('mysteryDB_connect.php');
@@ -221,7 +221,8 @@ $_SESSION['alert'] = 1;
 								<th class="text-center">Email</th>
 								<th class="text-center">User Type</th>
 								<th class="text-center">Branch</th>
-								<th class="text-center"></th>
+								<th class="text-center"><i class="fa fa-edit fa-fw" style="color:black"></i></th>
+											
 								
 								</tr>
 							</thead>

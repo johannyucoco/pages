@@ -206,11 +206,11 @@ if($_SESSION['userTypeID'] != 1) {
 												<thead>
 													<tr>
 													
-													<th class="text-center">Sensor Name</th>
-													<th class="text-center">Sensor Type</th>
-													<th class="text-center">Rpi</th>
-													<th class="text-center"></th>
-													<th class="text-center"></th>
+													<th class="text-center">Name</th>
+													<th class="text-center">Type</th>
+													<th class="text-center">Device Connected</th>
+													<th class="text-center"><i class="fa fa-edit fa-fw" style="color:black"></i></th>
+													<th class="text-center"><i class="fa fa-trash-o fa-fw" style="color:black"></i></th>
 													
 													
 													</tr>
@@ -429,9 +429,9 @@ if($_SESSION['userTypeID'] != 1) {
 											if($_POST['sensorType'] == 'default'){
 												 $message .= '<p>Empty room';
 												 $sensorTypeID=FALSE;
-											}else $sensorTypeID = $_POST['sensorType	'];
+											}else $sensorTypeID = $_POST['sensorType'];
 										
-											
+											$sensorName = $_POST['sensorName'];
 								
 										if(!isset($message)){
 												echo "<meta http-equiv='refresh' content='2'>"; //refresh page
@@ -440,7 +440,7 @@ if($_SESSION['userTypeID'] != 1) {
 											echo'
 											<div class="alert alert-success">
 											<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-											<strong>Success!</strong> New RPI Added.
+											<strong>Success!</strong> New RPI Added. '.$sensorName.' '.$rpiConnection.' '.$sensorTypeID.'
 											</div>';
 																			
 										}

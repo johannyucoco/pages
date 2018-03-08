@@ -144,7 +144,7 @@ if($_SESSION['userTypeID'] != 1) {
 																<div class="modal-body">
 																  <div class="form-group">
 																	<input type="hidden" name="branchID" value="<?php echo $branchID; ?>" /> 
-																		<input required name="rpi"class="form-control" placeholder="Raspberry Pie Name" ">
+																		<input required name="rpi"class="form-control" placeholder="Raspberry Pi Name" ">
 																		<br>
 																		<input required name="ipAddress"class="form-control" placeholder="IP Address" ">
 																		<br>
@@ -186,11 +186,11 @@ if($_SESSION['userTypeID'] != 1) {
 												<thead>
 													<tr>
 													
-													<th class="text-center">Rpi Name</th>
-													<th class="text-center">Ip Address</th>
+													<th class="text-center">Name</th>
+													<th class="text-center">IP Address</th>
 													<th class="text-center">Room</th>
-													<th class="text-center"></th>
-													<th class="text-center"></th>
+													<th class="text-center"><i class="fa fa-edit fa-fw" style="color:black"></i></th>
+													<th class="text-center"><i class="fa fa-trash-o fa-fw" style="color:black"></i></th>
 													</tr>
 												</thead>
 												<tbody>
