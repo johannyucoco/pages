@@ -14,8 +14,9 @@
 						
 					$rpiName = $row['rpiName'];		
 			echo 	
-							'
-							<h2>'.$rpiName.'</h2>
+							'<div class="row">
+							<div class="col-lg-6">
+							<h3>'.$rpiName.'</h3>
 							<table class="table table-stipend table-bordered table-hover" id="roomtable">
 							<thead>
 								<tr>
@@ -65,6 +66,7 @@
 									<td class="text-center"><a href="showstatusdetail.php?statusID='.$statusID.'&sensorName='.$sensorName.'">'.$status.'</td>
 									<td class="text-center">'.$timestamp.'</td>
 								</tr>
+								</div>
 									
 								';
 							
