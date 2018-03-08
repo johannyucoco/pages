@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 20, 2018 at 12:09 PM
+-- Generation Time: Mar 08, 2018 at 06:19 AM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 5.6.21
 
@@ -37,9 +37,12 @@ CREATE TABLE `branches` (
 --
 
 INSERT INTO `branches` (`branchID`, `branchname`, `status`) VALUES
-(2, 'Century Mall', 0),
-(3, '30th Ayala Mall ', 0),
-(4, 'Katipunan Branch ', 0);
+(2, 'Century City Mall', 0),
+(3, 'Ayala Malls the 30th', 0),
+(4, 'Katipunan Branch ', 0),
+(5, 'Jupiter, Makati Branch', 0),
+(7, 'Libis, Quezon City ', 0),
+(8, 'Branch', 1);
 
 -- --------------------------------------------------------
 
@@ -117,7 +120,17 @@ INSERT INTO `rooms` (`roomID`, `roomName`, `roomDescription`, `branchID`, `statu
 (2, 'Scary Room', 'A very scary room', 2, 0),
 (3, 'Magic Room', 'A magical room', 4, 0),
 (5, 'Murder Room ', 'Crime Scene ', 2, 0),
-(6, 'Banana', 'Rooms', 2, 0);
+(9, 'Banana', 'Banana Themed room ', 3, 0),
+(13, 'Virtual ', 'Voyage', 2, 0),
+(14, 'Crime of the Century ', 'A ticking bomb is place inside the room', 2, 0),
+(15, 'Aztec Adventure', 'This room is amazing', 2, 0),
+(16, 'Reverse Reality ', 'ytilaer esrever', 2, 0),
+(17, 'Pym Particle ', 'Aliens! ', 5, 0),
+(18, 'Sinister Sensorium ', 'Feel, smell, see, hear', 2, 0),
+(19, 'World Wizardry ', 'Potions ,wands and stuff', 4, 0),
+(20, 'Murder in the Mafia ', 'Find the traitor ', 2, 0),
+(21, 'Morbid Morgue ', 'Who killed who? ', 5, 0),
+(22, 'Rebel Resistance ', 'Star Wars lets go ', 4, 0);
 
 -- --------------------------------------------------------
 
@@ -130,17 +143,18 @@ CREATE TABLE `rpi` (
   `rpiName` varchar(45) NOT NULL,
   `ipAddress` varchar(45) NOT NULL,
   `roomID` int(11) NOT NULL,
-  `status` int(11) NOT NULL
+  `status` int(11) NOT NULL,
+  `onoff` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `rpi`
 --
 
-INSERT INTO `rpi` (`rpiID`, `rpiName`, `ipAddress`, `roomID`, `status`) VALUES
-(1, 'MyFirstRpi', '192.168.35.40', 1, 0),
-(2, 'MySecondRpi', '192.145.20.50', 2, 0),
-(3, 'MyThirdRpi', '192.168.75.2', 2, 0);
+INSERT INTO `rpi` (`rpiID`, `rpiName`, `ipAddress`, `roomID`, `status`, `onoff`) VALUES
+(1, 'MyFirstRpi', '192.168.35.40', 1, 0, 0),
+(2, 'MySecondRpi', '192.145.20.50', 2, 0, 0),
+(3, 'MyThirdRpi', '192.168.75.2', 2, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -168,7 +182,10 @@ INSERT INTO `sensors` (`sensorID`, `sensorName`, `rpiID`, `sensorTypeID`, `statu
 (9, 'Normal Sensor1', 1, 11, 0),
 (10, 'Photoresistor1', 1, 12, 0),
 (11, 'Colored', 1, 1, 0),
-(12, 'Temperature Sensor', 2, 14, 0);
+(12, 'Temperature Sensor', 2, 14, 0),
+(14, 'Temperature Sensor', 2, 11, 0),
+(15, 'Temperature Sensor', 2, 12, 0),
+(16, 'Temperature Sensor', 1, 11, 0);
 
 -- --------------------------------------------------------
 
@@ -261,6 +278,19 @@ INSERT INTO `statusdetails` (`statusDetailID`, `statusID`, `variableName`, `valu
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `userlog`
+--
+
+CREATE TABLE `userlog` (
+  `userlog` int(11) NOT NULL,
+  `userID` int(11) NOT NULL,
+  `timestamp` datetime NOT NULL,
+  `branchID` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users`
 --
 
@@ -281,9 +311,10 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`userID`, `firstName`, `lastName`, `username`, `email`, `contactNumber`, `password`, `userTypeID`, `branchID`) VALUES
-(1, 'Patrick ', 'Pineda', 'Patrick ', 'patrickpineda@mysterymanila.com', '09171234567', '*A4B6157319038724E3560894F7F932C8886EBFCF', 1, 2),
+(1, 'Patrick ', 'Pineda', 'Patrick', 'patrickpineda@mysterymanila.com', '09171234567', '*2470C0C06DEE42FD1618BB99005ADCA2EC9D1E19', 1, 2),
 (5, 'Johann ', 'Yucoco', 'Johann ', 'johannyucoco@mysterymanila.com', '09172346051', '*A4B6157319038724E3560894F7F932C8886EBFCF', 2, 2),
-(6, 'Game', 'Master', 'GameMaster ', 'gamemaster@mysterymanila.com', '01234567891', '*A4B6157319038724E3560894F7F932C8886EBFCF', 2, 4);
+(6, 'Game', 'Master', 'GameMaster ', 'gamemaster@mysterymanila.com', '01234567891', '*A4B6157319038724E3560894F7F932C8886EBFCF', 2, 4),
+(7, 'Admin', 'Admin', 'Admin ', 'admin@mysterymanila.com', '0915451231', '*4ACFE3202A5FF5CF467898FC58AAB1D615029441', 1, 3);
 
 -- --------------------------------------------------------
 
@@ -371,6 +402,14 @@ ALTER TABLE `statusdetails`
   ADD KEY `statusID` (`statusID`);
 
 --
+-- Indexes for table `userlog`
+--
+ALTER TABLE `userlog`
+  ADD PRIMARY KEY (`userlog`),
+  ADD KEY `userID` (`userID`),
+  ADD KEY `branchID` (`branchID`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -392,7 +431,7 @@ ALTER TABLE `usertype`
 -- AUTO_INCREMENT for table `branches`
 --
 ALTER TABLE `branches`
-  MODIFY `branchID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `branchID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT for table `legendstatus`
 --
@@ -407,7 +446,7 @@ ALTER TABLE `legendstatusdetails`
 -- AUTO_INCREMENT for table `rooms`
 --
 ALTER TABLE `rooms`
-  MODIFY `roomID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `roomID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 --
 -- AUTO_INCREMENT for table `rpi`
 --
@@ -417,7 +456,7 @@ ALTER TABLE `rpi`
 -- AUTO_INCREMENT for table `sensors`
 --
 ALTER TABLE `sensors`
-  MODIFY `sensorID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `sensorID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 --
 -- AUTO_INCREMENT for table `sensortypes`
 --
@@ -434,10 +473,15 @@ ALTER TABLE `status`
 ALTER TABLE `statusdetails`
   MODIFY `statusDetailID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1908;
 --
+-- AUTO_INCREMENT for table `userlog`
+--
+ALTER TABLE `userlog`
+  MODIFY `userlog` int(11) NOT NULL AUTO_INCREMENT;
+--
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `userID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `userID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `usertype`
 --
@@ -489,6 +533,13 @@ ALTER TABLE `status`
 --
 ALTER TABLE `statusdetails`
   ADD CONSTRAINT `statusdetails_ibfk_1` FOREIGN KEY (`statusID`) REFERENCES `status` (`statusID`);
+
+--
+-- Constraints for table `userlog`
+--
+ALTER TABLE `userlog`
+  ADD CONSTRAINT `userlog_ibfk_1` FOREIGN KEY (`userID`) REFERENCES `users` (`userID`),
+  ADD CONSTRAINT `userlog_ibfk_2` FOREIGN KEY (`branchID`) REFERENCES `branches` (`branchID`);
 
 --
 -- Constraints for table `users`
