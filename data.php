@@ -40,7 +40,7 @@
 									echo'<h3>'.$rpiName.'<i class="fa fa-chain fa-fw" style = "color:red"></i></h3>';
 							}
 							echo'
-							<table class="table table-stipend table-bordered table-hover" id="roomtable">
+							<table class="table table-striped table-bordered table-hover" id="roomtable">
 							<thead>
 								<tr>
 						
@@ -86,7 +86,7 @@
 								<tr>
 									
 									<td class="text-center">'.$sensorName.'</td>
-									<td class="text-center"><a href="showstatusdetail.php?statusID='.$statusID.'&sensorName='.$sensorName.'">'.$status.'</td>
+									<td class="text-center"><a href="showstatusdetail.php?statusID='.$statusID.'&sensorName='.$sensorName.'"><font color="blue">'.$status.'</blue></td>
 									<td class="text-center">'.$timestamp.'</td>
 								</tr>
 								</div>
