@@ -106,6 +106,25 @@ require_once('mysteryDB_connect.php');
 								</ul>
                             <!-- /.nav-second-level -->
 							</li>
+														<li>
+								<a href="#"><i class="fa fa-sitemap fa-fw" style="color:white"></i><font color="white"> Branches </font><span class="fa arrow" style="color:white"></span></a>
+								<ul class="nav nav-second-level">
+								<?php 
+									require_once('mysteryDB_connect.php');
+									$sql = "SELECT *
+											from branches where status = 0";
+									$result = mysqli_query($dbc,$sql);
+									while($row=mysqli_fetch_array($result,MYSQLI_ASSOC)) {
+										$branchID = $row['branchID'];
+										$branchname = $row['branchname'];	
+									echo "
+											<li>
+											<a href='roomslist.php?branchID='.$branchID.'&branchname='.$branchname.'><font color=\"white\"><i class=\"fa fa-arrow-circle-right\"></i> $branchname</font></a>
+											</li>";
+									}
+								?>
+								</ul>
+							</li>
 						</ul>
 					<!-- /.nav -->
                 </div>
