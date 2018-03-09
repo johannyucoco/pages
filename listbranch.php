@@ -172,7 +172,7 @@ require_once('mysteryDB_connect.php');
 									
 										echo 	
 												'
-												<table class="table table-stipend table-bordered table-hover" id="branchtable">
+												<table class="table table-striped table-bordered table-hover" id="branchtable">
 												<thead>
 													<tr>
 												
@@ -211,7 +211,7 @@ require_once('mysteryDB_connect.php');
 												'
 												<tr class="clickable-row" href="index.php">
 												
-													<td class="text-center"><a href="roomslist.php?branchID='.$branchID.'&branchname='.$branchname.'">'.$branchname.'</span></td></a>
+													<td class="text-center"><a href="roomslist.php?branchID='.$branchID.'&branchname='.$branchname.'"><font color="blue">'.$branchname.'</font></span></a></td>
 													';
 													if($row1){
 																echo'<td class="text-center"> '.$row1['num'].'</td>';

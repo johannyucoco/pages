@@ -132,11 +132,10 @@ if($_SESSION['userTypeID'] != 1) {
                     <div class="panel panel-default">
                         <div class="panel-body">
                             <div class="row">
-                                <div class="col-lg-2">
+                                <div class="col-lg-1">
 								</div>
-								<div class="col-lg-8">
+								<div class="col-lg-10">
 								<h3>Rooms <a data-toggle="modal"  data-target="#Modal"><span role="button"><i class="fa fa-plus-square fa-fw" style="color:black"></i></span></a> </h3>
-                                <br>
 								<?php
 										require_once('mysteryDB_connect.php');
 
@@ -194,7 +193,7 @@ if($_SESSION['userTypeID'] != 1) {
 											
 											echo 	
 													'
-													<table class="table table-stipend table-bordered table-hover" id="roomtable">
+													<table class="table table-striped table-bordered table-hover" id="roomtable">
 													<thead>
 														<tr>
 													
@@ -229,7 +228,7 @@ if($_SESSION['userTypeID'] != 1) {
 													'
 													<tr>
 												
-														<td class="text-center"><a href="rpilist.php?roomID='.$roomID.'&roomName='.$roomName.'"><span role="button">'.$roomName.'</span></a></td>
+														<td class="text-center"><a href="rpilist.php?roomID='.$roomID.'&roomName='.$roomName.'"><span role="button"><font color="blue">'.$roomName.'</font></span></a></td>
 														<td class="text-center">'.$roomDescription.'</td>
 														<td class="text-center">'.$branchname.'</td>';
 														

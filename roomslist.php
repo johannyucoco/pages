@@ -99,7 +99,7 @@
 	
 								echo '
 								<li>
-									<a href=\"index.php\"><i class="fa fa-home fa-fw" style="color:white"><font color="white"></i> Home </font></a>
+									<a href="index.php"><i class="fa fa-home fa-fw" style="color:white"><font color="white"></i> Home </font></a>
 								</li>	
 								<li>
 								<a href="#"><i class="fa fa-archive fa-fw" style="color:white"></i><font color="white"> Manage Data </font><span class="fa arrow" style="color:white"></span></a>
@@ -219,7 +219,7 @@
 						
 						echo 	
 								'
-								<table class="table table-stipend table-bordered table-hover" id="roomtable">
+								<table class="table table-striped table-bordered table-hover" id="roomtable">
 								<thead>
 									<tr>
 							
@@ -250,7 +250,7 @@
 								'
 								<tr>
 									
-									<td class="text-center"><a href="rpilist.php?roomID='.$roomID.'&roomName='.$roomName.'">'.$roomName.'</td>
+									<td class="text-center"><a href="rpilist.php?roomID='.$roomID.'&roomName='.$roomName.'"><font color="blue">'.$roomName.'</font></td>
 									<td class="text-center">'.$roomDescription.'</td>';
 							if($row1){
 									echo ' <td class="text-center">'.$row1['num'].'</td>';
