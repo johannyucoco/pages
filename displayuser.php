@@ -238,7 +238,7 @@ $_SESSION['alert'] = 1;
 							"
 							<tr>
 								<td class='text-center'> <a data-toggle='modal' data-target='#myModal".$userID."'><span role='button'>{$row['username']} </span></a></td>
-								<td class='text-center'> {$row['firstName']},{$row['lastName']}  </td>
+								<td class='text-center'> {$row['firstName']} {$row['lastName']}  </td>
 								<td class='text-center'> {$row['contactNumber']} </td>
 								<td class='text-center'> {$row['email']} </td>
 								<td class='text-center'> {$row['userType']} </td>
