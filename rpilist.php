@@ -156,7 +156,7 @@ require_once('mysteryDB_connect.php');
 									echo '
 											<li>
 											</td>
-											<a href="rpilist.php?roomID='.$roomID.'&roomName='.$roomName.'"><font color="white">'.$roomName.'</font></a>
+											<a href="rpilist.php?roomID='.$roomID.'&roomName='.$roomName.'"><font color="white"><i class="fa fa-arrow-circle-right"></i>'.$roomName.'</font></a>
 											</li>
 											
 											
