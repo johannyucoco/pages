@@ -50,7 +50,15 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-left" href="index.php" ><img style="width:150px;height:50px;" src="logo.gif"></a>
+               	<?php
+					if($_SESSION['userTypeID'] == 1) {
+				
+					echo '<a class="navbar-top" href="index.php" >&nbsp <img src="logo2.jpg"></a>';
+					}if($_SESSION['userTypeID'] == 2) {
+						
+						echo '<a class="navbar-top" href="indexGamemaster.php" >&nbsp <img src="logo2.jpg"></a>';
+					}
+				?>
             </div>
             <!-- /.navbar-header -->
 
@@ -115,7 +123,12 @@
 								";
 								
 							}
-								
+								  if($_SESSION['userTypeID'] == 2){
+						echo '
+								<li>
+									<a href="indexGamemaster.php"><i class="fa fa-home fa-fw" style="color:white"><font color="white"></i> Home </font></a>
+								</li>';
+				 }	
 						?>
 						
                             <!-- /.nav-second-level -->
@@ -173,7 +186,7 @@
 					<li class='breadcrumb-item'><a href=\"rpilist.php?roomID=$roomID&roomName=$roomName\"> $roomName </a></li>
 					<li class='breadcrumb-item'>$rpiName</li>
 					<li class='breadcrumb-item'>$sensorName</li>
-					<li class='breadcrumb-item active'>$status</li>
+					<li class='breadcrumb-item active'>Status Number:$status</li>
 					</ol>
 					";
 					?>
@@ -185,7 +198,7 @@
 
 							$statusID = $_GET['statusID'];
 							
-							$sql = "SELECT st.status as status, std.variableName as variableName, std.value as value 
+							$sql = "SELECT st.status as status, std.variableName as variableName, std.value as value, st.timestamp
 														  from status st join statusdetails std
 																on st.statusID = std.statusID
 														 where st.statusID = '$statusID'";
@@ -194,8 +207,9 @@
 							
 							$row=mysqli_fetch_array($result1,MYSQLI_ASSOC);
 							$status = $row['status'];	
+							$timestamp = $row['timestamp'];	
 							
-							echo ' <div class="page-header"> <b> Status:</b> '.$status.' </div>';
+							echo ' <div class="page-header"> <b> Status:</b> '.$status.' <br><b> Timestamp: </b>  '.$timestamp.' </div> ';
 							echo 	
 										'
 										<table class="table table-stipend table-bordered table-hover" id="roomtable">

@@ -51,7 +51,15 @@ require_once('mysteryDB_connect.php');
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-top" href="index.php" >&nbsp <img src="logo2.jpg"></a>
+				<?php
+					if($_SESSION['userTypeID'] == 1) {
+				
+					echo '<a class="navbar-top" href="index.php" >&nbsp <img src="logo2.jpg"></a>';
+					}if($_SESSION['userTypeID'] == 2) {
+						
+						echo '<a class="navbar-top" href="indexGamemaster.php" >&nbsp <img src="logo2.jpg"></a>';
+					}
+				?>
             </div>
             <!-- /.navbar-header -->
 
@@ -115,7 +123,12 @@ require_once('mysteryDB_connect.php');
 								';
 								
 							}
-								
+							  if($_SESSION['userTypeID'] == 2){
+						echo '
+								<li>
+									<a href="indexGamemaster.php"><i class="fa fa-home fa-fw" style="color:white"><font color="white"></i> Home </font></a>
+								</li>';
+				 }
 						?>
 						
 						
@@ -150,7 +163,7 @@ require_once('mysteryDB_connect.php');
 					echo "<li class='breadcrumb-item'><a href=\"indexGamemaster.php\"> Home </a></li>";
 				 }
 				 echo"
-					<li class='breadcrumb-item'><a href=\"roomslist.php?branchID=$branchID &branchname= $branchname \"> $branchname </a></li>
+					<li class='breadcrumb-item'><a href=\"indexGamemaster.php\"> $branchname </a></li>
 					<li class='breadcrumb-item active'>{$_GET['roomName']}</li>
 					
 					</ol>

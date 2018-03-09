@@ -209,9 +209,9 @@ require_once('mysteryDB_connect.php');
 											
 											echo 
 												'
-												<tr>
+												<tr class="clickable-row" href="index.php">
 												
-													<td class="text-center"><a href="roomslist.php?branchID='.$branchID.'&branchname='.$branchname.'">'.$branchname.'</span></a></td>
+													<td class="text-center"><a href="roomslist.php?branchID='.$branchID.'&branchname='.$branchname.'">'.$branchname.'</span></td></a>
 													';
 													if($row1){
 																echo'<td class="text-center"> '.$row1['num'].'</td>';
@@ -495,6 +495,14 @@ require_once('mysteryDB_connect.php');
 		$(document).ready(function(){
 			$('#branchtable').DataTable({
 				ordering: false
+			});
+			
+		});
+		</script>
+		<script> 
+		$(document).ready(function(){
+			$(".clickable-row")click(function(){}
+				
 			});
 			
 		});
