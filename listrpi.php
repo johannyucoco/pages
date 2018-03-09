@@ -231,7 +231,7 @@ if($_SESSION['userTypeID'] != 1) {
 												$row1=mysqli_fetch_array($result1,MYSQLI_ASSOC);
 												$roomName = $row1['roomName'];
 											}else{
-												$roomName = "Null";
+												$roomName = "N/A";
 											} 
 											$null=null;
 											// <tr class='clickable-row' data-href='url:index.php'>
@@ -239,7 +239,7 @@ if($_SESSION['userTypeID'] != 1) {
 												'
 												<tr>
 													
-													<td class="text-center"><a data-toggle="modal" data-target="#myModal'.$rpiID.'" ><span role="button"><font color="blue">'.$rpiName	.'</font></span></a></td>
+													<td class="text-center"><a href="rpilist.php?roomID='.$roomID.'&roomName='.$roomName.'"><span role="button"><font color="blue">'.$rpiName	.'</font></span></a></td>
 													<td class="text-center">'.$ipAddress.'</td>
 													<td class="text-center">'.$roomName.'</td>
 													<td class="text-center"><a data-toggle="modal" data-target="#myModal'.$rpiID.'" ><span role="button"><i class="fa fa-edit fa-fw" style="color:blue"></span></i></a></td>
@@ -279,9 +279,9 @@ if($_SESSION['userTypeID'] != 1) {
 																				}
 																			
 																					if($roomName == "Null"){
-																							echo'<option selected  value='.$null.' >Null</option>';	
+																							echo'<option selected  value='.$null.' >N/A</option>';	
 																					}else{
-																							echo'<option value='.$null.'>Null</option>';
+																							echo'<option value='.$null.'>N/A</option>';
 																					}
 																					
 																			

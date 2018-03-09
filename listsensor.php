@@ -253,7 +253,7 @@ if($_SESSION['userTypeID'] != 1) {
 												$row1=mysqli_fetch_array($result1,MYSQLI_ASSOC);
 												$rpiName = $row1['rpiName'];
 											}else{
-												$rpiName = "Null";
+												$rpiName = "N/A";
 											} 
 											// <tr class='clickable-row' data-href='url:index.php'>
 											echo 
@@ -296,7 +296,7 @@ if($_SESSION['userTypeID'] != 1) {
 																					echo ">".$rpiName."</option>";
 																					
 																				}
-																				echo'<option value='.$null.'>Null</option>';
+																				echo'<option value='.$null.'>N/A</option>';
 																					
 																			
 																		echo '</select>

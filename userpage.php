@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php session_start();
-if($_SESSION['userTypeID'] != 1) {
-	 header("Location: http://".$_SERVER['HTTP_HOST'].  dirname($_SERVER['PHP_SELF'])."/logout.php");
-}
+
 require_once('mysteryDB_connect.php');
 
 ?>
@@ -82,37 +80,39 @@ require_once('mysteryDB_connect.php');
             <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
-                      <li>
-                            <a href="index.php"><i class="fa fa-home fa-fw" style="color:white"></i><font color="white"> Home </font></a>
-                        </li>
-						
-							
-							<li>
-								<a href="#"><i class="fa fa-archive fa-fw" style="color:white"></i><font color="white"> Manage Data </font><span class="fa arrow" style="color:white"></span></a>
-								<ul class="nav nav-second-level">
+                            <!-- /input-group -->
+                        	<?php
+							if($_SESSION['userTypeID'] == 1) {
+	
+								echo '
 								<li>
-                                    <a href="listbranch.php"><font color="white"><i class="fa fa-building fa-fw"></i> View Branches </font></a>
-                                </li>
+									<a href="index.php"><i class="fa fa-home fa-fw" style="color:white"><font color="white"></i> Home </font></a>
+								</li>	
 								<li>
-                                    <a href="listroom.php"><font color="white"><i class="fa fa-ticket fa-fw"></i> View Rooms </font></a>
-                                </li>
+									<a href="#"><i class="fa fa-archive fa-fw" style="color:white"></i><font color="white"> Manage Data </font><span class="fa arrow" style="color:white"></span></a>
+									<ul class="nav nav-second-level">
+									<li>
+										<a href="listbranch.php"><font color="white"><i class="fa fa-building fa-fw"></i> View Branches </font></a>
+									</li>
+									<li>
+										<a href="listroom.php"><font color="white"><i class="fa fa-ticket fa-fw"></i> View Rooms </font></a>
+									</li>
 								
-								<li>
-                                    <a href="listrpi.php"><font color="white"><i class="fa fa-chain fa-fw"></i> View Raspberry Pis </font></a>
-                                </li>
-								<li>
-                                    <a href="listsensor.php"><font color="white"><i class="fa fa-bullseye fa-fw"></i> View Sensors </font></a>
-                                </li>
-								<li>
-                                <a href="displayuser.php"><font color="white"><i class="fa fa-users fa-fw"></i> View Users </font></a>
+									<li>
+										<a href="listrpi.php"><font color="white"><i class="fa fa-chain fa-fw"></i> View Raspberry Pis </font></a>
+									</li>
+									<li>
+										<a href="listsensor.php"><font color="white"><i class="fa fa-bullseye fa-fw"></i> View Sensors </font></a>
+									</li>
+									<li>
+										<a href="displayuser.php"><font color="white"><i class="fa fa-users fa-fw"></i> View Users </font></a>
+									</li>
 								</li>
 								</ul>
-                            <!-- /.nav-second-level -->
-							</li>
-														<li>
+								<li>
 								<a href="#"><i class="fa fa-sitemap fa-fw" style="color:white"></i><font color="white"> Branches </font><span class="fa arrow" style="color:white"></span></a>
 								<ul class="nav nav-second-level">
-								<?php 
+								';
 									require_once('mysteryDB_connect.php');
 									$sql = "SELECT *
 											from branches where status = 0";
@@ -122,14 +122,53 @@ require_once('mysteryDB_connect.php');
 										$branchname = $row['branchname'];	
 									echo "
 											<li>
-											<a href=\"roomslist.php?branchID={$branchID}&branchname= {$branchname}\"><font color=\"white\"><i class=\"fa fa-arrow-circle-right\"></i> $branchname</font></a>
-											</li>";
+											<a href=\"roomslist.php?branchID={$branchID}&branchname= {$branchname}\"><font color=\"white\"><i class=\"fa fa-arrow-circle-right\">&nbsp</i> $branchname</font></a>
+											</li>
+										";
 									}
-								?>
-								</ul>
-							</li>
-								</ul>
+									
+								
+							}
+							  if($_SESSION['userTypeID'] == 2){
+						echo '
+								<li>
+									<a href="indexGamemaster.php"><i class="fa fa-home fa-fw" style="color:white"><font color="white"></i> Home </font></a>
+								</li>';
+								
+						echo' <li>
+								<a href="#"><i class="fa fa-sitemap fa-fw" style="color:white"></i><font color="white"> Rooms </font><span class="fa arrow" style="color:white"></span></a>
+								<ul class="nav nav-second-level">';
+							
+									require_once('mysteryDB_connect.php');
+									$sql = "SELECT *
+											from rooms where status = 0 and branchID = {$_SESSION['branchID']}";
+									$result = mysqli_query($dbc,$sql);
+									while($row=mysqli_fetch_array($result,MYSQLI_ASSOC)) {
+										$roomID = $row['roomID'];
+										$roomName = $row['roomName'];	
+									echo '
+											<li>
+											</td>
+											<a href="rpilist.php?roomID='.$roomID.'&roomName='.$roomName.'"><font color="white"><i class="fa fa-arrow-circle-right"></i>&nbsp'.$roomName.'</font></a>
+											</li>
+											
+											
+							';
+									}
+									echo'
+									</ul>
+									</li>';
+								
+								
+								
+						}
+						?>
+						
+						</ul>
                             <!-- /.nav-second-level -->
+							
+							
+							
 							</li>
 						</ul>
 					<!-- /.nav -->

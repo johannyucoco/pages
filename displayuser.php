@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php session_start(); 
-if($_SESSION['userTypeID'] != 1) {
+if($_SESSION['userTypeID'] == 1) {
 	 header("Location: http://".$_SERVER['HTTP_HOST'].  dirname($_SERVER['PHP_SELF'])."/logout.php");
 }
 
