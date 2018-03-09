@@ -128,6 +128,31 @@
 								<li>
 									<a href="indexGamemaster.php"><i class="fa fa-home fa-fw" style="color:white"><font color="white"></i> Home </font></a>
 								</li>';
+									echo' <li>
+								<a href="#"><i class="fa fa-sitemap fa-fw" style="color:white"></i><font color="white"> Rooms </font><span class="fa arrow" style="color:white"></span></a>
+								<ul class="nav nav-second-level">';
+							
+									require_once('mysteryDB_connect.php');
+									$sql = "SELECT *
+											from rooms where status = 0 and branchID = {$_SESSION['branchID']}";
+									$result = mysqli_query($dbc,$sql);
+									while($row=mysqli_fetch_array($result,MYSQLI_ASSOC)) {
+										$roomID = $row['roomID'];
+										$roomName = $row['roomName'];	
+									echo '
+											<li>
+											</td>
+											<a href="rpilist.php?roomID='.$roomID.'&roomName='.$roomName.'"><font color="white">'.$roomName.'</font></a>
+											</li>
+											
+											
+							';
+									}
+									echo'
+									</ul>
+									</li>';
+								
+								
 				 }	
 						?>
 						

@@ -118,7 +118,15 @@ require_once('mysteryDB_connect.php');
         <div id="page-wrapper">
 			<div class="row">
                 <div class="col-lg-12">
-                    <h3 class="page-header">Dashboard</h3>
+				<?php
+						$sql = "SELECT *
+											from branches where status = 0 and branchID = {$_SESSION['branchID']}";
+									$result = mysqli_query($dbc,$sql);
+									$row=mysqli_fetch_array($result,MYSQLI_ASSOC);
+								
+						echo '<h3 class="page-header">'.$row['branchname'].' Dashboard</h3>' 
+					
+					?>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
