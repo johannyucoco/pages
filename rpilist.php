@@ -207,7 +207,7 @@ require_once('mysteryDB_connect.php');
 					echo "<li class='breadcrumb-item'><a href=\"indexGamemaster.php\"><font color=\"blue\">Home</font></a></li>";
 				 }
 				 echo"
-					<li class='breadcrumb-item'><a href=\"roomslist.php?branchID={$branchID}&branchname= {$branchname}\">$branchname</font> </a></li>
+					<li class='breadcrumb-item'><a href=\"roomslist.php?branchID={$branchID}&branchname= {$branchname}\"><font color=\"blue\">$branchname</font> </a></li>
 					<li class='breadcrumb-item active'>{$_GET['roomName']}</li>
 					</ol>
 					";
