@@ -126,7 +126,7 @@ require_once('mysteryDB_connect.php');
 									$result = mysqli_query($dbc,$sql);
 									$row=mysqli_fetch_array($result,MYSQLI_ASSOC);
 								
-						echo '<h3 class="page-header">'.$row['branchname'].' Dashboard</h3>' 
+						echo '<h3 class="page-header">'.$row['branchname'].' </h3>' 
 					
 					?>
                 </div>

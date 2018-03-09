@@ -245,6 +245,7 @@
 														 where st.statusID = '$statusID'";
 						
 							$result1 = mysqli_query($dbc,$sql);
+							$result2 = mysqli_query($dbc,$sql);
 							
 							$row=mysqli_fetch_array($result1,MYSQLI_ASSOC);
 							$status = $row['status'];	
@@ -274,11 +275,12 @@
 										<tbody>
 										';
 							
-							while ($row=mysqli_fetch_array($result1,MYSQLI_ASSOC)) {
+							while ($row=mysqli_fetch_array($result2,MYSQLI_ASSOC)) {
 											
 								
 								$variableName = $row['variableName'];	
 								$value = $row['value'];	
+								
 								echo'
 									<tr>
 											
