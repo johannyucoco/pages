@@ -4,7 +4,7 @@
 		$roomID = $_GET['roomID'];
 	
 				  
-		$sqld ="SELECT distinct rpiID, rpiName FROM rpi where roomID = '$roomID' and status = 0;";
+		$sqld ="SELECT distinct rpiID, rpiName, ipAddress FROM rpi where roomID = '$roomID' and status = 0;"; //ipAddress value was added
 		
 		
 		
@@ -14,11 +14,24 @@
 		
 		
 		while ($row=mysqli_fetch_array($result1,MYSQLI_ASSOC)) {
-						
-			$value = 0; 		//store the value in here if on/off ba sya 
+																//code to ping ip address ----------- start here -----------
+			$ipAddress = $row['ipAddress'];
+			
+			exec('ping -c 2 ', $host, $output, $result);
+			
+			print_r($output);
+			
+			if($result == 0) {
+				$value = 0;		//store the value in here if on ba sya 
+			}
+			else {
+				$value = 1;		//store the value in here if off ba sya 
+			}
+																//code to ping ip address ----------- end here ----------- NOT TESTED
+			//$value = 0; 		//old code setting for value
 					$rpiName = $row['rpiName'];		
 			echo 	
-							'
+							'<div class="row">
 							<div class="col-lg-6">
 							';
 							if($value == 0){ //if on 
@@ -76,12 +89,13 @@
 									<td class="text-center"><a href="showstatusdetail.php?statusID='.$statusID.'&sensorName='.$sensorName.'">'.$status.'</td>
 									<td class="text-center">'.$timestamp.'</td>
 								</tr>
+								</div>
 									
 								';
 							
 							
 						}
-								echo '</tbody> </table></div>';
+								echo '</tbody> </table>';
 						// <tr class='clickable-row' data-href='url:index.php'>
 						
 					
