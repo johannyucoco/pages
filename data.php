@@ -12,7 +12,7 @@
 		
 
 		
-		
+		//PINGING NOT WORKING ON WINDOWS DUE TO PERMISSIONS ITETEST PA SA SERVER AND IF IT WORKS IGNORE NYO NA LANG
 		while ($row=mysqli_fetch_array($result1,MYSQLI_ASSOC)) {
 																//code to ping ip address ----------- start here -----------
 			$ipAddress = $row['ipAddress'];
