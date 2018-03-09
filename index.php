@@ -194,7 +194,7 @@ require_once('mysteryDB_connect.php');
 					$result1 = mysqli_query($dbc,$sql1);
 					$row1=mysqli_fetch_array($result1,MYSQLI_ASSOC);
 					
-				echo'	<div class="col-lg-3">
+				echo'	<div class="col-lg-4">
 							<div class="panel panel-primary"  >
 								<div class="panel-heading" style="background-color:black">
 									<div class="row" >
