@@ -201,15 +201,14 @@ require_once('mysteryDB_connect.php');
 				
 					echo"<ol class='breadcrumb'>";
 				 if($_SESSION['userTypeID'] == 1){
-					echo "<li class='breadcrumb-item'><a href=\"index.php\"> Home </a></li>";
+					echo "<li class='breadcrumb-item'><a href=\"index.php\"><font color=\"blue\">Home</font></a></li>";
 				 }
 				  if($_SESSION['userTypeID'] == 2){
-					echo "<li class='breadcrumb-item'><a href=\"indexGamemaster.php\"> Home </a></li>";
+					echo "<li class='breadcrumb-item'><a href=\"indexGamemaster.php\"><font color=\"blue\">Home</font></a></li>";
 				 }
 				 echo"
-					<li class='breadcrumb-item'><a href=\"indexGamemaster.php\"> $branchname </a></li>
+					<li class='breadcrumb-item'><a href=\"indexGamemaster.php\"><font color=\"blue\">$branchname</font></a></li>
 					<li class='breadcrumb-item active'>{$_GET['roomName']}</li>
-					
 					</ol>
 					";
 				?>

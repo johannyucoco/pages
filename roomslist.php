@@ -175,8 +175,7 @@
 				<div class="panel panel-default">
 					<div class="panel-body">
 						<div class="col-lg-12">
-				
-							<div class="page-header"><?php 
+						<?php 
 						
 					if($_SESSION['userTypeID'] == 1) {
 					$branchName = $_GET['branchname']; 
@@ -191,29 +190,20 @@
 						$branchName = $row['branchname']; 
 					
 					}
-					echo"
-				 <ol class='breadcrumb'>";
+					echo"<ol class='breadcrumb'>";
+					
 				 if($_SESSION['userTypeID'] == 1){
-					echo "<li class='breadcrumb-item'><a href=\"index.php\"> Home </a></li>";
+					echo "<li class='breadcrumb-item'><a href=\"index.php\"><font color=\"blue\">Home</font></a></li>";
 				 }
 				  if($_SESSION['userTypeID'] == 2){
-					echo "<li class='breadcrumb-item'><a href=\"indexGamemaster.php\"> Home </a></li>";
+					echo "<li class='breadcrumb-item'><a href=\"indexGamemaster.php\"><font color=\"blue\">Home</font></a></li>";
 				 }
 					
 					
 				echo "<li class='breadcrumb-item active'>$branchName</li>
-			
-				
 					</ol>
 					";
 						?>
-                <div class="col-lg-12">
-				
-		
-							</div>
-			
-                   
-					
 				</div>
                 <!-- /.col-lg-12 -->
             <!-- /.row -->
@@ -246,7 +236,7 @@
 						
 						echo 	
 								'
-								<table class="table table-stipend table-bordered table-hover" id="roomtable">
+								<table class="table table-striped table-bordered table-hover" id="roomtable">
 								<thead>
 									<tr>
 							
