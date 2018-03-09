@@ -122,7 +122,7 @@ if($_SESSION['userTypeID'] != 1) {
 										$branchname = $row['branchname'];	
 									echo "
 											<li>
-											<a href='roomslist.php?branchID='.$branchID.'&branchname='.$branchname.'><font color=\"white\"><i class=\"fa fa-arrow-circle-right\"></i> $branchname</font></a>
+											<a href=\"roomslist.php?branchID={$branchID}&branchname= {$branchname}\"><font color=\"white\"><i class=\"fa fa-arrow-circle-right\"></i> $branchname</font></a>
 											</li>";
 									}
 								?>

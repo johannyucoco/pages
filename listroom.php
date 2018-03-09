@@ -131,7 +131,7 @@ if($_SESSION['userTypeID'] != 1) {
 										$branchname = $row['branchname'];	
 									echo "
 											<li>
-											<a href='roomslist.php?branchID='.$branchID.'&branchname='.$branchname.'><font color=\"white\"><i class=\"fa fa-arrow-circle-right\"></i> $branchname</font></a>
+											<a href=\"roomslist.php?branchID={$branchID}&branchname= {$branchname}\"><font color=\"white\"><i class=\"fa fa-arrow-circle-right\"></i> $branchname</font></a>
 											</li>";
 									}
 								?>
@@ -168,7 +168,7 @@ if($_SESSION['userTypeID'] != 1) {
 															  <div class="modal-content">
 																<div class="modal-header">
 																  <button type="button" class="close" data-dismiss="modal">&times;</button>
-																  <h4 class="modal-title"></h4>
+																  <h4 class="modal-title">Add Room</h4>
 																</div>
 																<div class="modal-body">
 																  <div class="form-group">
@@ -182,7 +182,7 @@ if($_SESSION['userTypeID'] != 1) {
 																				<select name= "branch" class="form-control" id="branchie">
 																	
 																			';
-																			$query1= "select * from branches;"; // Run your query
+																			$query1= "select * from branches where status =0"; // Run your query
 																			$result1=mysqli_query($dbc,$query1);
 																			echo "<option value='default'> -select- </option>"; 
 																			while ($row = mysqli_fetch_array($result1, MYSQLI_ASSOC)) {
@@ -409,6 +409,15 @@ if($_SESSION['userTypeID'] != 1) {
 																  
 												$result=mysqli_query($dbc,$query1);
 												if ($result) {
+												
+													$query=" update rpi	
+														set roomID = null
+														where roomID = $roomID";
+																  
+																  
+													$result=mysqli_query($dbc,$query);
+													
+													
 														echo "<meta http-equiv='refresh' content='2'>"; //refresh page
 															
 													/*	echo "<meta http-equiv='refresh' content='0'>"; //refresh page

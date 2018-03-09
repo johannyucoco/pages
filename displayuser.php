@@ -123,7 +123,7 @@ $_SESSION['alert'] = 1;
 										$branchname = $row['branchname'];	
 									echo "
 											<li>
-											<a href='roomslist.php?branchID='.$branchID.'&branchname='.$branchname.'><font color=\"white\"><i class=\"fa fa-arrow-circle-right\"></i> $branchname</font></a>
+											<a href=\"roomslist.php?branchID={$branchID}&branchname= {$branchname}\"><font color=\"white\"><i class=\"fa fa-arrow-circle-right\"></i> $branchname</font></a>
 											</li>";
 									}
 								?>
@@ -183,7 +183,7 @@ $_SESSION['alert'] = 1;
 																				<select name= "userType" class="form-control">
 																	
 																			';
-																			$query1= "select * from usertype where status = 0;"; // Run your query
+																			$query1= "select * from usertype;"; // Run your query
 																			$result1=mysqli_query($dbc,$query1);
 																			echo "<option value='default'> -Select- </option>"; 
 																			while ($row = mysqli_fetch_array($result1, MYSQLI_ASSOC)) {
@@ -232,7 +232,7 @@ $_SESSION['alert'] = 1;
 					
 					echo 	
 							'
-							<table class="table table-stipend table-bordered table-hover" id="usertable">
+							<table class="table table-bordered table-striped table-hover" id="usertable">
 							<thead>
 								<tr>
 								
@@ -258,7 +258,7 @@ $_SESSION['alert'] = 1;
 						echo 
 							"
 							<tr>
-								<td class='text-center'> <a data-toggle='modal' data-target='#myModal".$userID."'><span role='button'><font color=\"blue\">{$row['username']} </font></span></a></td>
+								<td class='text-center'> {$row['username']} </td>
 								<td class='text-center'> {$row['firstName']} {$row['lastName']}  </td>
 								<td class='text-center'> {$row['contactNumber']} </td>
 								<td class='text-center'> {$row['email']} </td>

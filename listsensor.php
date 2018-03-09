@@ -121,7 +121,7 @@ if($_SESSION['userTypeID'] != 1) {
 										$branchname = $row['branchname'];	
 									echo "
 											<li>
-											<a href='roomslist.php?branchID='.$branchID.'&branchname='.$branchname.'><font color=\"white\"><i class=\"fa fa-arrow-circle-right\"></i> $branchname</font></a>
+											<a href=\"roomslist.php?branchID={$branchID}&branchname= {$branchname}\"><font color=\"white\"><i class=\"fa fa-arrow-circle-right\"></i> $branchname</font></a>
 											</li>";
 									}
 								?>
@@ -260,7 +260,7 @@ if($_SESSION['userTypeID'] != 1) {
 												'
 												<tr>
 													
-													<td class="text-center"><a data-toggle="modal" data-target="#myModal'.$sensorID.'" ><span role="button">'.$sensorName.'</span></a></td>
+													<td class="text-center"><a data-toggle="modal" data-target="#myModal'.$sensorID.'" ><span role="button"><font color="blue">'.$sensorName.'</font></span></a></td>
 													<td class="text-center">'.$sensorType.'</td>
 													<td class="text-center">'.$rpiName.'</td>
 													<td class="text-center"><a data-toggle="modal" data-target="#myModal'.$sensorID.'" ><span role="button"><i class="fa fa-edit	 fa-fw" style="color:blue"></span></i></a></td>
