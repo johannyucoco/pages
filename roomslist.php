@@ -126,7 +126,13 @@
 									
 								';
 								
-							}
+							} 
+				  if($_SESSION['userTypeID'] == 2){
+						echo '
+								<li>
+									<a href="indexGamemaster.php"><i class="fa fa-home fa-fw" style="color:white"><font color="white"></i> Home </font></a>
+								</li>';
+				 }
 								
 						?>
 							</li>	
@@ -151,13 +157,24 @@
 					}
 					if($_SESSION['userTypeID'] == 2) {
 						
+				
 						$query= "select * from users u join branches b on u.branchID = b.branchID where userID = '{$_SESSION['userID']}' "; // Run your query
-						
+						$result=mysqli_query($dbc,$query);
+						$row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+						$branchName = $row['branchname']; 
+					
 					}
 					echo"
-				 <ol class='breadcrumb'>	
-					<li class='breadcrumb-item'><a href=\"index.php\"> Home </a></li>
-					<li class='breadcrumb-item active'>$branchName</li>
+				 <ol class='breadcrumb'>";
+				 if($_SESSION['userTypeID'] == 1){
+					echo "<li class='breadcrumb-item'><a href=\"index.php\"> Home </a></li>";
+				 }
+				  if($_SESSION['userTypeID'] == 2){
+					echo "<li class='breadcrumb-item'><a href=\"indexGamemaster.php\"> Home </a></li>";
+				 }
+					
+					
+				echo "<li class='breadcrumb-item active'>$branchName</li>
 			
 				
 					</ol>

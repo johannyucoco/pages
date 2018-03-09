@@ -130,7 +130,7 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12" >
-					<h1 class="page-header"><?php 
+					<div class="page-header"><?php 
 					require_once('mysteryDB_connect.php');
 					
 					$status = $_GET['statusID'];
@@ -147,25 +147,37 @@
 													   ";	
 						$result=mysqli_query($dbc,$query);
 						while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)){
-						$branchName = $row['branchname'];
+						$branchname = $row['branchname'];
+						$branchID = $row['branchID'];
 						$roomName = $row['roomName'];
+						$roomID = $row['roomID'];
 						$rpiName = $row['rpiName'];
+						$rpiID = $row['rpiID'];
 						$sensorName = $row['sensorName'];
+						$sensorID = $row['sensorID'];
 						
 						}
 				 
 				 
 				 echo"
-				 <ol class='breadcrumb'>
-					<li class='breadcrumb-item'>$branchName</li>
-					<li class='breadcrumb-item'>$roomName</li>
+				  <ol class='breadcrumb'>";
+				 if($_SESSION['userTypeID'] == 1){
+					echo "<li class='breadcrumb-item'><a href=\"index.php\"> Home </a></li>";
+				 }
+				  if($_SESSION['userTypeID'] == 2){
+					echo "<li class='breadcrumb-item'><a href=\"indexGamemaster.php\"> Home </a></li>";
+				 }
+			
+					echo"
+					<li class='breadcrumb-item'><a href=\"roomslist.php?branchID=$branchID &branchname= $branchname \"> $branchname </a></li>
+					<li class='breadcrumb-item'><a href=\"rpilist.php?roomID=$roomID&roomName=$roomName\"> $roomName </a></li>
 					<li class='breadcrumb-item'>$rpiName</li>
 					<li class='breadcrumb-item'>$sensorName</li>
 					<li class='breadcrumb-item active'>$status</li>
 					</ol>
 					";
 					?>
-				</h1>
+				</div>
 					<div id="qwert"></div>
 					
 					<?php
@@ -180,12 +192,16 @@
 						
 							$result1 = mysqli_query($dbc,$sql);
 							
+							$row=mysqli_fetch_array($result1,MYSQLI_ASSOC);
+							$status = $row['status'];	
+							
+							echo ' <div class="page-header"> <b> Status:</b> '.$status.' </div>';
 							echo 	
 										'
 										<table class="table table-stipend table-bordered table-hover" id="roomtable">
 										<thead>
 											<tr>
-											<th class="text-center">Status</th>
+											
 											<th class="text-center">Variable Name</th>
 											<th class="text-center">Value</th>
 											</tr>
@@ -195,12 +211,12 @@
 							
 							while ($row=mysqli_fetch_array($result1,MYSQLI_ASSOC)) {
 											
-								$status = $row['status'];	
+								
 								$variableName = $row['variableName'];	
 								$value = $row['value'];	
 								echo'
 									<tr>
-											<th class="text-center">'.$status.'</th>
+											
 											<th class="text-center">'.$variableName.'</th>
 											<th class="text-center">'.$value.'</th>	
 									</tr>
