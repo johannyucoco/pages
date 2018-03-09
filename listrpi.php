@@ -174,9 +174,8 @@ if($_SESSION['userTypeID'] != 1) {
 														</form>
 													</div>
 												';
-										$sql = "SELECT rpi.rpiID as rpiID, rpi.rpiName as rpiName, rpi.ipAddress as ipAddress, r.roomName as roomName
-												 FROM rpi rpi join rooms r
-														on rpi.roomID = r.roomID
+										$sql = "SELECT * 
+												 FROM rpi  
 														where rpi.status = 0";
 										$result = mysqli_query($dbc,$sql);
 										
@@ -201,7 +200,20 @@ if($_SESSION['userTypeID'] != 1) {
 											$rpiID = $row['rpiID'];
 											$rpiName = $row['rpiName'];
 											$ipAddress = $row['ipAddress'];	
-											$roomName = $row['roomName'];					
+											
+											$roomID = $row['roomID'];
+											
+											$sql1 = "SELECT *
+												 FROM rooms
+												where status = 0 and roomID = {$roomID}";
+											$result1 = mysqli_query($dbc,$sql1);
+											if($result1){
+												$row1=mysqli_fetch_array($result1,MYSQLI_ASSOC);
+												$roomName = $row1['roomName'];
+											}else{
+												$roomName = "Null";
+											} 
+											$null=null;
 											// <tr class='clickable-row' data-href='url:index.php'>
 											echo 
 												'
@@ -239,9 +251,19 @@ if($_SESSION['userTypeID'] != 1) {
 																					$id = $row['roomID'];
 																					
 																					echo "<option value=".$id."";
-																					if($id == $rpiID){ echo" selected";};
+																					if($id == $roomID ){ echo" selected";};
 																					echo ">".$roomName."</option>";
+																					
+																					
+																					
 																				}
+																			
+																					if($roomName == "Null"){
+																							echo'<option selected  value='.$null.' >Null</option>';	
+																					}else{
+																							echo'<option value='.$null.'>Null</option>';
+																					}
+																					
 																			
 																		echo '</select>
 																			
@@ -275,24 +297,32 @@ if($_SESSION['userTypeID'] != 1) {
 																			<input disabled name="newbranchName"class="form-control" placeholder="Delete Rpi Name" value="'.$rpiName.'"><br>
 																			<input disabled name="newbranchName"class="form-control" placeholder="Delete Ip Address" value="'.$ipAddress.'"><br>
 																			';
-																				$query1= "select * from rooms where status = 0"; // Run your query
-																				$result1=mysqli_query($dbc,$query1);
-																				while ($row = mysqli_fetch_array($result1, MYSQLI_ASSOC)) {
+																				$query1= "select * from rooms where status = 0 and roomID = '$roomID'"; // Run your query
+																			
+																				if ($result1=mysqli_query($dbc,$query1)) {
+																					$row = mysqli_fetch_array($result1, MYSQLI_ASSOC);
 																					$roomName = $row['roomName'];
 																					$id = $row['roomID'];
 																					
 																					
-																					if($id == $rpiID){ echo' 	
-																					<input disabled name="newbranchName"class="form-control" placeholder="Delete Room Name" value="'.$roomName.'"><br>';};
+																					
+																					if($roomName != null){ echo' 	
+																					<input disabled name="newbranchName"class="form-control" placeholder="Delete Room Name" value="'.$roomName.'"><br>';
+																					}
+																					else {
+																					 echo' 	
+																					<input disabled name="newbranchName"class="form-control" placeholder="Delete Room Name" value="Null"><br>';
 																		
 																				}
+																				}
+																				
 																		echo'
 																			
 																			<input  name="brpiID" class="form-control hidden" placeholder="Room ID" value="'.$rpiID.'">
 																			<br>
 																	</div>
 																	<div class="modal-footer">
-																		<b>*All sensors inside the chosen RPI will also be deleted</b>
+																		<b>*All sensors inside the chosen RPI will also be unassigned</b>
 																	
 																	  <button type="submit" class="btn btn-default btn-info" name="delete" >Delete</button>
 																	  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -327,10 +357,20 @@ if($_SESSION['userTypeID'] != 1) {
 												$query1="update rpi	
 														set rpiName = '$rpiName', ipAddress = '$ipAddress', roomID='$room'
 														where rpiID = $rpiID";
-																  
+															  
 																  
 												$result=mysqli_query($dbc,$query1);
-												if ($result) {
+												if($room == null){
+												
+													$query2="update rpi	
+														set roomID= NULL
+														where rpiID = $rpiID";
+															  
+																  
+												$result2=mysqli_query($dbc,$query2);
+													
+												}
+												if ($result || $result2	) {
 														echo "<meta http-equiv='refresh' content='2'>"; //refresh page
 														/*	
 														echo "<meta http-equiv='refresh' content='0'>"; //refresh page
@@ -367,7 +407,7 @@ if($_SESSION['userTypeID'] != 1) {
 											$result1=mysqli_query($dbc,$query1);
 											while ($row = mysqli_fetch_array($result1, MYSQLI_ASSOC)) {
 													$query1="update sensors	
-														set status = 1
+														set rpiID = null
 														where sensorID = {$row['sensorID']}";
 				
 													$result=mysqli_query($dbc,$query1);
@@ -392,7 +432,7 @@ if($_SESSION['userTypeID'] != 1) {
 													echo'
 														<div class="alert alert-success">
 															<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-															<strong>Success!</strong> branch deleted.
+															<strong>Success!</strong> Rpi deleted.
 														</div>
 												
 														';
@@ -402,7 +442,7 @@ if($_SESSION['userTypeID'] != 1) {
 													echo'
 														<div class="alert alert-danger">
 															<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-															<strong>Error!</strong> No change occured to branch.
+															<strong>Error!</strong> No change occured to Rpi.
 														</div>
 														';
 												}	

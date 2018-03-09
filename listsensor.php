@@ -190,11 +190,10 @@ if($_SESSION['userTypeID'] != 1) {
 														</form>
 													</div>
 												';
-										$sql = "SELECT s.sensorID as sensorID, s.sensorName as sensorName, rpi.rpiName as rpiName, st.sensorType as sensorType, rpi.rpiID as rpiID 
+										$sql = "SELECT *
 												 FROM sensors s join sensortypes st
 														on s.sensorTypeID = st.sensorTypeID
-																join rpi
-														on rpi.rpiID = s.rpiID
+														
 														where s.status = 0
 														 Group by sensorID";
 												 
@@ -222,9 +221,20 @@ if($_SESSION['userTypeID'] != 1) {
 										while($row=mysqli_fetch_array($result,MYSQLI_ASSOC)) {
 											$sensorID = $row['sensorID'];
 											$sensorName = $row['sensorName'];
-											$rpiName = $row['rpiName'];	
+												
 											$sensorType = $row['sensorType'];		
 											$rpiID = $row['rpiID'];
+											
+												$sql1 = "SELECT *
+													 FROM rpi
+													where status = 0 and rpiID = {$rpiID}";
+											$result1 = mysqli_query($dbc,$sql1);
+											if($result1){
+												$row1=mysqli_fetch_array($result1,MYSQLI_ASSOC);
+												$rpiName = $row1['rpiName'];
+											}else{
+												$rpiName = "Null";
+											} 
 											// <tr class='clickable-row' data-href='url:index.php'>
 											echo 
 												'
@@ -266,6 +276,8 @@ if($_SESSION['userTypeID'] != 1) {
 																					echo ">".$rpiName."</option>";
 																					
 																				}
+																				echo'<option value='.$null.'>Null</option>';
+																					
 																			
 																		echo '</select>
 																			<input   name="sensorID" class="form-control hidden" placeholder="Sensor ID" value="'.$sensorID.'">
@@ -297,8 +309,25 @@ if($_SESSION['userTypeID'] != 1) {
 																		<input type="hidden" name="rpiID" value="<?php echo $rpiID; ?>" /> 
 																			<input disabled name="newbranchName"class="form-control" placeholder="Delete Sensor Name" value="'.$sensorName.'"><br>
 																			<input disabled name="newbranchName"class="form-control" placeholder="Delete Sensor Type" value="'.$sensorType.'"><br>
-																			<input disabled name="newbranchName"class="form-control" placeholder="Delete Rpi Name" value="'.$rpiName.'"><br>
-																			<input  name="sensorID" class="form-control hidden" placeholder="Sensor ID" value="'.$sensorID.'">
+																			';
+																			$sql1 = "SELECT *
+																					 FROM rpi
+																					where status = 0 and rpiID = {$rpiID}";
+																			$result1 = mysqli_query($dbc,$sql1);
+																			if($result1){
+																				$row1=mysqli_fetch_array($result1,MYSQLI_ASSOC);
+																				$rpiName = $row1['rpiName'];
+																				echo ' <input disabled name="newbranchName"class="form-control" placeholder="Delete Rpi Name" value="'.$rpiName.'"><br>';
+																			
+																			}else{
+																				$rpiName = "Null";
+																					echo ' <input disabled name="newbranchName"class="form-control" placeholder="Delete Rpi Name" value="'.$rpiName.'"><br>';
+																			} 
+																					
+																				
+								
+																			
+																			echo';
 																			<br>
 																	</div>
 																	<div class="modal-footer">
@@ -339,7 +368,17 @@ if($_SESSION['userTypeID'] != 1) {
 															
 																  
 												$result=mysqli_query($dbc,$query1);
-												if ($result) {
+													if($rpi == null){
+													
+													$query2="update sensors	
+														set rpiID= NULL
+														where sensorID = $sensorID";
+															  
+																  
+												$result2=mysqli_query($dbc,$query2);
+													
+												}
+												if ($result || $result2) {
 														echo "<meta http-equiv='refresh' content='2'>"; //refresh page
 													/*		
 														echo "<meta http-equiv='refresh' content='0'>"; //refresh page

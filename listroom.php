@@ -273,7 +273,9 @@ if($_SESSION['userTypeID'] != 1) {
 																				
 																				}
 																			
-																		echo '</select>
+																		
+																		echo '
+																		</select>
 																			
 																			<input required name="roomID" class="form-control hidden" placeholder="Room ID" value="'.$roomID.'">
 																			<br>
