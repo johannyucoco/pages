@@ -1,7 +1,9 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <?php session_start();
+if($_SESSION['userTypeID'] != 2) {
+	 header("Location: http://".$_SERVER['HTTP_HOST'].  dirname($_SERVER['PHP_SELF'])."/logout.php");
+}
 require_once('mysteryDB_connect.php');
 ?>
 <head>
@@ -12,7 +14,7 @@ require_once('mysteryDB_connect.php');
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title><?php echo $_GET['roomName']; ?></title>
+    <title>Mystery Manila</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -51,7 +53,7 @@ require_once('mysteryDB_connect.php');
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-top" href="index.php" >&nbsp <img src="logo2.jpg"></a>
+                <a class="navbar-top" href="indexGamemaster.php" >&nbsp <img src="logo2.jpg"></a>
             </div>
             <!-- /.navbar-header -->
 
@@ -77,114 +79,106 @@ require_once('mysteryDB_connect.php');
             <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
-                            <!-- /input-group -->
-                        	<?php
-							if($_SESSION['userTypeID'] == 1) {
-	
-								echo '
-								<li>
-									<a href="index.php"><i class="fa fa-home fa-fw" style="color:white"><font color="white"></i> Home </font></a>
-								</li>
-								
-								
-								
-										
-							<li>
-								<a href="#"><i class="fa fa-archive fa-fw" style="color:white"></i><font color="white"> Manage Data </font><span class="fa arrow" style="color:white"></span></a>
-								<ul class="nav nav-second-level">
-								<li>
-                                    <a href="listbranch.php"><font color="white"><i class="fa fa-building fa-fw"></i> View Branches </font></a>
-                                </li>
-								<li>
-                                    <a href="listroom.php"><font color="white"><i class="fa fa-ticket fa-fw"></i> View Rooms </font></a>
-                                </li>
-								
-								<li>
-                                    <a href="listrpi.php"><font color="white"><i class="fa fa-chain fa-fw"></i> View Raspberry Pis </font></a>
-                                </li>
-								<li>
-                                    <a href="listsensor.php"><font color="white"><i class="fa fa-bullseye fa-fw"></i> View Sensors </font></a>
-                                </li>
-								<li>
-                                <a href="displayuser.php"><font color="white"><i class="fa fa-users fa-fw"></i> View Users </font></a>
-								</li>
-								</ul>
-								
-								
-								
-								';
-								
-							}
-								
-						?>
-						
-						
+                        <li>
+                            <a href="indexGamemaster.php"><i class="fa fa-home fa-fw" style="color:white"></i><font color="white"> Home </font></a>
                         </li>
-                    </ul>
+						
+							
+							
+								</ul>
+                            <!-- /.nav-second-level -->
+							</li>
+						</ul>
+					<!-- /.nav -->
                 </div>
                 <!-- /.sidebar-collapse -->
             </div>
             <!-- /.navbar-static-side -->
         </nav>
-
+		
         <div id="page-wrapper">
-            <div class="row">
-				<div class="panel panel-default">
-					<div class="panel-body">
-						<div class="col-lg-12">
-			<?php
-				$query = " Select * from rooms r join branches b 
-													   on r.branchID = b.branchID 
-													   
-													   ";	
-						$result=mysqli_query($dbc,$query);
-						$row = mysqli_fetch_array($result, MYSQLI_ASSOC);
-						$branchname = $row['branchname'];
-						$branchID = $row['branchID'];
-				
-					echo"<ol class='breadcrumb'>";
-				 if($_SESSION['userTypeID'] == 1){
-					echo "<li class='breadcrumb-item'><a href=\"index.php\"> Home </a></li>";
-				 }
-				  if($_SESSION['userTypeID'] == 2){
-					echo "<li class='breadcrumb-item'><a href=\"indexGamemaster.php\"> Home </a></li>";
-				 }
-				 echo"
-					<li class='breadcrumb-item'><a href=\"roomslist.php?branchID=$branchID &branchname= $branchname \"> $branchname </a></li>
-					<li class='breadcrumb-item active'>{$_GET['roomName']}</li>
-					
-					</ol>
-					";
-				?>
-				<div class="row">
-					<div class="col-lg-12">
-						<h3 class="page-header">Latest Update </h3>
-						<h4 class="page-header"><div id="asdf"></div></h4>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-lg-12">
-						<div class="row">
-							<div id="qwer"></div>
-				<?php
-						
-							$_SESSION['roomID']= $_GET['roomID'];
-							$_SESSION['roomName']= $_GET['roomName'];
-						$flag=0;
-						if (isset($_POST['submit'])){
-							$message=NULL;
-						}
-						?>
-                   
+			<div class="row">
+                <div class="col-lg-12">
+                    <h3 class="page-header">Dashboard</h3>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
             <!-- /.row -->
-				
-        </div>
-        <!-- /#page-wrapper -->
+			<div class="row">
+				<div class="clearfix"></div>
+				<div class="col-lg-3">
+					<div class="row">
+						<ul class="list-group">
 
-    </div>
+							<li class="list-group-item">First item</li>
+							<li class="list-group-item">Second item</li>
+							<li class="list-group-item">Third item</li>
+							<li class="list-group-item">First item</li>
+							<li class="list-group-item">Second item</li>
+							<li class="list-group-item">Third item</li>
+							<li class="list-group-item">First item</li>
+							<li class="list-group-item">Second item</li>
+							<li class="list-group-item">Third item</li>
+						</ul>
+					</div>
+				</div>
+				<div class="col-lg-9>
+					<div class="row">
+			<?php 
+			//Loop per Branch 
+			
+			$sql = "SELECT * from rooms where status = 0";
+			$result = mysqli_query($dbc,$sql);
+			while($row=mysqli_fetch_array($result,MYSQLI_ASSOC)) {
+						$roomID = $row['roomID'];
+						$roomName = $row['roomName'];
+
+					$sql1 = "SELECT  count(rp.rpiID) as num from rooms r join rpi rp
+													on rp.roomID = r.roomID
+													where r.status = 0 and r.roomID = '{$roomID}'
+													group by r.roomID";
+					$result1 = mysqli_query($dbc,$sql1);
+					$row1=mysqli_fetch_array($result1,MYSQLI_ASSOC);
+					
+				echo'	<div class="col-lg-3">
+							<div class="panel panel-primary"  >
+								<div class="panel-heading" style="background-color:black">
+									<div class="row" >
+										<div class="col-xs-3" >
+											<i class="fa fa-ticket fa-5x"> </i>
+										</div>
+										<div class="col-xs-9 text-right">';		
+								if($row1){
+											echo '<div class="huge">'.$row1['num'].'</div>';
+									}else {
+											echo' <div class="huge"> 0 </div>';
+									} 
+										echo'	<div>Connected Rpi</div>
+										</div>
+									</div>
+								</div>
+								<a href="rpilist.php?roomID='.$roomID.'&roomName='.$roomName.'">
+									<div class="panel-footer">
+										<span class="pull-left">'.$roomName.'</span>
+										<span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+										<div class="clearfix"></div>
+									</div>
+								</a>
+							</div>	
+						</div>';
+				}
+				?>
+				</div>
+				<!-- /.col-md-6 -->
+				</div>
+            </div>
+			<!-- /.row -->
+		</div>
+		
+		
+		
+		<!-- /#page-wrapper -->
+	</div>
     <!-- /#wrapper -->
 
     <!-- jQuery -->
@@ -204,30 +198,6 @@ require_once('mysteryDB_connect.php');
     <!-- Custom Theme JavaScript -->
     <script src="../dist/js/sb-admin-2.js"></script>
 	
-	<script>
-		setInterval(function(){  
-			var roomID = <?php echo $_GET['roomID'];?>;
-			$('#asdf').load("latestupdatedata.php?roomID="+roomID);
-
-		},6000);
-	</script>
-	
-	<script>
-		setInterval(function(){  
-			var roomID = <?php echo $_GET['roomID'];?>;
-			$('#qwer').load("data.php?roomID="+roomID);
-
-		},6000);
-	</script>
-	
-	<script
-		jQuery(document).ready(function($) {
-		$(".clickable-row").click(function() {
-			window.location = $(this).data("href");
-		});
-	});>
-	</script>
-	
 	<style>
 		.btn-info
 		{
@@ -246,6 +216,7 @@ require_once('mysteryDB_connect.php');
 		
 		
 	</style>
+
 </body>
 
 </html>

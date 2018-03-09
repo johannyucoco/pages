@@ -23,7 +23,7 @@ if (isset($_POST['submit'])){
 					if ($row['userTypeID'] == 1) {
 						header("Location: http://".$_SERVER['HTTP_HOST'].  dirname($_SERVER['PHP_SELF'])."/index.php");
 					} else if ($row['userTypeID'] == 2) {
-						header("Location: http://".$_SERVER['HTTP_HOST'].  dirname($_SERVER['PHP_SELF'])."/roomslist.php");
+						header("Location: http://".$_SERVER['HTTP_HOST'].  dirname($_SERVER['PHP_SELF'])."/indexGamemaster.php");
 					}
 			}
 			} else $message = "Username and password do not match.";
