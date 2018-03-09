@@ -215,7 +215,7 @@ $_SESSION['alert'] = 1;
 							<thead>
 								<tr>
 								
-								<th class="text-center">User Name</th>
+								<th class="text-center">Username</th>
 								<th class="text-center">Name</th>
 								<th class="text-center">Contact Number</th>
 								<th class="text-center">Email</th>
