@@ -18,7 +18,7 @@
 			$value = 0; 		//store the value in here if on/off ba sya 
 					$rpiName = $row['rpiName'];		
 			echo 	
-							'<div class="row">
+							'
 							<div class="col-lg-6">
 							';
 							if($value == 0){ //if on 
@@ -76,13 +76,12 @@
 									<td class="text-center"><a href="showstatusdetail.php?statusID='.$statusID.'&sensorName='.$sensorName.'">'.$status.'</td>
 									<td class="text-center">'.$timestamp.'</td>
 								</tr>
-								</div>
 									
 								';
 							
 							
 						}
-								echo '</tbody> </table>';
+								echo '</tbody> </table></div>';
 						// <tr class='clickable-row' data-href='url:index.php'>
 						
 					
