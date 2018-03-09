@@ -131,7 +131,7 @@ if($_SESSION['userTypeID'] != 1) {
 										$branchname = $row['branchname'];	
 									echo "
 											<li>
-											<a href='roomslist.php?branchID='.$branchID.'&branchname='.$branchname.'><font color=\"white\"><i class=\"fa fa-arrow-circle-right\"></i> $branchname</font></a>
+											<a href=\"roomslist.php?branchID={$branchID}&branchname= {$branchname}\"><font color=\"white\"><i class=\"fa fa-arrow-circle-right\"></i> $branchname</font></a>
 											</li>";
 									}
 								?>
@@ -409,6 +409,15 @@ if($_SESSION['userTypeID'] != 1) {
 																  
 												$result=mysqli_query($dbc,$query1);
 												if ($result) {
+												
+													$query=" update rpi	
+														set roomID = null
+														where roomID = $roomID";
+																  
+																  
+													$result=mysqli_query($dbc,$query);
+													
+													
 														echo "<meta http-equiv='refresh' content='2'>"; //refresh page
 															
 													/*	echo "<meta http-equiv='refresh' content='0'>"; //refresh page

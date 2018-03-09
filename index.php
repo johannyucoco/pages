@@ -113,6 +113,7 @@ require_once('mysteryDB_connect.php');
 								<ul class="nav nav-second-level">
 								<?php 
 									require_once('mysteryDB_connect.php');
+									
 									$sql = "SELECT *
 											from branches where status = 0";
 									$result = mysqli_query($dbc,$sql);
@@ -121,7 +122,7 @@ require_once('mysteryDB_connect.php');
 										$branchname = $row['branchname'];	
 									echo "
 											<li>
-											<a href='roomslist.php?branchID='.$branchID.'&branchname='.$branchname.'><font color=\"white\"><i class=\"fa fa-arrow-circle-right\"></i> $branchname</font></a>
+											<a href=\"roomslist.php?branchID={$branchID}&branchname= {$branchname}\"><font color=\"white\"><i class=\"fa fa-arrow-circle-right\"></i> $branchname</font></a>
 											</li>";
 									}
 								?>
