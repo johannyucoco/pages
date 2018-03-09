@@ -17,7 +17,7 @@
 																//code to ping ip address ----------- start here -----------
 			$ipAddress = $row['ipAddress'];
 			
-			exec('ping -c 2 ', $host, $output, $result);
+			exec("ping -c 2 $ipAddress", $output, $result);
 			
 			print_r($output);
 			
