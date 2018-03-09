@@ -181,7 +181,7 @@ $_SESSION['alert'] = 1;
 																				<select name= "userType" class="form-control">
 																	
 																			';
-																			$query1= "select * from usertype;"; // Run your query
+																			$query1= "select * from usertype where status = 0;"; // Run your query
 																			$result1=mysqli_query($dbc,$query1);
 																			echo "<option value='default'> -Select- </option>"; 
 																			while ($row = mysqli_fetch_array($result1, MYSQLI_ASSOC)) {
@@ -223,6 +223,7 @@ $_SESSION['alert'] = 1;
 					$sql = "SELECT *, u.userTypeID as uti, b.branchID as branchID
 							  from users u join usertype t on u.userTypeID = t.userTypeID
 											join branches b on u.branchID = b.branchID
+											
 											";
 						
 					$result = mysqli_query($dbc,$sql);
@@ -441,7 +442,7 @@ $_SESSION['alert'] = 1;
 								
 								
 								if(!isset($message)){
-									
+									echo "<meta http-equiv='refresh' content='2'>"; //refresh page
 									$query1="insert into users(username,firstName,lastName,email,contactNumber,password,userTypeID,branchID)
 											 values ('$username ','$firstName','$lastName','$email','$contactNumber',password('$password'),'$userTypeID','$branchID')";
 									$result=mysqli_query($dbc,$query1);
