@@ -132,7 +132,6 @@ if($_SESSION['userTypeID'] != 1) {
 								<div class="col-lg-8">
 								
 								<h3>Sensors <a data-toggle="modal"  data-target="#Modal"><span role="button"><i class="fa fa-plus-square fa-fw" style="color:black"></i></span></a> </h3>
-								<br>
 								<?php
 									require_once('mysteryDB_connect.php');
 								echo
@@ -201,7 +200,7 @@ if($_SESSION['userTypeID'] != 1) {
 										
 										echo 	
 												'
-												<table class="table table-stipend table-bordered table-hover" id="sensortable">
+												<table class="table table-bordered table-striped table-hover" id="sensortable">
 												<thead>
 													<tr>
 													
@@ -564,6 +563,16 @@ if($_SESSION['userTypeID'] != 1) {
 		});
 		</script>
 		
+		<script>
+		$(document).ready(function() {
+    var table = $('#example').DataTable();
+     
+    $('#example tbody').on('click', 'tr', function () {
+        var data = table.row( this ).data();
+        alert( 'You clicked on '+data[0]+'\'s row' );
+    } );
+} );
+</script>
 		<style>
 		.btn-info
 		{
