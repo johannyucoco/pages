@@ -57,7 +57,7 @@
     <div id="wrapper">
 
         <!-- Navigation -->
-        <nav class="navbar navbar-default navbar-static-top" role="navigation"  style="margin-top: 0 ; background-color:black">
+        <nav class="navbar navbar-default navbar-static-top" role="navigation"  style="margin-bottom: 0 ; background-color:black">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="sr-only">Toggle navigation</span>
@@ -137,9 +137,11 @@
 
         <div id="page-wrapper">
             <div class="row">
-                <div class="col-lg-12">
+				<div class="panel panel-default">
+					<div class="panel-body">
+						<div class="col-lg-12">
 				
-                    <h1 class="page-header"><?php 
+							<h3 class="page-header"><?php 
 					
 					if($_SESSION['userTypeID'] == 1) {
 					echo $_GET['branchname']; 
@@ -152,11 +154,13 @@
 						echo $row['branchname']; 
 					}						
 													?> Branch 
-					
-				</div>
+							</h3>
                 <!-- /.col-lg-12 -->
-            </div>
             <!-- /.row -->
+			<div class="row">
+				<div class="col-lg-2">
+				</div>
+				<div class="col-lg-8">
 				<?php
 						if($_SESSION['userTypeID'] == 1) {
 							$branchID = $_GET['branchID'];
@@ -225,7 +229,7 @@
 									
 								';
 						}
-						echo '</tbody> </table>';
+						echo '</tbody> </table></div></div></div>';
 					
 				?>
         </div>

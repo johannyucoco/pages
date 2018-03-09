@@ -83,7 +83,7 @@ require_once('mysteryDB_connect.php');
 	
 								echo '
 								<li>
-									<a href=\"index.php\"><i class="fa fa-home fa-fw" style="color:white"><font color="white"></i> Home </font></a>
+									<a href="index.php"><i class="fa fa-home fa-fw" style="color:white"><font color="white"></i> Home </font></a>
 								</li>
 								
 								
@@ -147,15 +147,16 @@ require_once('mysteryDB_connect.php');
 					</ol>
 					";
 				?>
-				</div>
 				<div class="row">
 					<div class="col-lg-12">
 						<h3 class="page-header">Latest Update </h3>
 						<h4 class="page-header"><div id="asdf"></div></h4>
 					</div>
-				<div class="col-lg-12">
-					<div class="row">
-					<div class="col-lg-12" id="qwer"></div>
+				</div>
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="row">
+							<div id="qwer"></div>
 				<?php
 						
 							$_SESSION['roomID']= $_GET['roomID'];
