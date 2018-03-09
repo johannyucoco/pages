@@ -84,35 +84,50 @@ require_once('mysteryDB_connect.php');
 								echo '
 								<li>
 									<a href="index.php"><i class="fa fa-home fa-fw" style="color:white"><font color="white"></i> Home </font></a>
-								</li>
+								</li>	
+								<li>
+									<a href="#"><i class="fa fa-archive fa-fw" style="color:white"></i><font color="white"> Manage Data </font><span class="fa arrow" style="color:white"></span></a>
+									<ul class="nav nav-second-level">
+									<li>
+										<a href="listbranch.php"><font color="white"><i class="fa fa-building fa-fw"></i> View Branches </font></a>
+									</li>
+									<li>
+										<a href="listroom.php"><font color="white"><i class="fa fa-ticket fa-fw"></i> View Rooms </font></a>
+									</li>
 								
-								
-								
-										
-							<li>
-								<a href="#"><i class="fa fa-archive fa-fw" style="color:white"></i><font color="white"> Manage Data </font><span class="fa arrow" style="color:white"></span></a>
-								<ul class="nav nav-second-level">
-								<li>
-                                    <a href="listbranch.php"><font color="white"><i class="fa fa-building fa-fw"></i> View Branches </font></a>
-                                </li>
-								<li>
-                                    <a href="listroom.php"><font color="white"><i class="fa fa-ticket fa-fw"></i> View Rooms </font></a>
-                                </li>
-								
-								<li>
-                                    <a href="listrpi.php"><font color="white"><i class="fa fa-chain fa-fw"></i> View Raspberry Pis </font></a>
-                                </li>
-								<li>
-                                    <a href="listsensor.php"><font color="white"><i class="fa fa-bullseye fa-fw"></i> View Sensors </font></a>
-                                </li>
-								<li>
-                                <a href="displayuser.php"><font color="white"><i class="fa fa-users fa-fw"></i> View Users </font></a>
+									<li>
+										<a href="listrpi.php"><font color="white"><i class="fa fa-chain fa-fw"></i> View Raspberry Pis </font></a>
+									</li>
+									<li>
+										<a href="listsensor.php"><font color="white"><i class="fa fa-bullseye fa-fw"></i> View Sensors </font></a>
+									</li>
+									<li>
+										<a href="displayuser.php"><font color="white"><i class="fa fa-users fa-fw"></i> View Users </font></a>
+									</li>
 								</li>
 								</ul>
-								
-								
-								
+								<li>
+								<a href="#"><i class="fa fa-sitemap fa-fw" style="color:white"></i><font color="white"> Branches </font><span class="fa arrow" style="color:white"></span></a>
+								<ul class="nav nav-second-level">
 								';
+									require_once('mysteryDB_connect.php');
+									$sql = "SELECT *
+											from branches where status = 0";
+									$result = mysqli_query($dbc,$sql);
+									while($row=mysqli_fetch_array($result,MYSQLI_ASSOC)) {
+										$branchID = $row['branchID'];
+										$branchname = $row['branchname'];	
+									echo "
+											<li>
+											<a href='roomslist.php?branchID='.$branchID.'&branchname='.$branchname.'><font color=\"white\"><i class=\"fa fa-arrow-circle-right\"></i> $branchname</font></a>
+											</li>
+										";
+									}
+									echo '</ul>
+										  </li>
+										  </ul>
+										  </ul>	
+										  ';
 								
 							}
 								
