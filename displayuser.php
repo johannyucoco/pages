@@ -240,7 +240,7 @@ $_SESSION['alert'] = 1;
 								<th class="text-center">Name</th>
 								<th class="text-center">Contact Number</th>
 								<th class="text-center">Email</th>
-								<th class="text-center">User Type</th>
+								<th class="text-center">Type</th>
 								<th class="text-center">Branch</th>
 								<th class="text-center"><i class="fa fa-edit fa-fw" style="color:black"></i></th>
 											
