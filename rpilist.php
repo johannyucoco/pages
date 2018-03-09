@@ -142,8 +142,10 @@ require_once('mysteryDB_connect.php');
 						$branchName = $row['branchname'];
 				echo"
 				 <ol class='breadcrumb'>
+					<li class='breadcrumb-item'><a href=\"index.php\">Home</a></li>
 					<li class='breadcrumb-item'>$branchName</li>
 					<li class='breadcrumb-item active'>{$_GET['roomName']}</li>
+					
 					</ol>
 					";
 				?>

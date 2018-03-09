@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 08, 2018 at 06:19 AM
+-- Generation Time: Mar 09, 2018 at 06:45 AM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 5.6.21
 
@@ -142,19 +142,18 @@ CREATE TABLE `rpi` (
   `rpiID` int(11) NOT NULL,
   `rpiName` varchar(45) NOT NULL,
   `ipAddress` varchar(45) NOT NULL,
-  `roomID` int(11) NOT NULL,
-  `status` int(11) NOT NULL,
-  `onoff` int(11) NOT NULL
+  `roomID` int(11) DEFAULT NULL,
+  `status` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `rpi`
 --
 
-INSERT INTO `rpi` (`rpiID`, `rpiName`, `ipAddress`, `roomID`, `status`, `onoff`) VALUES
-(1, 'MyFirstRpi', '192.168.35.40', 1, 0, 0),
-(2, 'MySecondRpi', '192.145.20.50', 2, 0, 0),
-(3, 'MyThirdRpi', '192.168.75.2', 2, 0, 0);
+INSERT INTO `rpi` (`rpiID`, `rpiName`, `ipAddress`, `roomID`, `status`) VALUES
+(1, 'MyFirstRpi', '192.168.35.40', 1, 0),
+(2, 'MySecondRpi', '192.145.20.50', 2, 0),
+(3, 'MyThirdRpi', '192.168.75.2', 2, 0);
 
 -- --------------------------------------------------------
 
@@ -165,7 +164,7 @@ INSERT INTO `rpi` (`rpiID`, `rpiName`, `ipAddress`, `roomID`, `status`, `onoff`)
 CREATE TABLE `sensors` (
   `sensorID` int(11) NOT NULL,
   `sensorName` varchar(45) NOT NULL,
-  `rpiID` int(11) NOT NULL,
+  `rpiID` int(11) DEFAULT NULL,
   `sensorTypeID` int(11) NOT NULL,
   `status` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -446,17 +445,17 @@ ALTER TABLE `legendstatusdetails`
 -- AUTO_INCREMENT for table `rooms`
 --
 ALTER TABLE `rooms`
-  MODIFY `roomID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `roomID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 --
 -- AUTO_INCREMENT for table `rpi`
 --
 ALTER TABLE `rpi`
-  MODIFY `rpiID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `rpiID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `sensors`
 --
 ALTER TABLE `sensors`
-  MODIFY `sensorID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `sensorID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 --
 -- AUTO_INCREMENT for table `sensortypes`
 --

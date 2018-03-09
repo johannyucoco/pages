@@ -13,7 +13,9 @@
     <meta name="author" content="">
 
     <title><?php 
-					
+								
+			
+			
 					if($_SESSION['userTypeID'] == 1) {
 					echo $_GET['branchname']; 
 					$id = $_GET['branchID'];
@@ -141,20 +143,34 @@
 					<div class="panel-body">
 						<div class="col-lg-12">
 				
-							<h3 class="page-header"><?php 
-					
+							<div class="page-header"><?php 
+						
 					if($_SESSION['userTypeID'] == 1) {
-					echo $_GET['branchname']; 
+					$branchName = $_GET['branchname']; 
 					$id = $_GET['branchID'];
 					}
 					if($_SESSION['userTypeID'] == 2) {
+						
 						$query= "select * from users u join branches b on u.branchID = b.branchID where userID = '{$_SESSION['userID']}' "; // Run your query
-						$result=mysqli_query($dbc,$query);
-						$row = mysqli_fetch_array($result, MYSQLI_ASSOC);
-						echo $row['branchname']; 
-					}						
-													?> Branch 
-							</h3>
+						
+					}
+					echo"
+				 <ol class='breadcrumb'>	
+					<li class='breadcrumb-item'><a href=\"index.php\"> Home </a></li>
+					<li class='breadcrumb-item active'>$branchName</li>
+			
+				
+					</ol>
+					";
+						?>
+                <div class="col-lg-12">
+				
+		
+							</div>
+			
+                   
+					
+				</div>
                 <!-- /.col-lg-12 -->
             <!-- /.row -->
 			<div class="row">
