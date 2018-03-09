@@ -129,7 +129,7 @@ require_once('mysteryDB_connect.php');
 										$branchname = $row['branchname'];	
 									echo "
 											<li>
-											<a href=\"roomslist.php?branchID={$branchID}&branchname= {$branchname}\"><font color=\"white\"><i class=\"fa fa-arrow-circle-right\"></i> $branchname</font></a>
+											<a href=\"roomslist.php?branchID={$branchID}&branchname= {$branchname}\"><font color=\"white\"><i class=\"fa fa-arrow-circle-right\">&nbsp</i> $branchname</font></a>
 											</li>
 										";
 									}
@@ -156,7 +156,7 @@ require_once('mysteryDB_connect.php');
 									echo '
 											<li>
 											</td>
-											<a href="rpilist.php?roomID='.$roomID.'&roomName='.$roomName.'"><font color="white"><i class="fa fa-arrow-circle-right"></i>'.$roomName.'</font></a>
+											<a href="rpilist.php?roomID='.$roomID.'&roomName='.$roomName.'"><font color="white"><i class="fa fa-arrow-circle-right"></i>&nbsp'.$roomName.'</font></a>
 											</li>
 											
 											
@@ -207,7 +207,7 @@ require_once('mysteryDB_connect.php');
 					echo "<li class='breadcrumb-item'><a href=\"indexGamemaster.php\"><font color=\"blue\">Home</font></a></li>";
 				 }
 				 echo"
-					<li class='breadcrumb-item'><a href=\"indexGamemaster.php\"><font color=\"blue\">$branchname</font></a></li>
+					<li class='breadcrumb-item'><a href=\"roomslist.php?branchID={$branchID}&branchname= {$branchname}\">$branchname</font> </a></li>
 					<li class='breadcrumb-item active'>{$_GET['roomName']}</li>
 					</ol>
 					";
