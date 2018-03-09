@@ -82,7 +82,26 @@ require_once('mysteryDB_connect.php');
                         <li>
                             <a href="indexGamemaster.php"><i class="fa fa-home fa-fw" style="color:white"></i><font color="white"> Home </font></a>
                         </li>
-						
+						<li>
+								<a href="#"><i class="fa fa-sitemap fa-fw" style="color:white"></i><font color="white"> Rooms </font><span class="fa arrow" style="color:white"></span></a>
+								<ul class="nav nav-second-level">
+								<?php 
+									require_once('mysteryDB_connect.php');
+									$sql = "SELECT *
+											from rooms where status = 0 and branchID = {$_SESSION['branchID']}";
+									$result = mysqli_query($dbc,$sql);
+									while($row=mysqli_fetch_array($result,MYSQLI_ASSOC)) {
+										$roomID = $row['roomID'];
+										$roomName = $row['roomName'];	
+									echo '
+											<li>
+											</td>
+											<a href="rpilist.php?roomID='.$roomID.'&roomName='.$roomName.'"><font color="white">'.$roomName.'</font></a>
+											</li>';
+									}
+								?>
+								</ul>
+							</li>
 							
 							
 								</ul>
@@ -127,15 +146,16 @@ require_once('mysteryDB_connect.php');
 			<?php 
 			//Loop per Branch 
 			
-			$sql = "SELECT * from rooms where status = 0";
+			$sql = "SELECT * from rooms where status = 0 and branchID ={$_SESSION['branchID']} ";
 			$result = mysqli_query($dbc,$sql);
 			while($row=mysqli_fetch_array($result,MYSQLI_ASSOC)) {
 						$roomID = $row['roomID'];
 						$roomName = $row['roomName'];
-
+						$branchID=$row['branchID'];
+						
 					$sql1 = "SELECT  count(rp.rpiID) as num from rooms r join rpi rp
 													on rp.roomID = r.roomID
-													where r.status = 0 and r.roomID = '{$roomID}'
+													where r.status = 0 and r.roomID = '{$roomID}' and r.branchID ='{$branchID}'
 													group by r.roomID";
 					$result1 = mysqli_query($dbc,$sql1);
 					$row1=mysqli_fetch_array($result1,MYSQLI_ASSOC);

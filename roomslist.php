@@ -150,9 +150,16 @@
 								<li>
 									<a href="indexGamemaster.php"><i class="fa fa-home fa-fw" style="color:white"><font color="white"></i> Home </font></a>
 								</li>';
+							
+								
+							
+							
 				 }
 								
 						?>
+						
+							</ul>
+							</li>
 							</li>	
                     </ul>
                 </div>

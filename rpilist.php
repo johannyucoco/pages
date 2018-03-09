@@ -143,7 +143,8 @@ require_once('mysteryDB_connect.php');
 								<li>
 									<a href="indexGamemaster.php"><i class="fa fa-home fa-fw" style="color:white"><font color="white"></i> Home </font></a>
 								</li>';
-				 }
+
+						}
 						?>
 						
 						
