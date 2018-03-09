@@ -42,7 +42,7 @@
     <div id="wrapper">
 
         <!-- Navigation -->
-        <nav class="navbar navbar-default navbar-static-top" role="navigation"  style="margin-top: 0 ; background-color:black">
+        <nav class="navbar navbar-default navbar-static-top" role="navigation"  style="margin-bottom: 0 ; background-color:black">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="sr-only">Toggle navigation</span>
@@ -230,8 +230,10 @@
 					";
 					?>
 				</div>
-					<div id="qwert"></div>
-					
+				</div>
+				<div id="qwert"></div>
+				<div class="col-lg-12">
+				<div class="row">
 					<?php
 						
 
@@ -248,10 +250,20 @@
 							$status = $row['status'];	
 							$timestamp = $row['timestamp'];	
 							
-							echo ' <div class="page-header"> <b> Status:</b> '.$status.' <br><b> Timestamp: </b>  '.$timestamp.' </div> ';
+							echo '<div class="col-lg-2"></div>
+								  <div align="center" class="col-lg-8">
+									 <b> Status:</b> '.$status.'
+									 <br>
+									 <b> Timestamp: </b>  '.$timestamp.'
+									 </div>
+								 ';
 							echo 	
 										'
-										<table class="table table-stipend table-bordered table-hover" id="roomtable">
+										</div>
+										<div class="col-lg-2"></div>
+										<div class="col-lg-8">
+										<br>
+										<table class="table table-striped table-bordered table-hover" id="roomtable">
 										<thead>
 											<tr>
 											
@@ -276,7 +288,7 @@
 									';
 							}	
 								
-							echo '</tbody> </table>';
+							echo '</tbody> </table></div></div>';
 						
 					?>
 				
