@@ -275,6 +275,19 @@ require_once('mysteryDB_connect.php');
 
 		},6000);
 	</script>
+		<script> 
+		$(document).ready(function(){
+				var roomID = <?php echo $_GET['roomID'];?>;
+			$('#qwer').load("data.php?roomID="+roomID);
+		});
+		</script>
+		<script> 
+		$(document).ready(function(){
+				var roomID = <?php echo $_GET['roomID'];?>;
+			$('#asdf').load("latestupdatedata.php?roomID="+roomID);
+		});
+		</script>
+	
 	
 	<script
 		jQuery(document).ready(function($) {
