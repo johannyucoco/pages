@@ -29,7 +29,7 @@
 			//$value = 0; 		//old code setting for value
 					$rpiName = $row['rpiName'];		
 			echo 	
-							'<div class="row">
+							'
 							<div class="col-lg-6">
 							';
 							if($value == 0){ //if on 

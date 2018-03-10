@@ -218,9 +218,9 @@ require_once('mysteryDB_connect.php');
 						<h4 class="page-header"><div id="asdf"></div></h4>
 					</div>
 				</div>
+				</div>
 				<div class="row">
 					<div class="col-lg-12">
-						<div class="row">
 							<div id="qwer"></div>
 				<?php
 						
