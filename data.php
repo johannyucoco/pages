@@ -17,9 +17,7 @@
 																//code to ping ip address ----------- start here -----------
 			$ipAddress = $row['ipAddress'];
 			
-			exec("ping -c 2 $ipAddress", $output, $result);
-			
-			print_r($output);
+			exec("ping -n 2 $ipAddress", $output, $result);
 			
 			if($result == 0) {
 				$value = 0;		//store the value in here if on ba sya 
