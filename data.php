@@ -93,7 +93,7 @@
 							
 							
 						}
-								echo '</tbody> </table>';
+								echo '</tbody> </table></div>';
 						// <tr class='clickable-row' data-href='url:index.php'>
 						
 					

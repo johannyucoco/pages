@@ -218,9 +218,9 @@ require_once('mysteryDB_connect.php');
 						<h4 class="page-header"><div id="asdf"></div></h4>
 					</div>
 				</div>
-				</div>
 				<div class="row">
 					<div class="col-lg-12">
+						<div class="row">
 							<div id="qwer"></div>
 				<?php
 						
@@ -280,13 +280,12 @@ require_once('mysteryDB_connect.php');
 		},6000);
 	</script>
 	
-		   <script> 
+	<script> 
  
     $(document).ready(function(){
  
         var roomID = <?php echo $_GET['roomID'];?>;
- 
-      $('#qwer').load("data.php?roomID="+roomID);
+		$('#qwer').load("data.php?roomID="+roomID);
  
     });
  
@@ -297,8 +296,7 @@ require_once('mysteryDB_connect.php');
     $(document).ready(function(){
  
         var roomID = <?php echo $_GET['roomID'];?>;
- 
-      $('#asdf').load("latestupdatedata.php?roomID="+roomID);
+		$('#asdf').load("latestupdatedata.php?roomID="+roomID);
  
     });
  
