@@ -277,8 +277,8 @@ require_once('mysteryDB_connect.php');
 		setInterval(function(){  
 			var roomID = <?php echo $_GET['roomID'];?>;
 			$('#qwer').load("data.php?roomID="+roomID);
-
-		},10000);
+			console.log("ok");
+		},1000);
 	</script>
 	
 	<script> 
