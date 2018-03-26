@@ -186,8 +186,6 @@ require_once('mysteryDB_connect.php');
 
         <div id="page-wrapper">
             <div class="row">
-				<div class="panel panel-default">
-					<div class="panel-body">
 						<div class="col-lg-12">
 			<?php
 				$query = " Select * from rooms r join branches b 

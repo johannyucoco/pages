@@ -145,12 +145,6 @@ if($_SESSION['userTypeID'] != 1) {
 
             <div class="row">
                 <div class="col-lg-12">
-                    <div class="panel panel-default">
-                        <div class="panel-body">
-                            <div class="row">
-                                <div class="col-lg-2">
-								</div>
-								<div class="col-lg-8">
 								
 								<h3>Sensors <a data-toggle="modal"  data-target="#Modal"><span role="button"><i class="fa fa-plus-square fa-fw" style="color:black"></i></span></a> </h3>
 								<?php
