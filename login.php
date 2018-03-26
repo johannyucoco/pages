@@ -8,8 +8,18 @@ $_SESSION['username'] = null;
 require_once('mysteryDB_connect.php'); 
 
 if (isset($_POST['submit'])){ 
+ $message=null;
+ $userName=null;
+					if(preg_match("/([%\$<>#\*]+)/", $_POST['username'])){
+											   $message.="<br>do not put any special characters " ;
+					}
+					else
+					{
+											  $userName =$_POST['username'];	
+					}
+											
 			$password=$_POST['password']; 
-			$userName = $_POST['username'];
+		
 			
 			$query = "SELECT * FROM users WHERE username = '{$userName}' AND password = PASSWORD('{$password}')";
 			$result = mysqli_query($dbc,$query);
@@ -27,7 +37,7 @@ if (isset($_POST['submit'])){
 						header("Location: http://".$_SERVER['HTTP_HOST'].  dirname($_SERVER['PHP_SELF'])."/indexGamemaster.php");
 					}
 			}
-			} else $message = "Username and password do not match.";
+			} else $message .= "<br>Username and password do not match.";
 			
 			
 		

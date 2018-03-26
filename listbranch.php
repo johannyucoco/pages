@@ -323,8 +323,9 @@ require_once('mysteryDB_connect.php');
 										//AFTER BUTTON PRESS 
 										if (isset($_POST['submit'])){
 											
-											$message=NULL;
 											
+											 $message=null;
+											 $newbranchName=null;
 												 
 											 if (isset($_POST['branchID'])){
 												$branchID = $_POST['branchID'];
@@ -332,8 +333,10 @@ require_once('mysteryDB_connect.php');
 											else{
 												$branchID = -1;
 											}
-											if(preg_match("/([%\$<#\*]+)/", $newbranchName)){
-											   	$newbranchName = '' ;
+											
+										
+											if(preg_match("/([%\$<#\*]+)/", $_POST['newbranchName'])){
+											   	$message= "<br> do not put any special characters";
 											}
 											else
 											{
@@ -348,7 +351,7 @@ require_once('mysteryDB_connect.php');
 																  
 																  
 												$result=mysqli_query($dbc,$query1);
-												if ($result) {
+												if (!isset($message)) {
 														echo "<meta http-equiv='refresh' content='2'>"; //refresh page
 													/*		
 														echo "<meta http-equiv='refresh' content='0'>"; //refresh page
@@ -372,7 +375,7 @@ require_once('mysteryDB_connect.php');
 													echo'
 														<div class="alert alert-danger">
 															<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-															<strong>Error!</strong> Did not change name to '.$newbranchName.' branch.
+															<strong>Error!</strong> Did not change name to '.$newbranchName.' branch. '.$message.'
 														</div>
 														';
 												}	
@@ -439,9 +442,9 @@ require_once('mysteryDB_connect.php');
 								
 									
 
-											$branchName = $_POST['branchName'];
+										
 											
-											if(preg_match("/([%\$<>#\*]+)/", $branchName)){
+											if(preg_match("/([%\$<>#\*]+)/",  $_POST['branchName'])){
 											   $message="do not put any special characters" ;
 											}
 											else
