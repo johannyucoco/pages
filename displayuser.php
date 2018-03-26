@@ -222,7 +222,7 @@ $_SESSION['alert'] = 1;
 													</div>
 												';
 
-					$sql = "SELECT *, u.userTypeID as uti, b.branchID as branchID
+					$sql = "SELECT *, u.userTypeID as uti, b.branchID as branchID, u.userID as ID 
 							  from users u join usertype t on u.userTypeID = t.userTypeID
 											join branches b on u.branchID = b.branchID
 											
@@ -254,7 +254,8 @@ $_SESSION['alert'] = 1;
 					while($row=mysqli_fetch_array($result,MYSQLI_ASSOC)) {	
 						$branchID = $row['branchID'];
 						$uti = $row['uti'];
-						$userID = $row['userID'];
+						$userID = $row['ID'];
+						
 						echo 
 							"
 							<tr>
@@ -281,7 +282,7 @@ $_SESSION['alert'] = 1;
 																</div>
 																<div class="modal-body">
 																  <div class="form-group">
-																	<input type="hidden" name="branchID" value="<?php echo $branchID; ?>" /> 
+																	<input type="hidden"  name="newuserID" value=" '.$userID.'" /> 
 																		<input required name="Newusername"class="form-control" placeholder="Username" value="'.$row['username'].'"">
 																		<br>
 																		<input required name="NewfirstName"class="form-control" placeholder="First Name" value="'.$row['firstName'].'">
@@ -351,11 +352,12 @@ $_SESSION['alert'] = 1;
 											$message=NULL;
 											
 												 
-											 if (isset($_POST['userID'])){
-												$userID = $_POST['userID'];
+											 if (isset($_POST['newuserID'])){
+												$userID = $_POST['newuserID'];
+												
 											}
 											else{
-												$branchID = -1;
+												$userID = -1;
 											}
 											
 											$Newbranch = $_POST['Newbranch'];
@@ -366,15 +368,15 @@ $_SESSION['alert'] = 1;
 											$NewuserType = $_POST['NewuserType'];
 											$Newusername = $_POST['Newusername'];
 											
-											
+										
 							
 											$query1="update users 
 														set firstName = '$NewfirstName', lastName = '$NewlastName', 
 														username = '$Newusername'	,email = '$Newemail'	, contactNumber = '$NewcontactNumber',
-														branchID = '$Newbranch'	, userTypeID = '$NewuserType'												
-														where userID = $userID";
+														branchID = $Newbranch	, userTypeID = $NewuserType												
+														where userID = '$userID'";
 															
-																  
+																 
 												$result=mysqli_query($dbc,$query1);
 												if ($result) {
 													echo "<meta http-equiv='refresh' content='2'>"; //refresh page

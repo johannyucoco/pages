@@ -192,7 +192,7 @@ require_once('mysteryDB_connect.php');
 			<?php
 				$query = " Select * from rooms r join branches b 
 													   on r.branchID = b.branchID 
-													   
+													   where 
 													   ";	
 						$result=mysqli_query($dbc,$query);
 						$row = mysqli_fetch_array($result, MYSQLI_ASSOC);
