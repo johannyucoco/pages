@@ -120,10 +120,24 @@ if($_SESSION['userTypeID'] != 1) {
 									while($row=mysqli_fetch_array($result,MYSQLI_ASSOC)) {
 										$branchID = $row['branchID'];
 										$branchname = $row['branchname'];	
+									$sql1 = "SELECT  count(r.roomID) as num from branches b join rooms r 
+																			on r.branchID = b.branchID
+																			where b.status = 0 and b.branchID = '{$branchID}'
+																			group by b.branchID";
+									$result1 = mysqli_query($dbc,$sql1);
+									$row1=mysqli_fetch_array($result1,MYSQLI_ASSOC);
+									if($row1){
 									echo "
 											<li>
-											<a href=\"roomslist.php?branchID={$branchID}&branchname= {$branchname}\"><font color=\"white\"><i class=\"fa fa-arrow-circle-right\"></i> $branchname</font></a>
+									<a href=\"roomslist.php?branchID={$branchID}&branchname= {$branchname}\"><font color=\"white\">{$row1['num']} <i class=\"fa fa-arrow-circle-right\"></i> $branchname </font> </a>
 											</li>";
+									}else{
+										echo "
+											<li>
+											<a href=\"roomslist.php?branchID={$branchID}&branchname= {$branchname}\"><font color=\"white\">0 <i class=\"fa fa-arrow-circle-right\"></i> $branchname </font> </a>
+											</li>";
+										
+									}
 									}
 								?>
 								</ul>
@@ -363,11 +377,24 @@ if($_SESSION['userTypeID'] != 1) {
 												$rpiID = -1;
 											}
 											
-											$rpiName = $_POST['rpiName'];
-											$ipAddress = $_POST['ipAddress'];
-											$room = $_POST['room'];
-																  
-																 
+											$rpiName = null;
+											$ipAddress = null;
+											
+											if(preg_match("/([%\$<#\*]+)/", $_POST['rpiName'])){
+											   	$message= "<br> do not put any special characters";
+											}
+											else
+											{
+											  $rpiName = $_POST['rpiName'];
+											}
+											if(preg_match("/([%\$<#\*]+)/", $_POST['ipAddress'])){
+											   	$message= "<br> do not put any special characters";
+											}
+											else
+											{
+											  $ipAddress = $_POST['ipAddress'];
+											}
+
 												$query1="update rpi	
 														set rpiName = '$rpiName', ipAddress = '$ipAddress', roomID='$room'
 														where rpiID = $rpiID";
@@ -384,7 +411,7 @@ if($_SESSION['userTypeID'] != 1) {
 												$result2=mysqli_query($dbc,$query2);
 													
 												}
-												if ($result || $result2	) {
+												if (!isset($message)) {
 														echo "<meta http-equiv='refresh' content='2'>"; //refresh page
 														/*	
 														echo "<meta http-equiv='refresh' content='0'>"; //refresh page
@@ -475,8 +502,27 @@ if($_SESSION['userTypeID'] != 1) {
 												 $message .= '<p>Empty room';
 												 $roomID=FALSE;
 											}else $roomID = $_POST['room'];
-											$rpi = $_POST['rpi'];
-
+											
+											
+											$rpi = null;
+											$ipAddress = null;
+											
+											
+											if(preg_match("/([%\$<#\*]+)/", $_POST['rpi'])){
+											   	$message= "<br> do not put any special characters";
+											}
+											else
+											{
+											  $rpi =$_POST['rpi'];	
+											}
+											if(preg_match("/([%\$<#\*]+)/", $_POST['ipAddress'])){
+											   	$message= "<br> do not put any special characters";
+											}
+											else
+											{
+											  $ipAddress =$_POST['ipAddress'];	
+											}
+										
 											
 										
 											

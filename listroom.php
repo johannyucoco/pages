@@ -129,10 +129,24 @@ if($_SESSION['userTypeID'] != 1) {
 									while($row=mysqli_fetch_array($result,MYSQLI_ASSOC)) {
 										$branchID = $row['branchID'];
 										$branchname = $row['branchname'];	
+									$sql1 = "SELECT  count(r.roomID) as num from branches b join rooms r 
+																			on r.branchID = b.branchID
+																			where b.status = 0 and b.branchID = '{$branchID}'
+																			group by b.branchID";
+									$result1 = mysqli_query($dbc,$sql1);
+									$row1=mysqli_fetch_array($result1,MYSQLI_ASSOC);
+									if($row1){
 									echo "
 											<li>
-											<a href=\"roomslist.php?branchID={$branchID}&branchname= {$branchname}\"><font color=\"white\"><i class=\"fa fa-arrow-circle-right\"></i> $branchname</font></a>
+									<a href=\"roomslist.php?branchID={$branchID}&branchname= {$branchname}\"><font color=\"white\">{$row1['num']} <i class=\"fa fa-arrow-circle-right\"></i> $branchname </font> </a>
 											</li>";
+									}else{
+										echo "
+											<li>
+											<a href=\"roomslist.php?branchID={$branchID}&branchname= {$branchname}\"><font color=\"white\">0 <i class=\"fa fa-arrow-circle-right\"></i> $branchname </font> </a>
+											</li>";
+										
+									}
 									}
 								?>
 								</ul>
@@ -271,8 +285,11 @@ if($_SESSION['userTypeID'] != 1) {
 																	<div class="modal-body">
 																	  <div class="form-group">
 																		<input type="hidden" name="roomID" value="<?php echo $roomID; ?>" /> 
+																			<b>Name: </b>
 																			<input required name="newRoomName"class="form-control" placeholder="Edit Room Name" value="'.$roomName.'"><br>
+																			<b>Description: </b>
 																			<input required name="newDescription"class="form-control" placeholder="Edit Room Description" value="'.$roomDescription.'"><br>
+																			<b>Branch: </b>
 																		<select name="branch" class="form-control">';
 																			
 												
@@ -353,16 +370,44 @@ if($_SESSION['userTypeID'] != 1) {
 												$branchID = -1;
 											}
 											
-											$newRoomName = $_POST['newRoomName'];
-											$newDescription = $_POST['newDescription'];
-											$branch = $_POST['branch'];
+											
+										
+											$newRoomName = null;
+											$newDescription = null;
+											$branch = null;
+											
+											if(preg_match("/([%\$<#\*]+)/", $_POST['newRoomName'])){
+											   	$message= "<br> do not put any special characters";
+											}
+											else
+											{
+											  $newRoomName =$_POST['newRoomName'];	
+											}
+											
+											if(preg_match("/([%\$<#\*]+)/",  $_POST['newDescription'])){
+											   	$message= "<br> do not put any special characters";
+											}
+											else
+											{
+											  $newDescription = $_POST['newDescription'];	
+											}
+												  
+											if(preg_match("/([%\$<#\*]+)/",  $_POST['branch'])){
+											   	$message= "<br> do not put any special characters";
+											}
+											else
+											{
+											  $branch = $_POST['branch'];	
+											}
+												  
+												  
 											$query1="update rooms	
 														set roomName = '$newRoomName', roomDescription = '$newDescription',branchId ='$branch'														
 														where roomID = $roomID";
 															
 																  
 												$result=mysqli_query($dbc,$query1);
-												if ($result) {
+												if (!isset($message)) {
 														echo "<meta http-equiv='refresh' content='2'>"; //refresh page
 														
 													/*	echo "<meta http-equiv='refresh' content='0'>"; //refresh page
@@ -384,7 +429,7 @@ if($_SESSION['userTypeID'] != 1) {
 													echo'
 														<div class="alert alert-danger">
 															<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-															<strong>Error!</strong> Did not change name to '.$newRoomName.' branch.
+															<strong>Error!</strong> Did not change name to '.$newRoomName.' branch. '.$message.'
 														</div>
 														';
 												}	
@@ -455,9 +500,28 @@ if($_SESSION['userTypeID'] != 1) {
 												 $branchID=FALSE;
 											}else $branchID = $_POST['branch'];
 
-											$roomName = $_POST['roomName'];
-											$roomDescription = $_POST['roomDescription'];
 										
+											$roomName = null;
+											$roomDescription = null;
+											
+											
+											if(preg_match("/([%\$<#\*]+)/", $_POST['roomName'])){
+											   	$message= "<br> do not put any special characters";
+											}
+											else
+											{
+											  $roomName =$_POST['roomName'];	
+											}
+											
+											if(preg_match("/([%\$<#\*]+)/",  $_POST['roomDescription'])){
+											   	$message= "<br> do not put any special characters";
+											}
+											else
+											{
+											  $roomDescription = $_POST['roomDescription'];	
+											}
+												  
+											
 											
 								
 										if(!isset($message)){

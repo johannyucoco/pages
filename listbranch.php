@@ -130,10 +130,24 @@ require_once('mysteryDB_connect.php');
 									while($row=mysqli_fetch_array($result,MYSQLI_ASSOC)) {
 										$branchID = $row['branchID'];
 										$branchname = $row['branchname'];	
+									$sql1 = "SELECT  count(r.roomID) as num from branches b join rooms r 
+																			on r.branchID = b.branchID
+																			where b.status = 0 and b.branchID = '{$branchID}'
+																			group by b.branchID";
+									$result1 = mysqli_query($dbc,$sql1);
+									$row1=mysqli_fetch_array($result1,MYSQLI_ASSOC);
+									if($row1){
 									echo "
 											<li>
-											<a href=\"roomslist.php?branchID={$branchID}&branchname= {$branchname}\"><font color=\"white\"><i class=\"fa fa-arrow-circle-right\"></i> $branchname</font></a>
+									<a href=\"roomslist.php?branchID={$branchID}&branchname= {$branchname}\"><font color=\"white\">{$row1['num']} <i class=\"fa fa-arrow-circle-right\"></i> $branchname </font> </a>
 											</li>";
+									}else{
+										echo "
+											<li>
+											<a href=\"roomslist.php?branchID={$branchID}&branchname= {$branchname}\"><font color=\"white\">0 <i class=\"fa fa-arrow-circle-right\"></i> $branchname </font> </a>
+											</li>";
+										
+									}
 									}
 								?>
 								</ul>
@@ -261,6 +275,9 @@ require_once('mysteryDB_connect.php');
 																<div class="modal-body">
 																  <div class="form-group">
 																	<input type="hidden" name="branchID" value="<?php echo $branchID; ?>" /> 
+																		<b>Name:</b>
+																		<br>
+																		</div>
 																		<input required name="newbranchName"class="form-control" placeholder="Edit Branch Name" value="'.$branchname.'">
 																		<input name="branchID" class="form-control hidden" placeholder="Edit Branch Name" value="'.$branchID.'">
 																		<br>

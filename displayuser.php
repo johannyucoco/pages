@@ -121,10 +121,24 @@ $_SESSION['alert'] = 1;
 									while($row=mysqli_fetch_array($result,MYSQLI_ASSOC)) {
 										$branchID = $row['branchID'];
 										$branchname = $row['branchname'];	
+									$sql1 = "SELECT  count(r.roomID) as num from branches b join rooms r 
+																			on r.branchID = b.branchID
+																			where b.status = 0 and b.branchID = '{$branchID}'
+																			group by b.branchID";
+									$result1 = mysqli_query($dbc,$sql1);
+									$row1=mysqli_fetch_array($result1,MYSQLI_ASSOC);
+									if($row1){
 									echo "
 											<li>
-											<a href=\"roomslist.php?branchID={$branchID}&branchname= {$branchname}\"><font color=\"white\"><i class=\"fa fa-arrow-circle-right\"></i> $branchname</font></a>
+									<a href=\"roomslist.php?branchID={$branchID}&branchname= {$branchname}\"><font color=\"white\">{$row1['num']} <i class=\"fa fa-arrow-circle-right\"></i> $branchname </font> </a>
 											</li>";
+									}else{
+										echo "
+											<li>
+											<a href=\"roomslist.php?branchID={$branchID}&branchname= {$branchname}\"><font color=\"white\">0 <i class=\"fa fa-arrow-circle-right\"></i> $branchname </font> </a>
+											</li>";
+										
+									}
 									}
 								?>
 								</ul>
@@ -355,12 +369,41 @@ $_SESSION['alert'] = 1;
 											}
 											
 											$Newbranch = $_POST['Newbranch'];
-											$NewcontactNumber = $_POST['NewcontactNumber'];
+											$NewcontactNumber = null;
 											$Newemail = $_POST['Newemail'];
-											$NewfirstName = $_POST['NewfirstName'];
-											$NewlastName = $_POST['NewlastName'];
+											$NewfirstName = null;
+											$NewlastName = null;
 											$NewuserType = $_POST['NewuserType'];
-											$Newusername = $_POST['Newusername'];
+											$Newusername = null;
+											
+											if(preg_match("/([%\$<#\*]+)/", $_POST['NewcontactNumber'])){
+											   	$message= "<br> do not put any special characters";
+											}
+											else
+											{
+											  $NewcontactNumber = $_POST['NewcontactNumber'];	
+											}
+											if(preg_match("/([%\$<#\*]+)/", $_POST['NewfirstName'])){
+											   	$message= "<br> do not put any special characters";
+											}
+											else
+											{
+											  $NewfirstName = $_POST['NewfirstName'];	
+											}
+											if(preg_match("/([%\$<#\*]+)/", $_POST['NewlastName'])){
+											   	$message= "<br> do not put any special characters";
+											}
+											else
+											{
+											  $NewlastName = $_POST['NewlastName'];	
+											}
+											if(preg_match("/([%\$<#\*]+)/", $_POST['Newusername'])){
+											   	$message= "<br> do not put any special characters";
+											}
+											else
+											{
+											  $Newusername = $_POST['Newusername'];	
+											}
 											
 										
 							
@@ -372,7 +415,7 @@ $_SESSION['alert'] = 1;
 															
 																 
 												$result=mysqli_query($dbc,$query1);
-												if ($result) {
+												if (!isset($message)) {
 													echo "<meta http-equiv='refresh' content='2'>"; //refresh page
 													/*		
 														
@@ -411,6 +454,7 @@ $_SESSION['alert'] = 1;
 																
 								if(empty($_POST['username'])){
 									 $username=FALSE;
+									
 								}else{
 									$query= "select * from users where username = '{$_POST['username']}' "; // Run your query
 									$result=mysqli_query($dbc,$query);
@@ -419,6 +463,14 @@ $_SESSION['alert'] = 1;
 										$username = $_POST['username'];
 									}else {
 										$message .= '<p>UserName already Exists';
+									}
+									
+									if(preg_match("/([%\$<#\*]+)/", $_POST['username'])){
+										$message.= "<p> do not put any special characters";
+									}
+									else
+									{
+										$username = $_POST['username'];	
 									}
 								}
 								
@@ -433,11 +485,31 @@ $_SESSION['alert'] = 1;
 								}else $branchID = $_POST['branch'];
 
 								$password = $_POST['password'];
-								$firstName = $_POST['firstName'];
-								$lastName = $_POST['lastName'];
+								$firstName = null;
+								$lastName = null;
 								$email = $_POST['email'];
 								$contactNumber = $_POST['contactNumber'];
-								
+								if(preg_match("/([%\$<#\*]+)/", $_POST['firstName'])){
+									$message= "<br> do not put any special characters";
+								}
+								else
+								{
+									$firstName = $_POST['firstName'];	
+								}
+								if(preg_match("/([%\$<#\*]+)/", $_POST['lastName'])){
+									$message= "<br> do not put any special characters";
+								}
+								else
+								{
+									$lastName = $_POST['lastName'];	
+								}
+									if(preg_match("/([%\$<#\*]+)/", $_POST['lastName'])){
+									$message= "<br> do not put any special characters";
+								}
+								else
+								{
+									$lastName = $_POST['lastName'];	
+								}
 								
 								if(!isset($message)){
 									echo "<meta http-equiv='refresh' content='2'>"; //refresh page

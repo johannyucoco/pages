@@ -119,10 +119,24 @@ if($_SESSION['userTypeID'] != 1) {
 									while($row=mysqli_fetch_array($result,MYSQLI_ASSOC)) {
 										$branchID = $row['branchID'];
 										$branchname = $row['branchname'];	
+									$sql1 = "SELECT  count(r.roomID) as num from branches b join rooms r 
+																			on r.branchID = b.branchID
+																			where b.status = 0 and b.branchID = '{$branchID}'
+																			group by b.branchID";
+									$result1 = mysqli_query($dbc,$sql1);
+									$row1=mysqli_fetch_array($result1,MYSQLI_ASSOC);
+									if($row1){
 									echo "
 											<li>
-											<a href=\"roomslist.php?branchID={$branchID}&branchname= {$branchname}\"><font color=\"white\"><i class=\"fa fa-arrow-circle-right\"></i> $branchname</font></a>
+									<a href=\"roomslist.php?branchID={$branchID}&branchname= {$branchname}\"><font color=\"white\">{$row1['num']} <i class=\"fa fa-arrow-circle-right\"></i> $branchname </font> </a>
 											</li>";
+									}else{
+										echo "
+											<li>
+											<a href=\"roomslist.php?branchID={$branchID}&branchname= {$branchname}\"><font color=\"white\">0 <i class=\"fa fa-arrow-circle-right\"></i> $branchname </font> </a>
+											</li>";
+										
+									}
 									}
 								?>
 								</ul>
@@ -372,7 +386,15 @@ if($_SESSION['userTypeID'] != 1) {
 											}
 											
 											$rpiID = $_POST['rpiID'];
-											$newsensorName = $_POST['newsensorName'];
+											$newsensorName = nul;
+											
+											if(preg_match("/([%\$<#\*]+)/", $_POST['newsensorName'])){
+											   	$message= "<br> do not put any special characters";
+											}
+											else
+											{
+											  $newsensorName = $_POST['newsensorName'];	
+											}
 											
 											$rpi = $_POST['rpi'];
 							
@@ -392,7 +414,7 @@ if($_SESSION['userTypeID'] != 1) {
 												$result2=mysqli_query($dbc,$query2);
 													
 												}
-												if ($result || $result2) {
+												if (!isset($message)) {
 														echo "<meta http-equiv='refresh' content='2'>"; //refresh page
 													/*		
 														echo "<meta http-equiv='refresh' content='0'>"; //refresh page
@@ -484,8 +506,14 @@ if($_SESSION['userTypeID'] != 1) {
 												 $sensorTypeID=FALSE;
 											}else $sensorTypeID = $_POST['sensorType'];
 										
-											$sensorName = $_POST['sensorName'];
-								
+											$sensorName = null;
+											if(preg_match("/([%\$<#\*]+)/", $_POST['sensorName'])){
+											   	$message= "<br> do not put any special characters";
+											}
+											else
+											{
+											  $sensorName = $_POST['sensorName'];	
+											}
 										if(!isset($message)){
 												echo "<meta http-equiv='refresh' content='2'>"; //refresh page
 													$query1="insert into sensors(sensorName,rpiID,sensorTypeID) values ('$sensorName','$rpiConnection','$sensorTypeID')";
