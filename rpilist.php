@@ -190,7 +190,7 @@ require_once('mysteryDB_connect.php');
 			<?php
 				$query = " Select * from rooms r join branches b 
 													   on r.branchID = b.branchID 
-													   
+													   where 
 													   ";	
 						$result=mysqli_query($dbc,$query);
 						$row = mysqli_fetch_array($result, MYSQLI_ASSOC);
@@ -275,8 +275,8 @@ require_once('mysteryDB_connect.php');
 		setInterval(function(){  
 			var roomID = <?php echo $_GET['roomID'];?>;
 			$('#qwer').load("data.php?roomID="+roomID);
-
-		},10000);
+			console.log("ok");
+		},1000);
 	</script>
 	
 	<script> 

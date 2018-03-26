@@ -332,8 +332,14 @@ require_once('mysteryDB_connect.php');
 											else{
 												$branchID = -1;
 											}
-											
-											$newbranchName = $_POST['newbranchName'];		  
+											if(preg_match("/([%\$<#\*]+)/", $newbranchName)){
+											   	$newbranchName = '' ;
+											}
+											else
+											{
+											  $newbranchName = $_POST['newbranchName'];	
+											}
+												  
 											
 											
 											$query1="update branches	
@@ -434,7 +440,14 @@ require_once('mysteryDB_connect.php');
 									
 
 											$branchName = $_POST['branchName'];
-								
+											
+											if(preg_match("/([%\$<>#\*]+)/", $branchName)){
+											   $message="do not put any special characters" ;
+											}
+											else
+											{
+											  $branchName = $_POST['branchName'];	
+											}
 										
 											
 								
