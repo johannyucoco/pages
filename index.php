@@ -164,6 +164,35 @@ require_once('mysteryDB_connect.php');
 				
 				<div class="col-lg-12">
 					<div class="row">
+						<div class="col-lg-3">
+							<ul class="list-group">
+							<?php
+						$sql = "SELECT sn.sensorName as sensorName, st.timestamp as timestamp
+														from sensors sn
+															join status st
+														on sn.sensorID = st.sensorID
+                                                        group by sensorName
+                                                        ORDER BY timestamp DESC";
+														
+						$result = mysqli_query($dbc,$sql);
+						while ($row=mysqli_fetch_array($result,MYSQLI_ASSOC)) {
+							$sensorName = $row['sensorName'];
+							$timestamp = strtotime($row['timestamp']);
+							$date = strtotime(date('Y-m-d H:i:s'));
+							$datediff = $date - $timestamp;
+							
+							if(round($datediff / (60 * 60 * 24)) <= 2){
+								echo'<li class="list-group-item">'.$sensorName.'<span class="pull-right"><i class="fa fa-bullseye fa-fw" style = "color:green"></i></span></li>';
+							}
+							else {
+								echo'<li class="list-group-item">'.$sensorName.'<span class="pull-right"><i class="fa fa-bullseye fa-fw" style = "color:red"></i></span></li>';
+							}
+						}
+						?>
+
+							
+						</ul>
+						</div>
 			<?php 
 			//Loop per Branch 
 			
