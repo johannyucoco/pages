@@ -211,14 +211,44 @@ require_once('mysteryDB_connect.php');
 						$branchID = $row['branchID'];
 				
 					echo"<ol class='breadcrumb'>";
-				 if($_SESSION['userTypeID'] == 1){
-					echo "<li class='breadcrumb-item'><a href=\"index.php\"><font color=\"blue\">Home</font></a></li>";
-				 }
-				  if($_SESSION['userTypeID'] == 2){
-					echo "<li class='breadcrumb-item'><a href=\"indexGamemaster.php\"><font color=\"blue\">Home</font></a></li>";
-				 }
+				if($_SESSION['from'] == 0){
+						 if($_SESSION['userTypeID'] == 1){
+							echo "<li class='breadcrumb-item'><a href=\"index.php\"><font color=\"blue\">Home</font></a></li>
+							<li class='breadcrumb-item'><a href=\"roomslist.php?branchID={$branchID}&branchname= {$branchname}\"><font color=\"blue\">$branchname</font> </a></li>";
+						 }
+						  if($_SESSION['userTypeID'] == 2){
+							echo "<li class='breadcrumb-item'><a href=\"indexGamemaster.php\"><font color=\"blue\">Home</font></a></li>";
+						 }
+				}
+				if($_SESSION['from'] == 1){
+					 if($_SESSION['userTypeID'] == 1){
+						echo "<li class='breadcrumb-item'><a href=\"listbranch.php\"><font color=\"blue\">Branches</font></a></li>
+						<li class='breadcrumb-item'><a href=\"roomslist.php?branchID={$branchID}&branchname= {$branchname}\"><font color=\"blue\">$branchname</font> </a></li>";
+					 }
+					  if($_SESSION['userTypeID'] == 2){
+						echo "<li class='breadcrumb-item'><a href=\"indexGamemaster.php\"><font color=\"blue\">Home</font></a></li>";
+					 }
+				}
+				if($_SESSION['from'] == 2){
+					 if($_SESSION['userTypeID'] == 1){
+						echo "<li class='breadcrumb-item'><a href=\"listroom.php\"><font color=\"blue\">Rooms</font></a></li>";
+					 }
+					  if($_SESSION['userTypeID'] == 2){
+						echo "<li class='breadcrumb-item'><a href=\"indexGamemaster.php\"><font color=\"blue\">Home</font></a></li>";
+					 }
+				}
+				
+				if($_SESSION['from'] == 3){
+					 if($_SESSION['userTypeID'] == 1){
+						echo "<li class='breadcrumb-item'><a href=\"listrpi.php\"><font color=\"blue\">RPi</font></a></li>";
+					 }
+					  if($_SESSION['userTypeID'] == 2){
+						echo "<li class='breadcrumb-item'><a href=\"indexGamemaster.php\"><font color=\"blue\">Home</font></a></li>";
+					 }
+				}
+				 
 				 echo"
-					<li class='breadcrumb-item'><a href=\"roomslist.php?branchID={$branchID}&branchname= {$branchname}\"><font color=\"blue\">$branchname</font> </a></li>
+					
 					<li class='breadcrumb-item active'>{$_GET['roomName']}</li>
 					</ol>
 					";

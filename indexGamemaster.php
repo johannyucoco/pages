@@ -4,6 +4,7 @@
 if($_SESSION['userTypeID'] != 2) {
 	 header("Location: http://".$_SERVER['HTTP_HOST'].  dirname($_SERVER['PHP_SELF'])."/logout.php");
 }
+$_SESSION['from'] =0;
 require_once('mysteryDB_connect.php');
 ?>
 <head>

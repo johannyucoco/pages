@@ -213,16 +213,32 @@
 				 
 				 echo"
 				  <ol class='breadcrumb'>";
+				  if($_SESSION['from'] == 0){
 				 if($_SESSION['userTypeID'] == 1){
-					echo "<li class='breadcrumb-item'><a href=\"index.php\"> Home </a></li>";
+					echo "<li class='breadcrumb-item'><a href=\"index.php\"> <font color=\"blue\">Home </font></a></li>
+						<li class='breadcrumb-item'><a href=\"roomslist.php?branchID=$branchID &branchname= $branchname \"> <font color=\"blue\">$branchname</font> </a></li>";
 				 }
 				  if($_SESSION['userTypeID'] == 2){
-					echo "<li class='breadcrumb-item'><a href=\"indexGamemaster.php\"> Home </a></li>";
+					echo "<li class='breadcrumb-item'><a href=\"indexGamemaster.php\"> <font color=\"blue\">Home </font></a></li>";
 				 }
-			
+				  }
+				if($_SESSION['from'] == 1){
+					 if($_SESSION['userTypeID'] == 1){
+						echo "<li class='breadcrumb-item'><a href=\"listbranch.php\"><font color=\"blue\">Branches</font></a></li>
+						<li class='breadcrumb-item'><a href=\"roomslist.php?branchID=$branchID &branchname= $branchname \"> <font color=\"blue\">$branchname </font></a></li>
+						";
+					 }
+					  
+				}
+				if($_SESSION['from'] == 3){
+					 if($_SESSION['userTypeID'] == 1){
+						echo "<li class='breadcrumb-item'><a href=\"listrpi.php\"><font color=\"blue\">RPi</font></a></li>";
+					 }
+					
+				}
 					echo"
-					<li class='breadcrumb-item'><a href=\"roomslist.php?branchID=$branchID &branchname= $branchname \"> $branchname </a></li>
-					<li class='breadcrumb-item'><a href=\"rpilist.php?roomID=$roomID&roomName=$roomName\"> $roomName </a></li>
+				
+					<li class='breadcrumb-item'><a href=\"rpilist.php?roomID=$roomID&roomName=$roomName\"> <font color=\"blue\">$roomName </font> </a></li>
 					<li class='breadcrumb-item'>$rpiName</li>
 					<li class='breadcrumb-item'>$sensorName</li>
 					<li class='breadcrumb-item active'>Status Number:$status</li>

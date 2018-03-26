@@ -213,14 +213,23 @@
 					
 					}
 					echo"<ol class='breadcrumb'>";
-					
+				if($_SESSION['from'] == 0){
 				 if($_SESSION['userTypeID'] == 1){
 					echo "<li class='breadcrumb-item'><a href=\"index.php\"><font color=\"blue\">Home</font></a></li>";
 				 }
 				  if($_SESSION['userTypeID'] == 2){
 					echo "<li class='breadcrumb-item'><a href=\"indexGamemaster.php\"><font color=\"blue\">Home</font></a></li>";
 				 }
-					
+				}
+					if($_SESSION['from'] == 1){
+				 if($_SESSION['userTypeID'] == 1){
+					echo "<li class='breadcrumb-item'><a href=\"listbranch.php\"><font color=\"blue\">Branches</font></a></li>";
+				 }
+				  if($_SESSION['userTypeID'] == 2){
+					echo "<li class='breadcrumb-item'><a href=\"indexGamemaster.php\"><font color=\"blue\">Home</font></a></li>";
+				 }
+				}
+				
 					
 				echo "<li class='breadcrumb-item active'>$branchName</li>
 					</ol>
