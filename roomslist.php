@@ -183,8 +183,6 @@
 
         <div id="page-wrapper">
             <div class="row">
-				<div class="panel panel-default">
-					<div class="panel-body">
 						<div class="col-lg-12">
 						<?php 
 						
@@ -218,10 +216,6 @@
 				</div>
                 <!-- /.col-lg-12 -->
             <!-- /.row -->
-			<div class="row">
-				<div class="col-lg-2">
-				</div>
-				<div class="col-lg-8">
 				<?php
 						if($_SESSION['userTypeID'] == 1) {
 							$branchID = $_GET['branchID'];
