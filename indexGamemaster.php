@@ -96,15 +96,30 @@ require_once('mysteryDB_connect.php');
 									while($row=mysqli_fetch_array($result,MYSQLI_ASSOC)) {
 										$roomID = $row['roomID'];
 										$roomName = $row['roomName'];	
+										$sql1 = "SELECT  count(rp.rpiID) as num , branchID  from rooms r join rpi rp
+													on rp.roomID = r.roomID
+													where r.status = 0	and r.roomID = '{$roomID}'and r.branchID ='{$_SESSION['branchID']}'
+													group by r.roomID";
+									$result1 = mysqli_query($dbc,$sql1);
+									$row1=mysqli_fetch_array($result1,MYSQLI_ASSOC);
+									if($row1){
 									echo '
 											<li>
 											</td>
-											<a href="rpilist.php?roomID='.$roomID.'&roomName='.$roomName.'"><font color="white"><i class="fa fa-arrow-circle-right"></i>&nbsp'.$roomName.'</font></a>
+											<a href="rpilist.php?roomID='.$roomID.'&roomName='.$roomName.'"><font color="white">'.$row1['num'].' <i class="fa fa-arrow-circle-right"></i>&nbsp'.$roomName.'</font></a>
 											</li>';
+									}else{
+											echo '
+											<li>
+											</td>
+											<a href="rpilist.php?roomID='.$roomID.'&roomName='.$roomName.'"><font color="white">0 <i class="fa fa-arrow-circle-right"></i>&nbsp'.$roomName.'</font></a>
+											</li>';
+									}
 									}
 								?>
 								</ul>
 							</li>
+								
 							
 							
 								</ul>
