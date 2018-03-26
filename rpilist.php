@@ -28,7 +28,7 @@ require_once('mysteryDB_connect.php');
 
     <!-- Custom Fonts -->
     <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css"></link>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -271,6 +271,7 @@ require_once('mysteryDB_connect.php');
     <!-- Custom Theme JavaScript -->
     <script src="../dist/js/sb-admin-2.js"></script>
 	   
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
 
 
  
@@ -342,5 +343,12 @@ require_once('mysteryDB_connect.php');
 		
 	</style>
 </body>
+<script> 
+		$(document).ready(function(){
+			$('#roomtable').DataTable({
+				ordering: false
+			});
+		});
+		</script>
 
 </html>

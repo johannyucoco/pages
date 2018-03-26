@@ -21,7 +21,7 @@
 				
 				echo 	
 							'
-							<table class="table table-stipend table-bordered table-hover" id="roomtable">
+							<table class="table table-stipend table-bordered table-hover" id="roomTable">
 							<thead>
 								<tr>
 								

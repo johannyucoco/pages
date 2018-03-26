@@ -225,6 +225,7 @@ require_once('mysteryDB_connect.php');
 							$email = $row['email'];
 							$cnumber = $row['contactNumber'];
 							$branchID = $row['branchID'];
+							
 								echo
 													'
 														<div class="modal fade" id="myModal'.$userID.'" role="dialog">
@@ -307,7 +308,7 @@ require_once('mysteryDB_connect.php');
 								</h6>
 								';
 								
-								
+								echo'<div class="col-lg-12">';
 								
 								if(isset($_POST['confirm'])){
 									$userID = $_SESSION['userID'];
@@ -322,6 +323,7 @@ require_once('mysteryDB_connect.php');
 									if(mysqli_num_rows($result) > 0){
 									
 										if($newPass == $newPassa){
+											echo "<meta http-equiv='refresh' content='2'>";
 											$query= "update users  
 													 set password = PASSWORD('{$newPass}')
 													 where userID = '{$userID}'  ";
@@ -375,13 +377,40 @@ require_once('mysteryDB_connect.php');
 											}
 											
 											
-											$NewcontactNumber = $_POST['cnumber'];
+											$NewcontactNumber = null;
 											$Newemail = $_POST['email'];
-											$NewfirstName = $_POST['fname'];
-											$NewlastName = $_POST['lname'];
+											$NewfirstName = null;
+											$NewlastName = null;
+											$Newusername = null;
 											
-											$Newusername = $_POST['uname'];
-											
+											if(preg_match("/([%\$<#\*]+)/", $_POST['cnumber'])){
+											   	$message= "<br> do not put any special characters";
+											}
+											else
+											{
+											  $NewcontactNumber = $_POST['cnumber'];	
+											}
+											if(preg_match("/([%\$<#\*]+)/", $_POST['fname'])){
+											   	$message= "<br> Do not put any special characters";
+											}
+											else
+											{
+											  $NewfirstName = $_POST['fname'];	
+											}
+											if(preg_match("/([%\$<#\*]+)/", $_POST['lname'])){
+											   	$message= "<br> Do not put any special characters";
+											}
+											else
+											{
+											  $NewlastName = $_POST['lname'];	
+											}
+											if(preg_match("/([%\$<#\*]+)/", $_POST['uname'])){
+											   	$message= "<br> Do not put any special characters";
+											}
+											else
+											{
+											  $Newusername = $_POST['uname'];	
+											}
 											
 							
 											$query1="update users 
@@ -392,8 +421,9 @@ require_once('mysteryDB_connect.php');
 															
 																  
 												$result=mysqli_query($dbc,$query1);
-												if ($result) {
-													
+												if (!isset($message)) {
+												echo "<meta http-equiv='refresh' content='2'>";
+												$_SESSION['username']  = $Newusername;
 													/*		
 														echo "<meta http-equiv='refresh' content='0'>"; //refresh page
 													echo'<script>
@@ -404,7 +434,7 @@ require_once('mysteryDB_connect.php');
 													echo'
 														<div class="alert alert-success">
 															<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-															<strong>Success!</strong> Log-Out to apply changes.
+															<strong>Success!</strong> 
 														</div>
 												
 														';
@@ -414,13 +444,14 @@ require_once('mysteryDB_connect.php');
 													echo'
 														<div class="alert alert-danger">
 															<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-															<strong>Error!</strong> Changes not saved.
+															<strong>Error!</strong> Changes not saved. '.$message.' 
 														</div>
 														';
 												}	
 							}
 								
 					?>
+					</div>
 					</div>
 					<div align="center">
 					<br>

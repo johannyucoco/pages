@@ -1,3 +1,8 @@
+<html> 
+<head> 
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css"></link>
+</head>
+<body> 
 <?php
 	require_once('mysteryDB_connect.php');
 
@@ -38,7 +43,7 @@
 									echo'<h3>'.$rpiName.'<i class="fa fa-chain fa-fw" style = "color:red"></i></h3>';
 							}
 							echo'
-							<table class="table table-striped table-bordered table-hover" id="roomtable">
+							<table class="table table-striped table-bordered table-hover" id="roomtable'.$row["rpiID"].'">
 							<thead>
 								<tr>
 						
@@ -96,9 +101,19 @@
 								echo '</tbody> </table></div>';
 						// <tr class='clickable-row' data-href='url:index.php'>
 						
-					
+			echo"			<script> 
+		$(document).ready(function(){
+			$('#roomtable{$row["rpiID"]}').DataTable({
+				ordering: false
+			});
+		});
+		</script>";
 					
 	}
 ?>
 
-<script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+	<script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+	
+	
+		</body> 
+		</html>
