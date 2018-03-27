@@ -155,14 +155,27 @@ require_once('mysteryDB_connect.php');
 					<div class="row">
 						<ul class="list-group">
 						<?php
-						$sql = "SELECT sn.sensorName as sensorName, st.timestamp as timestamp
+						$sql1 = "SELECT * from users
+						where userID = {$_SESSION['userID']}";
+						$result1 = mysqli_query($dbc,$sql1);	
+						$row1=mysqli_fetch_array($result1,MYSQLI_ASSOC);
+						
+						
+						$sql = "SELECT sn.sensorName as sensorName, st.timestamp as timestamp, b.branchID as branchID
 														from sensors sn
 															join status st
 														on sn.sensorID = st.sensorID
+                                                        join rpi r 
+                                                        on r.rpiID = sn.rpiID 
+                                                        join rooms ro 
+                                                        on r.roomID = ro.roomID
+                                                        join branches b 
+                                                        on b.branchID = ro.branchID
+														where sn.status = 0 and b.branchID = {$row1['branchID']}
                                                         group by sensorName
                                                         ORDER BY timestamp DESC";
 														
-						$result = mysqli_query($dbc,$sql);
+						$result = mysqli_query($dbc,$sql);		
 						while ($row=mysqli_fetch_array($result,MYSQLI_ASSOC)) {
 							$sensorName = $row['sensorName'];
 							$timestamp = strtotime($row['timestamp']);
