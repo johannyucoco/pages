@@ -225,6 +225,34 @@ require_once('mysteryDB_connect.php');
 							$email = $row['email'];
 							$cnumber = $row['contactNumber'];
 							$branchID = $row['branchID'];
+							echo
+												'
+													<div class="modal fade" id="Modal'.$_SESSION['userID'].'" role="dialog">
+														<form action="'.$_SERVER['PHP_SELF'].'" method="post">
+															<div class="modal-dialog modal-lg">
+															  <div class="modal-content">
+																<div class="modal-header">
+																  <button type="button" class="close" data-dismiss="modal">&times;</button>
+																  <h4 class="modal-title">Enter Password to Confirm Changes:</h4>
+																</div>
+																<div class="modal-body">
+																  <div class="form-group">
+																	<input type="hidden" name="branchID" value='.$userID.' /> 
+																		<input required type="password" name="password"class="form-control" placeholder="Branch Name" ">
+																		
+																		<br>
+																</div>
+																<div class="modal-footer">
+																
+																  <button type="submit" class="btn btn-default btn-info" name="add" >Add</button>
+																  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+																</div>
+															  </div>
+															</div>
+														  </div>
+														</form>
+													</div>
+												';
 							
 								echo
 													'
@@ -385,28 +413,28 @@ require_once('mysteryDB_connect.php');
 											$NewlastName = null;
 											$Newusername = null;
 											
-											if(preg_match("/([%\$<#\*]+)/", $_POST['cnumber'])){
+											if(preg_match("/([%\$<>#\*]+)/", $_POST['cnumber'])){
 											   	$message= "<br> do not put any special characters";
 											}
 											else
 											{
 											  $NewcontactNumber = $_POST['cnumber'];	
 											}
-											if(preg_match("/([%\$<#\*]+)/", $_POST['fname'])){
+											if(preg_match("/([%\$<>#\*]+)/", $_POST['fname'])){
 											   	$message= "<br> Do not put any special characters";
 											}
 											else
 											{
 											  $NewfirstName = $_POST['fname'];	
 											}
-											if(preg_match("/([%\$<#\*]+)/", $_POST['lname'])){
+											if(preg_match("/([%\$<>#\*]+)/", $_POST['lname'])){
 											   	$message= "<br> Do not put any special characters";
 											}
 											else
 											{
 											  $NewlastName = $_POST['lname'];	
 											}
-											if(preg_match("/([%\$<#\*]+)/", $_POST['uname'])){
+											if(preg_match("/([%\$<>#\*]+)/", $_POST['uname'])){
 											   	$message= "<br> Do not put any special characters";
 											}
 											else
@@ -453,13 +481,14 @@ require_once('mysteryDB_connect.php');
 														';
 												}	
 							}
-								
+								//<a data-toggle="modal"  data-target="#Modal<?php echo "{$SESSION_['userID']}"; "> Save </a>
 					?>
 					</div>
 					</div>
 					<div align="center">
 					<br>
-					 <a data-toggle="modal"  data-target="#Modal"> <input type="submit" name="save" value="Save" class="btn btn-info" role="button"/> </a>
+					 <input type="submit"  name="save" value="Save" class="btn btn-info" role="button"/>
+					 
 					</div>
 					</form>
 					</div>
