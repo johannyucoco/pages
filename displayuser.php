@@ -291,18 +291,25 @@ $_SESSION['alert'] = 1;
 																<div class="modal-body">
 																  <div class="form-group">
 																	<input type="hidden"  name="newuserID" value=" '.$userID.'" /> 
+																		<b> Username: </b>
 																		<input required name="Newusername"class="form-control" placeholder="Username" value="'.$row['username'].'"">
 																		<br>
+																		<b> First Name: </b> 
 																		<input required name="NewfirstName"class="form-control" placeholder="First Name" value="'.$row['firstName'].'">
 																		<br>
+																		<b> Last Name: </b> 
 																		<input required name="NewlastName"class="form-control" placeholder="Last Name" value="'.$row['lastName'].'">
 																		<br>
+																		<b> Contact Number: </b> 
 																		<input required name="NewcontactNumber"class="form-control" placeholder="Contact Number"value="'.$row['contactNumber'].'">
 																		<br>
+																		<b> Email: </b> 
 																		<input required type="email" name="Newemail"class="form-control" placeholder="Email" value="'.$row['email'].'">
 																		<br>
+																		<b> Password: </b> 
 																		<input disabled type="password" name="password"class="form-control" placeholder="Password" value="'.$row['email'].'">
 																		<br>
+																		 
 																		<label>User Type</label>
 																				<select name= "NewuserType" class="form-control">
 																	

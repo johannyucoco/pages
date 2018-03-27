@@ -323,7 +323,8 @@ require_once('mysteryDB_connect.php');
 									if(mysqli_num_rows($result) > 0){
 									
 										if($newPass == $newPassa){
-											echo "<meta http-equiv='refresh' content='2'>";
+										
+											
 											$query= "update users  
 													 set password = PASSWORD('{$newPass}')
 													 where userID = '{$userID}'  ";
@@ -336,6 +337,7 @@ require_once('mysteryDB_connect.php');
 														</div>
 												
 														';
+															echo "<meta http-equiv='refresh' content='2'>";
 										}
 										else{
 											echo'
@@ -422,7 +424,8 @@ require_once('mysteryDB_connect.php');
 																  
 												$result=mysqli_query($dbc,$query1);
 												if (!isset($message)) {
-												echo "<meta http-equiv='refresh' content='2'>";
+													
+											
 												$_SESSION['username']  = $Newusername;
 													/*		
 														echo "<meta http-equiv='refresh' content='0'>"; //refresh page
@@ -437,7 +440,8 @@ require_once('mysteryDB_connect.php');
 															<strong>Success!</strong> 
 														</div>
 												
-														';
+														';	
+														echo "<meta http-equiv='refresh' content='2'>";
 														
 												}
 												else{
@@ -455,7 +459,7 @@ require_once('mysteryDB_connect.php');
 					</div>
 					<div align="center">
 					<br>
-					<input type="submit" name="save" value="Save" class="btn btn-info" role="button"/>
+					 <a data-toggle="modal"  data-target="#Modal"> <input type="submit" name="save" value="Save" class="btn btn-info" role="button"/> </a>
 					</div>
 					</form>
 					</div>
