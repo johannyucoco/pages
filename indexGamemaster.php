@@ -182,11 +182,14 @@ require_once('mysteryDB_connect.php');
 							$date = strtotime(date('Y-m-d H:i:s'));
 							$datediff = $date - $timestamp;
 							
-							if(round($datediff / (60 * 60 * 24)) <= 2){
+							if(round($datediff / (60 * 60 * 24) <= 2 && $datediff / (60 * 60 * 24) >= 0)){
 								echo'<li class="list-group-item">'.$sensorName.'<span class="pull-right"><i class="fa fa-bullseye fa-fw" style = "color:green"></i></span></li>';
 							}
+							else if(round($datediff / (60 * 60 * 24) <= 6 && $datediff / (60 * 60 * 24) >= 3)) {
+								echo'<li class="list-group-item">'.$sensorName.'<span class="pull-right"><i class="fa fa-bullseye fa-fw" style = "color:yellow"></i></span></li>';
+							}
 							else {
-								echo'<li class="list-group-item">'.$sensorName.'<span class="pull-right"><i class="fa fa-bullseye fa-fw" style = "color:red"></i></span></li>';
+								echo'<li class="list-group-item">'.$sensorName.'<span class="pull-right"><i class="fa fa-bullseye fa-fw" style = "color:yellow"></i></span></li>';
 							}
 						}
 						?>
