@@ -147,8 +147,24 @@ if($_SESSION['userTypeID'] != 1) {
                 <div class="col-lg-12">
 								
 								<h3>Logs</h3>
+								
 								<?php
 									require_once('mysteryDB_connect.php');
+										$sql1 = "SELECT *
+												 FROM sensors s
+												 join rpi r on r.rpiID = s.rpiID
+												 join sensortypes se on s.sensorTypeID = se.sensorTypeID 
+												 join rooms ro on r.roomID = ro.roomID 
+												where s.sensorID = {$_GET['sensorID']}";
+										$result1 = mysqli_query($dbc,$sql1);
+										while($row1=mysqli_fetch_array($result1,MYSQLI_ASSOC)) {
+											echo "<b>Name:</b> {$row1['sensorName']}<br>";
+											echo "<b>Type:</b> {$row1['sensorType']}<br>";
+											echo "<b>Rpi:</b> {$row1['rpiName']}<br>";
+											echo "<b>Room:</b> {$row1['roomName']}<br>";
+											
+										}
+										
 										$sql = "SELECT *
 												 FROM status s
 												where s.sensorID = {$_GET['sensorID']}";
@@ -182,13 +198,7 @@ if($_SESSION['userTypeID'] != 1) {
 													<td class="text-center">'.$timestamp.'</td>
 												</tr>
 												';
-																			echo';
-																  </div>
-																</div>
-															  </div>
-															</form>
-														</div>
-													';
+																		
 										}
 										echo '</tbody> </table>';
 										
