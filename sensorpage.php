@@ -160,9 +160,14 @@ if($_SESSION['userTypeID'] != 1) {
             <div class="row">
                 <div class="col-lg-12">
 								
-								<h3>Logs</h3>
+								
 								
 								<?php
+								echo"<ol class='breadcrumb'>";
+								echo "<li class='breadcrumb-item'><a href=\"listsensor.php\"><font color=\"blue\">Sensors</font></a></li>
+								";
+								echo"	<li class='breadcrumb-item active'>Logs</li>
+								</ol>";
 									require_once('mysteryDB_connect.php');
 										$sql1 = "SELECT *
 												 FROM sensors s
@@ -172,10 +177,10 @@ if($_SESSION['userTypeID'] != 1) {
 												where s.sensorID = {$_GET['sensorID']}";
 										$result1 = mysqli_query($dbc,$sql1);
 										while($row1=mysqli_fetch_array($result1,MYSQLI_ASSOC)) {
-											echo "<b>Name:</b> {$row1['sensorName']}<br>";
+											echo "<div align='center'><b>Name:</b> {$row1['sensorName']}<br>";
 											echo "<b>Type:</b> {$row1['sensorType']}<br>";
 											echo "<b>Rpi:</b> {$row1['rpiName']}<br>";
-											echo "<b>Room:</b> {$row1['roomName']}<br>";
+											echo "<b>Room:</b> {$row1['roomName']}<br> </div>";
 											
 										}
 										
