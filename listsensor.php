@@ -288,8 +288,11 @@ if($_SESSION['userTypeID'] != 1) {
 																	<div class="modal-body">
 																	  <div class="form-group">
 																		<input type="hidden" name="rpiID" value="<?php echo $rpiID; ?>" /> 
+																		<b> Name:</b>
 																			<input required name="newsensorName"class="form-control" placeholder="Edit Sensor Name" value="'.$sensorName.'"><br>
+																			<b> Type: </b>
 																			<input disabled  name="newbranchName"class="form-control" placeholder="Edit Sensor Type" value="'.$sensorType.'"><br>
+																			<b> Connected to: </b>
 																			<select name="rpi" class="form-control">';
 																			
 												

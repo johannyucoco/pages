@@ -268,8 +268,11 @@ $_SESSION['from'] =3;
 																	<div class="modal-body">
 																	  <div class="form-group">
 																		<input type="hidden" name="rpiID" value="<?php echo $rpiID; ?>" /> 
+																			<b>Name:</b>
 																			<input required name="rpiName"class="form-control" placeholder="Edit Rpi Name" value="'.$rpiName.'"><br>
+																			<b>IPAddress:</b>
 																			<input required  name="ipAddress"class="form-control" placeholder="Edit Ip Address" value="'.$ipAddress.'"><br>
+																				<b>Room:</b>
 																				<select name="room" class="form-control">';
 																			
 												
