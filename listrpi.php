@@ -130,12 +130,12 @@ $_SESSION['from'] =3;
 									if($row1){
 									echo "
 											<li>
-									<a href=\"roomslist.php?branchID={$branchID}&branchname= {$branchname}\"><font color=\"white\">{$row1['num']} <i class=\"fa fa-arrow-circle-right\"></i> $branchname </font> </a>
+									<a href=\"roomslist.php?branchID={$branchID}&branchname= {$branchname}\"><font color=\"white\"><i class=\"fa fa-arrow-circle-right\"></i> $branchname <span class=\"pull-right\">{$row1['num']} </font></span></a>
 											</li>";
 									}else{
 										echo "
 											<li>
-											<a href=\"roomslist.php?branchID={$branchID}&branchname= {$branchname}\"><font color=\"white\">0 <i class=\"fa fa-arrow-circle-right\"></i> $branchname </font> </a>
+											<a href=\"roomslist.php?branchID={$branchID}&branchname= {$branchname}\"><font color=\"white\"> <i class=\"fa fa-arrow-circle-right\"></i> $branchname <span class=\"pull-right\">0 </span></font></a>
 											</li>";
 										
 									}
