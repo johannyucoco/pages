@@ -189,7 +189,7 @@ require_once('mysteryDB_connect.php');
 								echo'<li class="list-group-item">'.$sensorName.'<span class="pull-right"><i class="fa fa-bullseye fa-fw" style = "color:yellow"></i></span></li>';
 							}
 							else {
-								echo'<li class="list-group-item">'.$sensorName.'<span class="pull-right"><i class="fa fa-bullseye fa-fw" style = "color:yellow"></i></span></li>';
+								echo'<li class="list-group-item">'.$sensorName.'<span class="pull-right"><i class="fa fa-bullseye fa-fw" style = "color:red"></i></span></li>';
 							}
 						}
 						?>

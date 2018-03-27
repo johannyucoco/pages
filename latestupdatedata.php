@@ -3,19 +3,19 @@
 
 		$roomID = $_GET['roomID'];
 		
+		
+			$sql= "Select *,s.status as status from status s join sensors se 
+											on s.sensorID = se.sensorID 
+										  join rpi r 
+										    on r.rpiID = se.rpiID 
+										  join rooms ro
+											on r.roomID = ro.roomID 
+										where ro.roomID = {$roomID}
+										
+			group by s.statusID
+			order by s.timestamp desc 
 			
-			$sql = "SELECT MAX(sn.sensorID) as sensorIDL, MAX(sn.sensorName) as sensorNameL, MAX(st.status) as statusL, MAX(st.timestamp) as timestampL, MAX(sn.sensorTypeID) as sensorTypeIDL, MAX(st.statusID) as statusIDL, MAX(ls.legendStatusID) as legendStatusIDL, MAX(sts.sensorType) as sensorTypeL
-						  from rooms r join rpi rpi
-								on r.roomID = rpi.roomID
-									   join sensors sn
-								on rpi.rpiID = sn.rpiID
-									   join sensortypes sts
-								on sn.sensorTypeID = sts.sensorTypeID
-									   join status st
-								on sn.sensorID = st.sensorID
-									   join legendstatus ls
-								on sts.sensorTypeID = ls.sensorTypeID
-						  where r.roomID = '$roomID' and rpi.status = 0";
+			limit  1"; 
 
 			$result = mysqli_query($dbc,$sql);
 				
@@ -36,13 +36,11 @@
 							';
 				while ($row1=mysqli_fetch_array($result,MYSQLI_ASSOC)) {
 					
-					$sensorIDL = $row1['sensorIDL'];
-					$sensorNameL = $row1['sensorNameL'];
-					$statusL = $row1['statusL'];	
-					$timestampL = $row1['timestampL'];
-					$statusIDL = $row1['statusIDL'];	
-					$legendStatusIDL = $row1['legendStatusIDL'];	
-					$sensorTypeL = $row1['sensorTypeL'];	
+			
+					$sensorNameL = $row1['sensorName'];
+					$statusL = $row1['status'];	
+					$timestampL = $row1['timestamp'];
+					
 							
 					// <tr class='clickable-row' data-href='url:index.php'>
 					echo 

@@ -221,7 +221,6 @@ if($_SESSION['userTypeID'] != 1) {
 										$sql = "SELECT *
 												 FROM sensors s join sensortypes st
 														on s.sensorTypeID = st.sensorTypeID
-														
 														where s.status = 0
 														 Group by sensorID";
 												 
@@ -238,6 +237,7 @@ if($_SESSION['userTypeID'] != 1) {
 													<th class="text-center">Device Connected</th>
 													<th class="text-center"><i class="fa fa-edit fa-fw" style="color:black"></i></th>
 													<th class="text-center"><i class="fa fa-trash-o fa-fw" style="color:black"></i></th>
+													<th class="text-center"><i class="fa fa-bullseye fa-fw" style = "color:black"></i></th>
 													
 													
 													</tr>
@@ -264,6 +264,7 @@ if($_SESSION['userTypeID'] != 1) {
 												$rpiName = "N/A";
 											} 
 											// <tr class='clickable-row' data-href='url:index.php'>
+										
 											echo 
 												'
 												<tr>
@@ -272,9 +273,40 @@ if($_SESSION['userTypeID'] != 1) {
 													<td class="text-center">'.$sensorType.'</td>
 													<td class="text-center">'.$rpiName.'</td>
 													<td class="text-center"><a data-toggle="modal" data-target="#myModal'.$sensorID.'" ><span role="button"><i class="fa fa-edit	 fa-fw" style="color:blue"></span></i></a></td>
-													<td class="text-center"><a data-toggle="modal" data-target="#myModald'.$sensorID.'" ><span role="button"><i class="fa fa-trash-o fa-fw" style="color:blue"></span></i></td>
-												</tr>
+													<td class="text-center"><a data-toggle="modal" data-target="#myModald'.$sensorID.'" ><span role="button"><i class="fa fa-trash-o fa-fw" style="color:blue"></span></i></a></td>
 												';
+													$sql3 = "SELECT sn.sensorName as sensorName, st.timestamp as timestamp,sn.sensorID
+														from sensors sn
+															join status st
+														on sn.sensorID = st.sensorID
+														where sn.sensorID = {$sensorID}
+                                                        group by sensorName
+                                                        ORDER BY timestamp DESC";
+														
+													$result3 = mysqli_query($dbc,$sql3);
+													if(mysqli_num_rows($result3) > 0){
+													while ($row=mysqli_fetch_array($result3,MYSQLI_ASSOC)) {
+														$sensorName = $row['sensorName'];
+														$timestamp = strtotime($row['timestamp']);
+														$date = strtotime(date('Y-m-d H:i:s'));
+														$datediff = $date - $timestamp;
+														
+														if(round($datediff / (60 * 60 * 24) <= 2 && $datediff / (60 * 60 * 24) >= 0)){
+															echo'<td class="text-center"><i class="fa fa-bullseye fa-fw" style = "color:green"></i></td>';
+															
+														}
+														else if(round($datediff / (60 * 60 * 24) <= 6 && $datediff / (60 * 60 * 24) >= 3)) {
+															echo'<td class="text-center"><i class="fa fa-bullseye fa-fw" style = "color:yellow"></i></td>';
+														}
+														else {
+															echo'<td class="text-center"><i class="fa fa-bullseye fa-fw" style = "color:red"></i></td>';
+														}
+													
+													}
+													}else{
+														echo'<td class="text-center"><i class="fa fa-bullseye fa-fw" style = "color:black"></i></td>';
+													}
+												echo'</tr>';
 										echo
 													'
 														<div class="modal fade" id="myModal'.$sensorID.'" role="dialog">
@@ -553,6 +585,10 @@ if($_SESSION['userTypeID'] != 1) {
 										
 										
 								?>
+								<i class="fa fa-bullseye fa-fw" style = "color:green"></i> - 0-2 Days <br> 
+								<i class="fa fa-bullseye fa-fw" style = "color:yellow"></i> - 3-6 Days <br>
+								<i class="fa fa-bullseye fa-fw" style = "color:red"></i> - 7 or more Days <br>
+								<i class="fa fa-bullseye fa-fw" style = "color:black"></i> - no logs found 
 									</div>
                                 </div>
                                 <!-- /.col-lg-6 (nested) -->
